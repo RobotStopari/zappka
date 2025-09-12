@@ -13,6 +13,7 @@
   .fade-in { animation: fadeIn 0.3s ease-in; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity:1; transform: translateY(0); } }
   .container-admin { max-width: 900px; margin: auto; }
+  .small-muted { font-size: 0.85em; color:#6c757d; display:block; }
 </style>
 </head>
 <body class="p-3">
@@ -26,8 +27,9 @@
   <div class="card-header">Manage Lectors</div>
   <div class="card-body">
     <div class="row g-2 mb-2">
-      <div class="col-md-6"><input type="text" id="lector-name" class="form-control" placeholder="Lector name"></div>
-      <div class="col-md-4"><input type="color" id="lector-color" class="form-control form-control-color"></div>
+      <div class="col-md-4"><input type="text" id="lector-name" class="form-control" placeholder="Lector short name (identifier)"></div>
+      <div class="col-md-4"><input type="text" id="lector-realname" class="form-control" placeholder="Lector real name (full)"></div>
+      <div class="col-md-2"><input type="color" id="lector-color" class="form-control form-control-color"></div>
       <div class="col-md-2"><button class="btn btn-primary w-100" onclick="addLectorMaster()">Add</button></div>
     </div>
     <div class="lectors-list" id="lectors-list"></div>
@@ -56,6 +58,37 @@
 </div>
 
 <pre id="json-output" class="bg-dark text-success p-3" style="max-height:400px; overflow:auto;"></pre>
+
+<!-- Lector Edit Modal -->
+<div class="modal fade" id="lectorModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Lector</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-2">
+          <label>Short Name (identifier)</label>
+          <input type="text" id="lector-modal-name" class="form-control">
+        </div>
+        <div class="mb-2">
+          <label>Real Name (full)</label>
+          <input type="text" id="lector-modal-realname" class="form-control">
+        </div>
+        <div class="mb-2">
+          <label>Color</label>
+          <input type="color" id="lector-modal-color" class="form-control form-control-color">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button class="btn btn-primary" id="lector-modal-save">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!-- Block Modal -->
 <div class="modal fade" id="blockModal" tabindex="-1" aria-hidden="true">
@@ -126,28 +159,59 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
+/* === Data and state === */
 let schedule = [];
-let masterLectors = [];
+let masterLectors = []; // each {name, realName, color}
 let currentModal = { day: null, index: null };
 let blockModal = new bootstrap.Modal(document.getElementById('blockModal'));
 
-// --- Lectors ---
+let lectorModal = new bootstrap.Modal(document.getElementById('lectorModal'));
+let currentLectorIndex = null;
+
+
+/* --- Utilities --- */
+function parseTimeToMinutes(t){
+  if(!t) return null;
+  const [h,m] = t.split(':').map(Number);
+  if(Number.isNaN(h) || Number.isNaN(m)) return null;
+  return h*60 + m;
+}
+function compareTimes(a,b){
+  const am = parseTimeToMinutes(a);
+  const bm = parseTimeToMinutes(b);
+  if(am === null && bm === null) return 0;
+  if(am === null) return 1; // move empty times to end
+  if(bm === null) return -1;
+  return am - bm;
+}
+
+/* --- Lectors --- */
 function addLectorMaster() {
-  const name = document.getElementById('lector-name').value;
+  const name = document.getElementById('lector-name').value.trim();
+  const realName = document.getElementById('lector-realname').value.trim();
   const color = document.getElementById('lector-color').value;
-  if(!name) return alert('Enter a name');
-  masterLectors.push({name,color});
+  if(!name) return alert('Enter a name (short identifier)');
+  // avoid duplicate short names
+  if(masterLectors.find(l=>l.name===name)) return alert('A lector with that short name already exists');
+  masterLectors.push({name, realName: realName || undefined, color});
   renderMasterLectors();
   document.getElementById('lector-name').value='';
+  document.getElementById('lector-realname').value='';
 }
 function renderMasterLectors() {
   const list = document.getElementById('lectors-list');
   list.innerHTML='';
-  masterLectors.forEach((l,i)=>{
+  masterLectors.forEach((l,i)=> {
+    const container = document.createElement('div');
+    container.className = 'd-inline-block me-2 mb-1';
     const span = document.createElement('span');
     span.style.background = l.color;
     span.style.cursor = 'pointer';
-    span.textContent = l.name + ' ';
+    span.textContent = l.name + (l.realName ? ` — ${l.realName}` : '');
+    span.style.padding = '6px 10px';
+    span.style.borderRadius = '6px';
+    span.style.display = 'inline-block';
+    span.title = l.realName ? `${l.realName}` : l.name;
 
     const editBtn = document.createElement('button');
     editBtn.className = 'btn btn-sm btn-light ms-1';
@@ -160,46 +224,69 @@ function renderMasterLectors() {
     removeBtn.onclick = () => {
       if(!confirm(`Remove lector "${l.name}" from everything?`)) return;
       const removed = masterLectors.splice(i,1)[0];
-      schedule.forEach(day => day.blocks.forEach(block => block.lectors = block.lectors.filter(bl => bl.name !== removed.name)));
+      // remove from blocks
+      schedule.forEach(day => day.blocks.forEach(block => {
+        block.lectors = (block.lectors || []).filter(bl => bl.name !== removed.name);
+      }));
       renderMasterLectors();
       renderDays();
       renderModalLectors();
     };
 
-    span.appendChild(editBtn);
-    span.appendChild(removeBtn);
-    list.appendChild(span);
+    container.appendChild(span);
+    container.appendChild(editBtn);
+    container.appendChild(removeBtn);
+    list.appendChild(container);
   });
   renderModalLectors();
 }
 
 function editLector(index) {
+  currentLectorIndex = index;
   const lector = masterLectors[index];
-  const newName = prompt("Edit Lector Name:", lector.name);
-  if(newName === null || !newName.trim()) return;
-  const newColor = prompt("Edit Lector Color (hex):", lector.color);
-  if(newColor === null || !/^#[0-9A-Fa-f]{6}$/.test(newColor)) return alert("Invalid color!");
+  document.getElementById('lector-modal-name').value = lector.name;
+  document.getElementById('lector-modal-realname').value = lector.realName || '';
+  document.getElementById('lector-modal-color').value = lector.color || '#000000';
+  lectorModal.show();
+}
+
+document.getElementById('lector-modal-save').addEventListener('click', () => {
+  if (currentLectorIndex === null) return;
+  const lector = masterLectors[currentLectorIndex];
+
+  const newName = document.getElementById('lector-modal-name').value.trim();
+  const newReal = document.getElementById('lector-modal-realname').value.trim();
+  const newColor = document.getElementById('lector-modal-color').value;
+
+  if (!newName) return alert('Name cannot be empty');
+  if (newName !== lector.name && masterLectors.find(l => l.name === newName)) {
+    return alert('Another lector with that short name exists');
+  }
+
   const oldName = lector.name;
-  lector.name = newName.trim();
+  lector.name = newName;
+  lector.realName = newReal || undefined;
   lector.color = newColor;
-  schedule.forEach(day => day.blocks.forEach(block => block.lectors.forEach(bl => { if(bl.name === oldName){ bl.name=lector.name; bl.color=lector.color; } })));
+
+  // propagate changes
+  schedule.forEach(day => day.blocks.forEach(block => {
+    (block.lectors || []).forEach(bl => {
+      if (bl.name === oldName) {
+        bl.name = lector.name;
+        bl.realName = lector.realName;
+        bl.color = lector.color;
+      }
+    });
+  }));
+
   renderMasterLectors();
   renderDays();
   renderModalLectors();
-}
+  lectorModal.hide();
+});
 
-// --- Days ---
-function addNewDay() {
-  const dateInput = document.getElementById('new-day').value;
-  if(!dateInput) return alert('Select a date first');
-  if(schedule.find(d=>d.date===dateInput)) return alert('Day already exists');
-  createDay(dateInput);
-}
-function createDay(date) {
-  const day={date,blocks:[]};
-  schedule.push(day);
-  renderDays();
-}
+
+/* --- Days / rendering --- */
 const blockTypeStyles = {
   program: { color: "#0d6efd", icon: "📒" },
   jídlo: { color: "#28a745", icon: "🍽️" },
@@ -208,33 +295,67 @@ const blockTypeStyles = {
   ostatní: { color: "#6c757d", icon: "⚪" },
 };
 
+function addNewDay() {
+  const dateInput = document.getElementById('new-day').value;
+  if(!dateInput) return alert('Select a date first');
+  if(schedule.find(d=>d.date===dateInput)) return alert('Day already exists');
+  createDay(dateInput);
+}
+
+function createDay(date) {
+  const day = { date, blocks: [] };
+  schedule.push(day);
+  renderDays();
+}
+
 function renderDays(){
   const container=document.getElementById('days-container');
   container.innerHTML='';
+
+  // sort days ascending by date
+  schedule.sort((a,b) => a.date.localeCompare(b.date));
+
   schedule.forEach(day=>{
+    // ensure blocks array exists
+    day.blocks = Array.isArray(day.blocks) ? day.blocks : [];
+
+    // sort blocks by start time (empty start -> last)
+    day.blocks.sort((a,b) => compareTimes(a.start,b.start));
+
     const card=document.createElement('div');
     card.className='card mb-3 fade-in';
-    
+
     const blockItems = day.blocks.map((b,i)=>{
       const style = blockTypeStyles[b.type] || blockTypeStyles["ostatní"];
       let duration = '';
       if(b.start && b.end && b.type !== 'teploměr'){
-        const [sh, sm] = b.start.split(':').map(Number);
-        const [eh, em] = b.end.split(':').map(Number);
-        let minutes = (eh*60 + em) - (sh*60 + sm);
-        duration = minutes>0 ? ` (${Math.floor(minutes/60)}h ${minutes%60}m)` : '';
+        const [sh, sm] = (b.start||'').split(':').map(Number);
+        const [eh, em] = (b.end||'').split(':').map(Number);
+        if(!Number.isNaN(sh) && !Number.isNaN(eh)){
+          let minutes = (eh*60 + em) - (sh*60 + sm);
+          duration = minutes>0 ? ` (${Math.floor(minutes/60)}h ${minutes%60}m)` : '';
+        }
       }
-      const lectors = b.lectors.map(l=>l.name).join(', ');
+
+      const lectors = (b.lectors || []).map(l => {
+        // show short name + real name if available
+        const rn = l.realName || (l.realName === undefined ? '' : l.realName);
+        return rn ? `${l.name} (${rn})` : `${l.name}`;
+      }).join(', ');
+
       return `
         <li class="list-group-item d-flex justify-content-between align-items-start" style="border-left:4px solid ${style.color}">
           <div>
             <span style="margin-right:5px">${style.icon}</span>
             <strong>${b.title || '(no title)'}</strong>
-            ${b.tema ? '<br><small>Téma: '+b.tema+'</small>' : ''}
-            ${b.start ? ' ' + b.start : ''}${b.end ? '-' + b.end : ''}${duration ? ' ' + duration : ''}
-            ${lectors ? '<br><small>Lectors: ' + lectors + '</small>' : ''}
+            ${b.tema ? '<br><small>Téma: '+escapeHtml(b.tema)+'</small>' : ''}
+            ${b.start ? ' ' + escapeHtml(b.start) : ''}${b.end ? '-' + escapeHtml(b.end) : ''}${duration ? ' ' + duration : ''}
+            ${lectors ? '<br><small>Lectors: ' + escapeHtml(lectors) + '</small>' : ''}
           </div>
-          <button class="btn btn-sm btn-primary ms-2" onclick="openBlockModal('${day.date}',${i})">Edit</button>
+          <div>
+            <button class="btn btn-sm btn-primary ms-2" onclick="openBlockModal('${day.date}',${i})">Edit</button>
+            <button class="btn btn-sm btn-outline-secondary ms-2" onclick="duplicateBlock('${day.date}',${i})">Duplicate</button>
+          </div>
         </li>
       `;
     }).join('');
@@ -257,39 +378,73 @@ function renderDays(){
 
 function removeDay(date){ if(confirm('Remove day?')){ schedule=schedule.filter(d=>d.date!==date); renderDays(); }}
 
-// --- Add Block with Defaults ---
+/* --- Add Block with Defaults (ensure fresh arrays) --- */
 function addBlock(date){
-  const day=schedule.find(d=>d.date===date);
-  let block={title:'',start:'',end:'',type:'program',description:'',tema:'',lectors:[],files:[],links:[]};
+  const day = schedule.find(d=>d.date===date);
+  if(!day) return;
+  const block = {
+    title: '',
+    start: '',
+    end: '',
+    type: 'program',
+    description: '',
+    tema: '',
+    lectors: [],
+    files: [],
+    links: []
+  };
   day.blocks.push(block);
   renderDays();
-  openBlockModal(date, day.blocks.length-1);
+
+  // Make sure modal input elements are cleared so they don't "carry over" files/links
+  const fileInput = document.getElementById('modal-files');
+  if(fileInput) fileInput.value = '';
+  document.getElementById('modal-new-link-url').value = '';
+  document.getElementById('modal-new-link-desc').value = '';
+
+  openBlockModal(date, day.blocks.length - 1);
 }
 
-// --- Modal Functions ---
+/* --- Modal Functions --- */
 function openBlockModal(day,index){
   currentModal={day,index};
-  const block=schedule.find(d=>d.date===day).blocks[index];
-  if(!block.lectors) block.lectors=[];
-  if(!block.files) block.files=[];
-  if(!block.links) block.links=[];
-  
+  const dayObj = schedule.find(d=>d.date===day);
+  if(!dayObj) return;
+  const block = dayObj.blocks[index];
+  if(!block) return;
+
+  // ensure arrays exist (backwards compat)
+  if(!Array.isArray(block.lectors)) block.lectors = [];
+  if(!Array.isArray(block.files)) block.files = [];
+  if(!Array.isArray(block.links)) block.links = [];
+
+  // ensure lector entries have realName property if missing (back-compat)
+  block.lectors.forEach(l => {
+    if(l.realName === undefined) l.realName = l.realName || undefined;
+    if(!l.color) { const master = masterLectors.find(m=>m.name===l.name); if(master) l.color = master.color; }
+  });
+
   document.getElementById('modal-title').value = block.title;
-  document.getElementById('modal-start').value = block.start;
-  document.getElementById('modal-end').value = block.end||'';
-  document.getElementById('modal-type').value = block.type;
-  document.getElementById('modal-desc').value = block.description;
+  document.getElementById('modal-start').value = block.start || '';
+  document.getElementById('modal-end').value = block.end || '';
+  document.getElementById('modal-type').value = block.type || 'program';
+  document.getElementById('modal-desc').value = block.description || '';
   document.getElementById('modal-tema').value = block.tema || '';
-  document.getElementById('modal-files-list').innerHTML = block.files.map((f,i)=>`<li>${f.name} <button class="btn btn-sm btn-danger" onclick="modalRemoveFile(${i})">x</button></li>`).join('');
+  document.getElementById('modal-files-list').innerHTML = (block.files || []).map((f,i)=>`<li>${escapeHtml(f.name || f)} <button class="btn btn-sm btn-danger" onclick="modalRemoveFile(${i})">x</button></li>`).join('');
 
   renderModalLectors();
   renderModalLinks();
+
+  // clear file input element to avoid auto-adding from previous selection
+  const fileInput = document.getElementById('modal-files');
+  if(fileInput) fileInput.value = '';
+
   blockModal.show();
   flatpickr(".timepicker",{enableTime:true,noCalendar:true,dateFormat:"H:i",time_24hr:true});
   handleTypeChange(true);
 }
 
-// --- Type Based Visibility ---
+/* --- Type Based Visibility --- */
 function handleTypeChange(){
   const type = document.getElementById('modal-type').value;
   const titleInput = document.getElementById('modal-title');
@@ -307,7 +462,6 @@ function handleTypeChange(){
   const filesContainer = document.getElementById('modal-files-container');
   const linksContainer = document.getElementById('modal-links-container');
 
-  // --- Visibility rules ---
   if(type==='teploměr'){
     endContainer.style.display='none';
     descContainer.style.display='none';
@@ -329,7 +483,7 @@ function handleTypeChange(){
     lectorsContainer.style.display='none';
     filesContainer.style.display='none';
     linksContainer.style.display='none';
-  } else { // program, ostatní
+  } else {
     endContainer.style.display='block';
     descContainer.style.display='block';
     temaContainer.style.display='block';
@@ -341,8 +495,6 @@ function handleTypeChange(){
   checkRequiredFields();
 }
 
-
-
 function checkRequiredFields(){
   const type=document.getElementById('modal-type').value;
   const start=document.getElementById('modal-start').value;
@@ -352,17 +504,20 @@ function checkRequiredFields(){
   else if((type!=='teploměr' && type!=='jídlo' && type!=='zpětná vazba') && !end) saveBtn.disabled=true;
   else saveBtn.disabled=false;
 }
-
 document.getElementById('modal-start').addEventListener('input', checkRequiredFields);
 document.getElementById('modal-end').addEventListener('input', checkRequiredFields);
 
-// --- Modal Save & Remove ---
+/* --- Modal Save & Remove --- */
 function saveBlockModal(){
-  const block=schedule.find(d=>d.date===currentModal.day).blocks[currentModal.index];
+  const dayObj = schedule.find(d=>d.date===currentModal.day);
+  if(!dayObj) return;
+  const block = dayObj.blocks[currentModal.index];
+  if(!block) return;
   block.title=document.getElementById('modal-title').value;
   block.start=document.getElementById('modal-start').value;
   block.type=document.getElementById('modal-type').value;
   if(block.type!=='teploměr') block.end=document.getElementById('modal-end').value;
+  else block.end = undefined;
   block.description=document.getElementById('modal-desc').value;
   block.tema=document.getElementById('modal-tema').value || undefined;
   renderDays();
@@ -371,80 +526,147 @@ function saveBlockModal(){
 
 function removeBlockModal(){
   const day=schedule.find(d=>d.date===currentModal.day);
+  if(!day) return;
   if(confirm('Remove this block?')){ day.blocks.splice(currentModal.index,1); renderDays(); blockModal.hide(); }
 }
 
-// --- Lectors Modal ---
+/* --- Lectors in Modal --- */
 function renderModalLectors(){
-  const block=schedule.find(d=>d.date===currentModal.day).blocks[currentModal.index];
+  const day = schedule.find(d=>d.date===currentModal.day);
+  if(!day) return;
+  const block = day.blocks[currentModal.index];
+  if(!block) return;
   const container=document.getElementById('modal-lectors');
   container.innerHTML='';
-  block.lectors.forEach((l,i)=>{
+  (block.lectors || []).forEach((l,i)=>{
     const span=document.createElement('span');
-    span.style.background=l.color; span.textContent=l.name;
+    span.style.background = l.color || '#666';
+    span.style.color = '#fff';
+    span.style.padding = '5px 8px';
+    span.style.borderRadius = '5px';
+    span.style.marginRight = '6px';
+    span.style.cursor = 'pointer';
+    span.textContent = l.name + (l.realName ? ` (${l.realName})` : '');
     span.onclick=()=>{ block.lectors.splice(i,1); renderModalLectors(); };
     container.appendChild(span);
   });
+
   const select=document.getElementById('modal-add-lector');
   select.innerHTML='<option value="">--Add Lector--</option>';
   masterLectors.forEach(l=>{
-    if(!block.lectors.find(bl=>bl.name===l.name)) select.innerHTML += `<option value="${l.name}">${l.name}</option>`;
+    if(!(block.lectors || []).find(bl=>bl.name===l.name)) select.innerHTML += `<option value="${escapeHtml(l.name)}">${escapeHtml(l.name + (l.realName ? ' — ' + l.realName : ''))}</option>`;
   });
 }
 function modalAssignLector(name){
   if(!name) return;
-  const block=schedule.find(d=>d.date===currentModal.day).blocks[currentModal.index];
-  const l=masterLectors.find(l=>l.name===name);
-  if(l) block.lectors.push({name:l.name,color:l.color});
+  const day=schedule.find(d=>d.date===currentModal.day);
+  if(!day) return;
+  const block = day.blocks[currentModal.index];
+  if(!block) return;
+  const l = masterLectors.find(m=>m.name===name);
+  if(l) {
+    // copy lector info as stored in master
+    block.lectors = block.lectors || [];
+    block.lectors.push({ name: l.name, realName: l.realName, color: l.color });
+  }
   renderModalLectors();
 }
 
-// --- Files ---
+/* --- Files --- */
 function modalHandleFiles(files){
-  const block=schedule.find(d=>d.date===currentModal.day).blocks[currentModal.index];
+  const day=schedule.find(d=>d.date===currentModal.day);
+  if(!day) return;
+  const block = day.blocks[currentModal.index];
+  if(!block) return;
+  // ensure fresh array
+  block.files = block.files || [];
+  // append selected files (File objects). If running in browser the file objects are fine.
   block.files.push(...Array.from(files));
   renderModalFiles();
+  // clear the input so that selecting the same file again triggers onchange and so a new block won't accidentally inherit
+  const fileInput = document.getElementById('modal-files');
+  if(fileInput) fileInput.value = '';
 }
 function renderModalFiles(){
-  const block=schedule.find(d=>d.date===currentModal.day).blocks[currentModal.index];
-  document.getElementById('modal-files-list').innerHTML=block.files.map((f,i)=>`<li>${f.name} <button class="btn btn-sm btn-danger" onclick="modalRemoveFile(${i})">x</button></li>`).join('');
+  const day=schedule.find(d=>d.date===currentModal.day);
+  if(!day) return;
+  const block = day.blocks[currentModal.index];
+  if(!block) return;
+  document.getElementById('modal-files-list').innerHTML=(block.files || []).map((f,i)=>`<li>${escapeHtml(f.name || f)} <button class="btn btn-sm btn-danger" onclick="modalRemoveFile(${i})">x</button></li>`).join('');
 }
 function modalRemoveFile(i){
-  const block=schedule.find(d=>d.date===currentModal.day).blocks[currentModal.index];
+  const day=schedule.find(d=>d.date===currentModal.day);
+  if(!day) return;
+  const block = day.blocks[currentModal.index];
+  if(!block) return;
   block.files.splice(i,1); renderModalFiles();
 }
 
-// --- Links ---
+/* --- Links --- */
 function renderModalLinks(){
-  const block=schedule.find(d=>d.date===currentModal.day).blocks[currentModal.index];
-  document.getElementById('modal-links-list').innerHTML=block.links.map((l,i)=>`<li>${l.url} (${l.desc}) <button class="btn btn-sm btn-danger" onclick="removeLink(${i})">x</button></li>`).join('');
+  const day=schedule.find(d=>d.date===currentModal.day);
+  if(!day) return;
+  const block = day.blocks[currentModal.index];
+  if(!block) return;
+  document.getElementById('modal-links-list').innerHTML=(block.links || []).map((l,i)=>`<li>${escapeHtml(l.url)} (${escapeHtml(l.desc||'')}) <button class="btn btn-sm btn-danger" onclick="removeLink(${i})">x</button></li>`).join('');
 }
 function addLink(){
-  const url=document.getElementById('modal-new-link-url').value;
-  const desc=document.getElementById('modal-new-link-desc').value;
+  const url=document.getElementById('modal-new-link-url').value.trim();
+  const desc=document.getElementById('modal-new-link-desc').value.trim();
   if(!url) return alert('Enter URL');
-  const block=schedule.find(d=>d.date===currentModal.day).blocks[currentModal.index];
+  const day=schedule.find(d=>d.date===currentModal.day);
+  if(!day) return;
+  const block = day.blocks[currentModal.index];
+  if(!block) return;
+  block.links = block.links || [];
   block.links.push({url,desc});
   renderModalLinks();
   document.getElementById('modal-new-link-url').value='';
   document.getElementById('modal-new-link-desc').value='';
 }
 function removeLink(i){
-  const block=schedule.find(d=>d.date===currentModal.day).blocks[currentModal.index];
+  const day=schedule.find(d=>d.date===currentModal.day);
+  if(!day) return;
+  const block = day.blocks[currentModal.index];
+  if(!block) return;
   block.links.splice(i,1); renderModalLinks();
 }
 
-// --- JSON ---
+/* --- Duplicate block --- */
+function duplicateBlock(date, index){
+  const day = schedule.find(d=>d.date===date);
+  if(!day) return;
+  const original = day.blocks[index];
+  if(!original) return;
+  // shallow deep-copy fields (files are File objects — we copy the references)
+  const copy = {
+    title: original.title,
+    start: original.start,
+    end: original.end,
+    type: original.type,
+    description: original.description,
+    tema: original.tema,
+    lectors: JSON.parse(JSON.stringify(original.lectors || [])), // deep copy plain objects
+    files: Array.isArray(original.files) ? original.files.slice() : [],
+    links: Array.isArray(original.links) ? JSON.parse(JSON.stringify(original.links)) : []
+  };
+  day.blocks.splice(index+1, 0, copy);
+  renderDays();
+}
+
+/* --- JSON operations --- */
 function exportJSON(){ document.getElementById('json-output').textContent=JSON.stringify(schedule,null,2); }
 function downloadJSON(){ const blob = new Blob([JSON.stringify(schedule,null,2)], {type:'application/json'}); const url = URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='schedule.json'; a.click(); URL.revokeObjectURL(url); }
 function copyJSON(){ navigator.clipboard.writeText(JSON.stringify(schedule,null,2)); alert('JSON copied'); }
 function importJSON(event){
-  const file=event.target.files[0]; if(!file) return;
+  const file=event.target.files[0]; 
+  if(!file) return;
   const reader=new FileReader();
   reader.onload=function(e){
     try{
       const data=JSON.parse(e.target.result);
       if(!Array.isArray(data)) throw new Error('Invalid JSON');
+      
       schedule=data.map(day=>{
         day.blocks = Array.isArray(day.blocks)?day.blocks:[];
         day.blocks.forEach(block=>{
@@ -460,14 +682,36 @@ function importJSON(event){
         });
         return day;
       });
+
+      // 🔥 Build masterLectors automatically from imported blocks
+      const lectorMap = {};
+      schedule.forEach(day=>{
+        day.blocks.forEach(block=>{
+          block.lectors.forEach(l=>{
+            lectorMap[l.name] = { name: l.name, color: l.color, realName: l.realName || "" };
+          });
+        });
+      });
+      masterLectors = Object.values(lectorMap);
+
+      renderMasterLectors();
       renderDays();
       alert('JSON imported successfully');
-    }catch(err){ alert('Invalid JSON'); }
+    }catch(err){ 
+      alert('Invalid JSON'); 
+    }
   };
   reader.readAsText(file);
 }
 
-// --- Init ---
+
+/* === small helpers === */
+function escapeHtml(str){
+  if(typeof str !== 'string') return str;
+  return str.replace(/[&<>"']/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]; });
+}
+
+/* --- Init --- */
 renderMasterLectors();
 renderDays();
 </script>

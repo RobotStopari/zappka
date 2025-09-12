@@ -716,9 +716,24 @@ function showLectors(all = true, specificLector = null) {
 
 			const blocksCount = dedupedBlocks.length;
 
-			// Lector header
+			// ✅ Find realName if available (take from first matching block)
+			let realName = "";
+			const sampleBlock = dedupedBlocks.find(
+				(b) => b.lectors && b.lectors.some((l) => l.name === lectorName)
+			);
+			if (sampleBlock) {
+				const lectorObj = sampleBlock.lectors.find((l) => l.name === lectorName);
+				if (lectorObj && lectorObj.realName) {
+					realName = lectorObj.realName;
+				}
+			}
+
+			// Lector header with nickname + real name (if exists)
 			const lectorHeader = document.createElement("h6");
-			lectorHeader.textContent = `${lectorName} (${blocksCount})`;
+			const lectorHeadingText = realName
+				? `${lectorName} – ${realName} (${blocksCount})`
+				: `${lectorName} (${blocksCount})`;
+			lectorHeader.textContent = lectorHeadingText;
 			contentEl.appendChild(lectorHeader);
 
 			dedupedBlocks.forEach((block) => {

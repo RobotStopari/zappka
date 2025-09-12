@@ -14,7 +14,8 @@
 					},
 					{
 						"name": "Viki",
-						"color": "#f000c6"
+						"color": "#f000c6",
+						"realName": "Viktorie Renčová"
 					}
 				],
 				"files": [],
@@ -44,7 +45,8 @@
 				"lectors": [
 					{
 						"name": "Opičák",
-						"color": "#0099ec"
+						"color": "#0099ec",
+						"realName": "Ondřej Turek"
 					}
 				],
 				"files": [],
@@ -97,7 +99,8 @@
 				"lectors": [
 					{
 						"name": "Opičák",
-						"color": "#0099ec"
+						"color": "#0099ec",
+						"realName": "Ondřej Turek"
 					},
 					{
 						"name": "Vítek",
@@ -116,11 +119,13 @@
 				"lectors": [
 					{
 						"name": "Viki",
-						"color": "#f000c6"
+						"color": "#f000c6",
+						"realName": "Viktorie Renčová"
 					},
 					{
 						"name": "Opičák",
-						"color": "#0099ec"
+						"color": "#0099ec",
+						"realName": "Ondřej Turek"
 					},
 					{
 						"name": "Mája",
@@ -140,7 +145,8 @@
 					},
 					{
 						"name": "Robot",
-						"color": "#f9da00"
+						"color": "#f9da00",
+						"realName": "Jakub Procházka"
 					}
 				],
 				"files": [],
@@ -189,7 +195,8 @@
 				"lectors": [
 					{
 						"name": "Robot",
-						"color": "#f9da00"
+						"color": "#f9da00",
+						"realName": "Jakub Procházka"
 					},
 					{
 						"name": "Vítek",
@@ -201,6 +208,15 @@
 				"end": "08:50"
 			},
 			{
+				"title": "Teploměr",
+				"start": "08:40",
+				"type": "teploměr",
+				"description": "",
+				"lectors": [],
+				"files": [],
+				"links": []
+			},
+			{
 				"title": "Proč si hrajeme?",
 				"start": "08:50",
 				"type": "program",
@@ -208,7 +224,8 @@
 				"lectors": [
 					{
 						"name": "Robot",
-						"color": "#f9da00"
+						"color": "#f9da00",
+						"realName": "Jakub Procházka"
 					},
 					{
 						"name": "Foxy",
@@ -228,7 +245,8 @@
 				"lectors": [
 					{
 						"name": "Opičák",
-						"color": "#0099ec"
+						"color": "#0099ec",
+						"realName": "Ondřej Turek"
 					},
 					{
 						"name": "Anka",
@@ -268,11 +286,13 @@
 				"lectors": [
 					{
 						"name": "Opičák",
-						"color": "#0099ec"
+						"color": "#0099ec",
+						"realName": "Ondřej Turek"
 					},
 					{
 						"name": "Viki",
-						"color": "#f000c6"
+						"color": "#f000c6",
+						"realName": "Viktorie Renčová"
 					}
 				],
 				"files": [],
@@ -288,11 +308,13 @@
 				"lectors": [
 					{
 						"name": "Viki",
-						"color": "#f000c6"
+						"color": "#f000c6",
+						"realName": "Viktorie Renčová"
 					},
 					{
 						"name": "Opičák",
-						"color": "#0099ec"
+						"color": "#0099ec",
+						"realName": "Ondřej Turek"
 					},
 					{
 						"name": "Mája",
@@ -312,7 +334,8 @@
 					},
 					{
 						"name": "Robot",
-						"color": "#f9da00"
+						"color": "#f9da00",
+						"realName": "Jakub Procházka"
 					}
 				],
 				"files": [],
@@ -340,6 +363,15 @@
 				"end": "13:35"
 			},
 			{
+				"title": "Teploměr",
+				"start": "13:25",
+				"type": "teploměr",
+				"description": "",
+				"lectors": [],
+				"files": [],
+				"links": []
+			},
+			{
 				"title": "Kde tankovat? Nejlepší bezínky v okolí.",
 				"start": "13:35",
 				"type": "program",
@@ -347,11 +379,13 @@
 				"lectors": [
 					{
 						"name": "Viki",
-						"color": "#f000c6"
+						"color": "#f000c6",
+						"realName": "Viktorie Renčová"
 					},
 					{
 						"name": "Robot",
-						"color": "#f9da00"
+						"color": "#f9da00",
+						"realName": "Jakub Procházka"
 					}
 				],
 				"files": [],
@@ -367,7 +401,8 @@
 				"lectors": [
 					{
 						"name": "Robot",
-						"color": "#f9da00"
+						"color": "#f9da00",
+						"realName": "Jakub Procházka"
 					},
 					{
 						"name": "Anka",
@@ -391,7 +426,8 @@
 					},
 					{
 						"name": "Opičák",
-						"color": "#0099ec"
+						"color": "#0099ec",
+						"realName": "Ondřej Turek"
 					}
 				],
 				"files": [],
@@ -407,7 +443,8 @@
 				"lectors": [
 					{
 						"name": "Robot",
-						"color": "#f9da00"
+						"color": "#f9da00",
+						"realName": "Jakub Procházka"
 					},
 					{
 						"name": "Anka",
@@ -431,7 +468,8 @@
 					},
 					{
 						"name": "Opičák",
-						"color": "#0099ec"
+						"color": "#0099ec",
+						"realName": "Ondřej Turek"
 					}
 				],
 				"files": [],
@@ -447,7 +485,8 @@
 				"lectors": [
 					{
 						"name": "Viki",
-						"color": "#f000c6"
+						"color": "#f000c6",
+						"realName": "Viktorie Renčová"
 					},
 					{
 						"name": "Foxy",
@@ -471,7 +510,8 @@
 					},
 					{
 						"name": "Robot",
-						"color": "#f9da00"
+						"color": "#f9da00",
+						"realName": "Jakub Procházka"
 					}
 				],
 				"files": [],
@@ -487,11 +527,13 @@
 				"lectors": [
 					{
 						"name": "Viki",
-						"color": "#f000c6"
+						"color": "#f000c6",
+						"realName": "Viktorie Renčová"
 					},
 					{
 						"name": "Opičák",
-						"color": "#0099ec"
+						"color": "#0099ec",
+						"realName": "Ondřej Turek"
 					},
 					{
 						"name": "Mája",
@@ -511,7 +553,8 @@
 					},
 					{
 						"name": "Robot",
-						"color": "#f9da00"
+						"color": "#f9da00",
+						"realName": "Jakub Procházka"
 					}
 				],
 				"files": [],
@@ -540,6 +583,15 @@
 				"end": "19:35"
 			},
 			{
+				"title": "Teploměr",
+				"start": "19:25",
+				"type": "teploměr",
+				"description": "",
+				"lectors": [],
+				"files": [],
+				"links": []
+			},
+			{
 				"title": "Sharing is caring",
 				"start": "19:35",
 				"type": "program",
@@ -547,7 +599,8 @@
 				"lectors": [
 					{
 						"name": "Viki",
-						"color": "#f000c6"
+						"color": "#f000c6",
+						"realName": "Viktorie Renčová"
 					},
 					{
 						"name": "Vítek",
@@ -567,11 +620,13 @@
 				"lectors": [
 					{
 						"name": "Viki",
-						"color": "#f000c6"
+						"color": "#f000c6",
+						"realName": "Viktorie Renčová"
 					},
 					{
 						"name": "Opičák",
-						"color": "#0099ec"
+						"color": "#0099ec",
+						"realName": "Ondřej Turek"
 					}
 				],
 				"files": [],
@@ -591,7 +646,8 @@
 					},
 					{
 						"name": "Robot",
-						"color": "#f9da00"
+						"color": "#f9da00",
+						"realName": "Jakub Procházka"
 					}
 				],
 				"files": [],
@@ -607,7 +663,8 @@
 				"lectors": [
 					{
 						"name": "Opičák",
-						"color": "#0099ec"
+						"color": "#0099ec",
+						"realName": "Ondřej Turek"
 					},
 					{
 						"name": "Vítek",
@@ -617,33 +674,6 @@
 				"files": [],
 				"links": [],
 				"end": "22:10"
-			},
-			{
-				"title": "Teploměr",
-				"start": "08:40",
-				"type": "teploměr",
-				"description": "",
-				"lectors": [],
-				"files": [],
-				"links": []
-			},
-			{
-				"title": "Teploměr",
-				"start": "13:25",
-				"type": "teploměr",
-				"description": "",
-				"lectors": [],
-				"files": [],
-				"links": []
-			},
-			{
-				"title": "Teploměr",
-				"start": "19:25",
-				"type": "teploměr",
-				"description": "",
-				"lectors": [],
-				"files": [],
-				"links": []
 			}
 		]
 	},
@@ -658,7 +688,8 @@
 				"lectors": [
 					{
 						"name": "Viki",
-						"color": "#f000c6"
+						"color": "#f000c6",
+						"realName": "Viktorie Renčová"
 					},
 					{
 						"name": "Foxy",
@@ -711,13 +742,23 @@
 					},
 					{
 						"name": "Robot",
-						"color": "#f9da00"
+						"color": "#f9da00",
+						"realName": "Jakub Procházka"
 					}
 				],
 				"files": [],
 				"links": [],
 				"end": "09:40",
 				"tema": "Komunikace, respekt"
+			},
+			{
+				"title": "Teploměr",
+				"start": "08:40",
+				"type": "teploměr",
+				"description": "",
+				"lectors": [],
+				"files": [],
+				"links": []
 			},
 			{
 				"title": "To zní jako plán",
@@ -751,7 +792,8 @@
 					},
 					{
 						"name": "Robot",
-						"color": "#f9da00"
+						"color": "#f9da00",
+						"realName": "Jakub Procházka"
 					}
 				],
 				"files": [],
@@ -787,11 +829,13 @@
 				"lectors": [
 					{
 						"name": "Opičák",
-						"color": "#0099ec"
+						"color": "#0099ec",
+						"realName": "Ondřej Turek"
 					},
 					{
 						"name": "Robot",
-						"color": "#f9da00"
+						"color": "#f9da00",
+						"realName": "Jakub Procházka"
 					}
 				],
 				"files": [],
@@ -827,17 +871,29 @@
 				"lectors": [
 					{
 						"name": "Opičák",
-						"color": "#0099ec"
+						"color": "#0099ec",
+						"realName": "Ondřej Turek"
 					},
 					{
 						"name": "Robot",
-						"color": "#f9da00"
+						"color": "#f9da00",
+						"realName": "Jakub Procházka"
 					}
 				],
 				"files": [],
 				"links": [],
 				"end": "12:50",
 				"tema": "Vývoj skupiny a dramaturgie"
+			},
+			{
+				"title": "Zpětná vazba",
+				"start": "12:50",
+				"type": "zpětná vazba",
+				"description": "",
+				"lectors": [],
+				"files": [],
+				"links": [],
+				"end": "12:55"
 			},
 			{
 				"title": "Oběd",
@@ -857,7 +913,8 @@
 				"lectors": [
 					{
 						"name": "Opičák",
-						"color": "#0099ec"
+						"color": "#0099ec",
+						"realName": "Ondřej Turek"
 					},
 					{
 						"name": "Anka",
@@ -870,6 +927,15 @@
 				"tema": "Motivace k aktivitám"
 			},
 			{
+				"title": "Teploměr",
+				"start": "13:50",
+				"type": "teploměr",
+				"description": "",
+				"lectors": [],
+				"files": [],
+				"links": []
+			},
+			{
 				"title": "Jak proměnit váš program v nezapomenutelný zážitek?",
 				"start": "14:20",
 				"type": "program",
@@ -877,7 +943,8 @@
 				"lectors": [
 					{
 						"name": "Opičák",
-						"color": "#0099ec"
+						"color": "#0099ec",
+						"realName": "Ondřej Turek"
 					},
 					{
 						"name": "Anka",
@@ -901,7 +968,8 @@
 					},
 					{
 						"name": "Opičák",
-						"color": "#0099ec"
+						"color": "#0099ec",
+						"realName": "Ondřej Turek"
 					}
 				],
 				"files": [],
@@ -929,6 +997,16 @@
 				"tema": "Minimalizace rizika a krizové situace"
 			},
 			{
+				"title": "Zpětná vazba",
+				"start": "17:50",
+				"type": "zpětná vazba",
+				"description": "",
+				"lectors": [],
+				"files": [],
+				"links": [],
+				"end": "17:55"
+			},
+			{
 				"title": "Večeře",
 				"start": "17:55",
 				"type": "jídlo",
@@ -950,7 +1028,8 @@
 					},
 					{
 						"name": "Viki",
-						"color": "#f000c6"
+						"color": "#f000c6",
+						"realName": "Viktorie Renčová"
 					},
 					{
 						"name": "Vítek",
@@ -958,7 +1037,8 @@
 					},
 					{
 						"name": "Opičák",
-						"color": "#0099ec"
+						"color": "#0099ec",
+						"realName": "Ondřej Turek"
 					},
 					{
 						"name": "Mája",
@@ -970,13 +1050,23 @@
 					},
 					{
 						"name": "Robot",
-						"color": "#f9da00"
+						"color": "#f9da00",
+						"realName": "Jakub Procházka"
 					}
 				],
 				"files": [],
 				"links": [],
 				"end": "19:05",
 				"tema": "Tržiště"
+			},
+			{
+				"title": "Teploměr",
+				"start": "18:35",
+				"type": "teploměr",
+				"description": "",
+				"lectors": [],
+				"files": [],
+				"links": []
 			},
 			{
 				"title": "Co dělá tvůj oddíl oddílem?",
@@ -986,11 +1076,13 @@
 				"lectors": [
 					{
 						"name": "Viki",
-						"color": "#f000c6"
+						"color": "#f000c6",
+						"realName": "Viktorie Renčová"
 					},
 					{
 						"name": "Robot",
-						"color": "#f9da00"
+						"color": "#f9da00",
+						"realName": "Jakub Procházka"
 					}
 				],
 				"files": [],
@@ -1006,7 +1098,8 @@
 				"lectors": [
 					{
 						"name": "Opičák",
-						"color": "#0099ec"
+						"color": "#0099ec",
+						"realName": "Ondřej Turek"
 					}
 				],
 				"files": [],
@@ -1021,7 +1114,8 @@
 				"lectors": [
 					{
 						"name": "Opičák",
-						"color": "#0099ec"
+						"color": "#0099ec",
+						"realName": "Ondřej Turek"
 					},
 					{
 						"name": "Vítek",
@@ -1048,7 +1142,8 @@
 					},
 					{
 						"name": "Viki",
-						"color": "#f000c6"
+						"color": "#f000c6",
+						"realName": "Viktorie Renčová"
 					},
 					{
 						"name": "Vítek",
@@ -1058,53 +1153,6 @@
 				"files": [],
 				"links": [],
 				"end": "23:15"
-			},
-			{
-				"title": "Zpětná vazba",
-				"start": "12:50",
-				"type": "zpětná vazba",
-				"description": "",
-				"lectors": [],
-				"files": [],
-				"links": [],
-				"end": "12:55"
-			},
-			{
-				"title": "Zpětná vazba",
-				"start": "17:50",
-				"type": "zpětná vazba",
-				"description": "",
-				"lectors": [],
-				"files": [],
-				"links": [],
-				"end": "17:55"
-			},
-			{
-				"title": "Teploměr",
-				"start": "08:40",
-				"type": "teploměr",
-				"description": "",
-				"lectors": [],
-				"files": [],
-				"links": []
-			},
-			{
-				"title": "Teploměr",
-				"start": "13:50",
-				"type": "teploměr",
-				"description": "",
-				"lectors": [],
-				"files": [],
-				"links": []
-			},
-			{
-				"title": "Teploměr",
-				"start": "18:35",
-				"type": "teploměr",
-				"description": "",
-				"lectors": [],
-				"files": [],
-				"links": []
 			}
 		]
 	},
@@ -1119,7 +1167,8 @@
 				"lectors": [
 					{
 						"name": "Opičák",
-						"color": "#0099ec"
+						"color": "#0099ec",
+						"realName": "Ondřej Turek"
 					}
 				],
 				"files": [],
@@ -1157,6 +1206,15 @@
 				"tema": "Motivace, manipulace a autorita"
 			},
 			{
+				"title": "Teploměr",
+				"start": "08:35",
+				"type": "teploměr",
+				"description": "",
+				"lectors": [],
+				"files": [],
+				"links": []
+			},
+			{
 				"title": "Volitelné bloky",
 				"start": "09:35",
 				"type": "program",
@@ -1168,7 +1226,8 @@
 					},
 					{
 						"name": "Viki",
-						"color": "#f000c6"
+						"color": "#f000c6",
+						"realName": "Viktorie Renčová"
 					},
 					{
 						"name": "Vítek",
@@ -1176,7 +1235,8 @@
 					},
 					{
 						"name": "Opičák",
-						"color": "#0099ec"
+						"color": "#0099ec",
+						"realName": "Ondřej Turek"
 					},
 					{
 						"name": "Mája",
@@ -1188,7 +1248,8 @@
 					},
 					{
 						"name": "Robot",
-						"color": "#f9da00"
+						"color": "#f9da00",
+						"realName": "Jakub Procházka"
 					}
 				],
 				"files": [],
@@ -1203,7 +1264,8 @@
 				"lectors": [
 					{
 						"name": "Opičák",
-						"color": "#0099ec"
+						"color": "#0099ec",
+						"realName": "Ondřej Turek"
 					},
 					{
 						"name": "Mája",
@@ -1233,7 +1295,8 @@
 				"lectors": [
 					{
 						"name": "Robot",
-						"color": "#f9da00"
+						"color": "#f9da00",
+						"realName": "Jakub Procházka"
 					},
 					{
 						"name": "Anka",
@@ -1253,11 +1316,13 @@
 				"lectors": [
 					{
 						"name": "Viki",
-						"color": "#f000c6"
+						"color": "#f000c6",
+						"realName": "Viktorie Renčová"
 					},
 					{
 						"name": "Robot",
-						"color": "#f9da00"
+						"color": "#f9da00",
+						"realName": "Jakub Procházka"
 					}
 				],
 				"files": [],
@@ -1292,7 +1357,8 @@
 				"lectors": [
 					{
 						"name": "Opičák",
-						"color": "#0099ec"
+						"color": "#0099ec",
+						"realName": "Ondřej Turek"
 					},
 					{
 						"name": "Vítek",
@@ -1304,6 +1370,15 @@
 				"end": "14:45"
 			},
 			{
+				"title": "Teploměr",
+				"start": "13:00",
+				"type": "teploměr",
+				"description": "",
+				"lectors": [],
+				"files": [],
+				"links": []
+			},
+			{
 				"title": "Zavírák",
 				"start": "14:45",
 				"type": "program",
@@ -1311,7 +1386,8 @@
 				"lectors": [
 					{
 						"name": "Opičák",
-						"color": "#0099ec"
+						"color": "#0099ec",
+						"realName": "Ondřej Turek"
 					},
 					{
 						"name": "Vítek",
@@ -1330,7 +1406,8 @@
 				"lectors": [
 					{
 						"name": "Robot",
-						"color": "#f9da00"
+						"color": "#f9da00",
+						"realName": "Jakub Procházka"
 					}
 				],
 				"files": [],
@@ -1345,30 +1422,13 @@
 				"lectors": [
 					{
 						"name": "Viki",
-						"color": "#f000c6"
+						"color": "#f000c6",
+						"realName": "Viktorie Renčová"
 					}
 				],
 				"files": [],
 				"links": [],
 				"end": "16:25"
-			},
-			{
-				"title": "Teploměr",
-				"start": "08:35",
-				"type": "teploměr",
-				"description": "",
-				"lectors": [],
-				"files": [],
-				"links": []
-			},
-			{
-				"title": "Teploměr",
-				"start": "13:00",
-				"type": "teploměr",
-				"description": "",
-				"lectors": [],
-				"files": [],
-				"links": []
 			}
 		]
 	}
