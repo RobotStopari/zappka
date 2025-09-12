@@ -6,54 +6,217 @@
 <title>Course Program Admin</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/nano.min.css">
 <style>
-  body { background: #f8f9fa; }
-  .lectors-list span, .lectors-assigned span { display: inline-block; padding: 3px 6px; border-radius: 4px; color: #fff; margin: 2px; font-size: 0.85em; transition: all 0.2s; }
-  .lectors-list span:hover, .lectors-assigned span:hover { transform: scale(1.05); }
-  .fade-in { animation: fadeIn 0.3s ease-in; }
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity:1; transform: translateY(0); } }
-  .container-admin { max-width: 900px; margin: auto; }
-  .small-muted { font-size: 0.85em; color:#6c757d; display:block; }
+  body {
+    background: linear-gradient(120deg, #f8fafc 0%, #e9ecef 100%);
+    min-height: 100vh;
+  }
+  .container-admin {
+    max-width: 1000px;
+    margin: 40px auto 0 auto;
+    padding-bottom: 40px;
+  }
+  .card {
+    border-radius: 18px;
+    box-shadow: 0 2px 16px 0 rgba(60,72,88,0.07);
+    border: none;
+    margin-bottom: 2rem;
+  }
+  .card-header {
+    background: #fff;
+    border-bottom: none;
+    font-weight: 600;
+    font-size: 1.15rem;
+    padding: 1.1rem 1.5rem 0.7rem 1.5rem;
+  }
+  .card-body {
+    padding: 1.5rem;
+  }
+  .fade-in {
+    animation: fadeIn 0.4s cubic-bezier(.4,0,.2,1);
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity:1; transform: translateY(0); }
+  }
+  .lectors-list span, .lectors-assigned span {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 20px;
+    color: #fff;
+    margin: 3px 6px 3px 0;
+    font-size: 0.97em;
+    font-weight: 500;
+    background: #6c757d;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.04);
+    transition: all 0.18s;
+    cursor: pointer;
+  }
+  .lectors-list span:hover, .lectors-assigned span:hover {
+    transform: scale(1.07);
+    filter: brightness(1.08);
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.08);
+  }
+  .lectors-list button, .lectors-assigned button {
+    margin-left: 7px;
+    border-radius: 50%;
+    padding: 2px 7px;
+    font-size: 1em;
+    background: #fff;
+    color: #333;
+    border: none;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.04);
+    transition: background 0.15s;
+  }
+  .lectors-list button:hover, .lectors-assigned button:hover {
+    background: #f8d7da;
+    color: #c82333;
+  }
+  .days-container .card {
+    margin-bottom: 1.5rem;
+  }
+  .list-group-item {
+    border-radius: 10px !important;
+    margin-bottom: 0.5rem;
+    border: none;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.03);
+    background: #f9fafb;
+  }
+  .btn {
+    border-radius: 8px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.03);
+    transition: box-shadow 0.15s;
+  }
+  .btn:focus {
+    box-shadow: 0 0 0 2px #0d6efd33;
+  }
+  .btn-primary, .btn-success {
+    box-shadow: 0 2px 8px 0 rgba(13,110,253,0.08);
+  }
+  .btn-outline-secondary {
+    background: #fff;
+  }
+  .btn-danger {
+    background: #e74c3c;
+    border: none;
+  }
+  .btn-danger:hover {
+    background: #c0392b;
+  }
+  .form-control, .form-select {
+    border-radius: 8px;
+    border: 1px solid #e0e3e7;
+    background: #fff;
+    font-size: 1em;
+    padding: 0.7em 1em;
+    margin-bottom: 0.2em;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.02);
+    transition: border 0.15s;
+  }
+  .form-control:focus, .form-select:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 2px #0d6efd22;
+  }
+  .modal-content {
+    border-radius: 16px;
+    box-shadow: 0 4px 32px 0 rgba(60,72,88,0.13);
+  }
+  .modal-header {
+    border-bottom: none;
+    padding-bottom: 0.5rem;
+  }
+  .modal-footer {
+    border-top: none;
+    padding-top: 0.5rem;
+  }
+  .bg-dark {
+    background: #23272b !important;
+    border-radius: 10px;
+  }
+  #json-output {
+    font-size: 1.05em;
+    border: 1px solid #222;
+    border-radius: 10px;
+    margin-top: 1.2em;
+  }
+  .d-flex.gap-2.mb-4.flex-wrap > .btn, .d-flex.gap-2.mb-4.flex-wrap > label {
+    min-width: 160px;
+    margin-bottom: 0.5em;
+  }
+  .d-flex.gap-2.mb-4.flex-wrap {
+    gap: 1.1em 1.1em !important;
+  }
+  .small-muted {
+    font-size: 0.92em;
+    color: #6c757d;
+    display: block;
+    margin-top: 0.2em;
+  }
 </style>
 </head>
 <body class="p-3">
 
-<div class="container container-admin">
 
-<h1 class="mb-4 text-center">Course Program Admin</h1>
+<div class="container container-admin">
+  <div class="text-center mb-5">
+    <img src="2026/img/logo.png" alt="Logo" style="height:54px; margin-bottom: 10px; opacity:0.93;">
+    <h1 class="fw-bold" style="font-size:2.3rem; letter-spacing:0.01em;">Course Program Admin</h1>
+    <div class="small-muted">Modern admin interface for managing course schedules and lectors</div>
+  </div>
 
 <!-- Lectors Section -->
-<div class="card mb-4 fade-in">
-  <div class="card-header">Manage Lectors</div>
+<div class="card fade-in">
+  <div class="card-header">Lectors <span class="small-muted">Add, edit, or remove lectors for the program</span></div>
   <div class="card-body">
-    <div class="row g-2 mb-2">
-      <div class="col-md-4"><input type="text" id="lector-name" class="form-control" placeholder="Lector short name (identifier)"></div>
-      <div class="col-md-4"><input type="text" id="lector-realname" class="form-control" placeholder="Lector real name (full)"></div>
-      <div class="col-md-2"><input type="color" id="lector-color" class="form-control form-control-color"></div>
-      <div class="col-md-2"><button class="btn btn-primary w-100" onclick="addLectorMaster()">Add</button></div>
-    </div>
+    <form class="row g-3 align-items-end mb-3" onsubmit="addLectorMaster(); return false;">
+      <div class="col-md-4">
+        <label class="form-label">Short Name</label>
+        <input type="text" id="lector-name" class="form-control" placeholder="e.g. jdoe">
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">Full Name</label>
+        <input type="text" id="lector-realname" class="form-control" placeholder="e.g. John Doe">
+      </div>
+      <div class="col-md-2">
+        <label class="form-label">Color</label>
+        <div id="lector-color-picker"></div>
+        <input type="hidden" id="lector-color" value="#3b82f6">
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-primary w-100" type="submit">Add Lector</button>
+      </div>
+    </form>
     <div class="lectors-list" id="lectors-list"></div>
   </div>
 </div>
 
 <!-- Days Section -->
-<div class="card mb-4 fade-in">
-  <div class="card-header">Add Day</div>
+<div class="card fade-in">
+  <div class="card-header">Days <span class="small-muted">Add and manage program days and blocks</span></div>
   <div class="card-body">
-    <div class="row g-2 mb-2">
-      <div class="col-md-8"><input type="date" id="new-day" class="form-control"></div>
-      <div class="col-md-4"><button class="btn btn-success w-100" onclick="addNewDay()">Add Day</button></div>
-    </div>
-    <div id="days-container"></div>
+    <form class="row g-3 align-items-end mb-3" onsubmit="addNewDay(); return false;">
+      <div class="col-md-8">
+        <label class="form-label">New Day</label>
+        <input type="text" id="new-day" class="form-control" placeholder="YYYY-MM-DD" autocomplete="off">
+      </div>
+      <div class="col-md-4">
+        <button class="btn btn-success w-100" type="submit">Add Day</button>
+      </div>
+    </form>
+    <div id="days-container" class="days-container"></div>
   </div>
 </div>
 
-<div class="d-flex gap-2 mb-4 flex-wrap">
-  <button class="btn btn-outline-success" onclick="exportJSON()">Export JSON</button>
-  <button class="btn btn-outline-primary" onclick="downloadJSON()">Download JSON</button>
-  <button class="btn btn-outline-warning" onclick="copyJSON()">Copy JSON</button>
+<div class="d-flex gap-2 mb-4 flex-wrap justify-content-center">
+  <button class="btn btn-outline-success" onclick="exportJSON()"><span class="me-1">⤴️</span>Export JSON</button>
+  <button class="btn btn-outline-primary" onclick="downloadJSON()"><span class="me-1">💾</span>Download JSON</button>
+  <button class="btn btn-outline-warning" onclick="copyJSON()"><span class="me-1">📋</span>Copy JSON</button>
   <label class="btn btn-outline-secondary mb-0">
-    Import JSON <input type="file" id="import-json" accept=".json" style="display:none" onchange="importJSON(event)">
+    <span class="me-1">⤵️</span>Import JSON <input type="file" id="import-json" accept=".json" style="display:none" onchange="importJSON(event)">
   </label>
 </div>
 
@@ -78,7 +241,8 @@
         </div>
         <div class="mb-2">
           <label>Color</label>
-          <input type="color" id="lector-modal-color" class="form-control form-control-color">
+          <div id="lector-modal-color-picker"></div>
+          <input type="hidden" id="lector-modal-color" value="#3b82f6">
         </div>
       </div>
       <div class="modal-footer">
@@ -100,8 +264,8 @@
       <div class="modal-body">
         <div class="mb-2"><label>Title</label><input type="text" id="modal-title" class="form-control"></div>
         <div class="row g-2 mb-2" id="modal-time-fields">
-          <div class="col-md-6"><label>Start</label><input type="text" id="modal-start" class="form-control timepicker"></div>
-          <div class="col-md-6" id="modal-end-container"><label>End</label><input type="text" id="modal-end" class="form-control timepicker"></div>
+          <div class="col-md-6"><label>Start</label><input type="text" id="modal-start" class="form-control timepicker" autocomplete="off"></div>
+          <div class="col-md-6" id="modal-end-container"><label>End</label><input type="text" id="modal-end" class="form-control timepicker" autocomplete="off"></div>
         </div>
         <div class="mb-2"><label>Type</label>
           <select id="modal-type" class="form-select" onchange="handleTypeChange()">
@@ -711,9 +875,85 @@ function escapeHtml(str){
   return str.replace(/[&<>"']/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]; });
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+  // Date picker for new day
+  if (window.flatpickr) {
+    flatpickr('#new-day', {
+      dateFormat: 'Y-m-d',
+      allowInput: true,
+      minDate: 'today',
+      disableMobile: true
+    });
+    flatpickr('.timepicker', {
+      enableTime: true,
+      noCalendar: true,
+      dateFormat: 'H:i',
+      time_24hr: true,
+      disableMobile: true
+    });
+  }
+
+  // Color picker for add lector
+  if (window.Pickr) {
+    window.lectorPickr = Pickr.create({
+      el: '#lector-color-picker',
+      theme: 'nano',
+      default: '#3b82f6',
+      swatches: [
+        '#3b82f6', '#6366f1', '#10b981', '#f59e42', '#f43f5e', '#eab308', '#0ea5e9', '#64748b', '#22223b', '#fff'
+      ],
+      components: {
+        preview: true,
+        opacity: false,
+        hue: true,
+        interaction: {
+          hex: true,
+          input: true,
+          save: true
+        }
+      }
+    });
+    window.lectorPickr.on('save', (color) => {
+      document.getElementById('lector-color').value = color ? color.toHEXA().toString() : '#3b82f6';
+      window.lectorPickr.hide();
+    });
+    window.lectorPickr.on('change', (color) => {
+      document.getElementById('lector-color').value = color ? color.toHEXA().toString() : '#3b82f6';
+    });
+
+    // Color picker for modal
+    window.lectorModalPickr = Pickr.create({
+      el: '#lector-modal-color-picker',
+      theme: 'nano',
+      default: '#3b82f6',
+      swatches: [
+        '#3b82f6', '#6366f1', '#10b981', '#f59e42', '#f43f5e', '#eab308', '#0ea5e9', '#64748b', '#22223b', '#fff'
+      ],
+      components: {
+        preview: true,
+        opacity: false,
+        hue: true,
+        interaction: {
+          hex: true,
+          input: true,
+          save: true
+        }
+      }
+    });
+    window.lectorModalPickr.on('save', (color) => {
+      document.getElementById('lector-modal-color').value = color ? color.toHEXA().toString() : '#3b82f6';
+      window.lectorModalPickr.hide();
+    });
+    window.lectorModalPickr.on('change', (color) => {
+      document.getElementById('lector-modal-color').value = color ? color.toHEXA().toString() : '#3b82f6';
+    });
+  }
+});
+
 /* --- Init --- */
 renderMasterLectors();
 renderDays();
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
 </body>
 </html>
