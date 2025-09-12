@@ -34,7 +34,25 @@
 			<div class="d-flex justify-content-center flex-wrap gap-2 mb-3 top-buttons">
 				<button id="historyBtn" class="btn btn-history">📜 Historie</button>
 				<button id="tableBtn" class="btn btn-primary">📋 Programy</button>
+				<button id="materialsBtn" class="btn btn-materials">🗂️ Materiály</button>
 				<button id="lectorBtn" class="btn btn-lector">🎓 Lektorstvo</button>
+				<!-- Materials Modal -->
+				<div class="modal fade" id="materialsModal" tabindex="-1">
+					<div class="modal-dialog modal-dialog-scrollable">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">🗂️ Soubory a Odkazy</h5>
+								<button
+									type="button"
+									class="btn-close"
+									data-bs-dismiss="modal"
+									aria-label="Zavřít"
+								></button>
+							</div>
+							<div class="modal-body" id="materialsContent"></div>
+						</div>
+					</div>
+				</div>
 				<a
 					href="https://docs.google.com/forms/d/e/1FAIpQLSeH_anh7ASEvtBuC8xd7KLhg-ZOUBJeSvyNf79Z26eJu6zt0w/viewform?usp=dialog"
 					target="_blank"

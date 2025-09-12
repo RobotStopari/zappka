@@ -1,3 +1,92 @@
+// Show all materials popup
+function showMaterials() {
+	const contentEl = document.getElementById("materialsContent");
+	contentEl.innerHTML = "";
+
+	// Gather all blocks with sources
+	const allBlocks = [];
+	scheduleData.forEach((day) => {
+		day.blocks.forEach((block) => {
+			allBlocks.push({ ...block, date: day.date });
+		});
+	});
+
+	// Sort by date+start
+	allBlocks.sort((a, b) => {
+		const dateA = new Date(`${a.date}T${a.start || "00:00"}`);
+		const dateB = new Date(`${b.date}T${b.start || "00:00"}`);
+		return dateA - dateB;
+	});
+
+	const now = new Date();
+	let anyShown = false;
+	allBlocks.forEach((block) => {
+		const hasSources =
+			(block.files && block.files.length > 0) ||
+			(block.links && block.links.length > 0);
+		if (!hasSources && (!block.start || !block.end)) return;
+
+		// Find block start
+		let blockStart = null;
+		if (block.date && block.start)
+			blockStart = new Date(`${block.date}T${block.start}`);
+		let sourcesUnlocked = blockStart && now >= blockStart;
+
+		if (!hasSources && !sourcesUnlocked) return;
+
+		// If locked
+		const blockLabel = block.tema ? block.tema : block.title;
+		if (hasSources && !sourcesUnlocked) {
+			const blockDiv = document.createElement("div");
+			blockDiv.className = "mb-3";
+			blockDiv.innerHTML = `<span style="font-weight:600; font-size:1rem;">${blockLabel} <span class='sources-icon' title='Materiály budou zpřístupněny až po začátku bloku.'>🔒</span></span>`;
+			contentEl.appendChild(blockDiv);
+			anyShown = true;
+			return;
+		}
+
+		// If has sources and unlocked
+		if (hasSources && sourcesUnlocked) {
+			const blockDiv = document.createElement("div");
+			blockDiv.className = "mb-3";
+			blockDiv.innerHTML = `<div style="font-weight:600; font-size:1rem; margin-bottom:0.2em;">${blockLabel}</div>`;
+			// Files
+			if (block.files && block.files.length > 0) {
+				const filesList = document.createElement("ul");
+				filesList.className = "list-unstyled file-list";
+				block.files.forEach((f) => {
+					const li = document.createElement("li");
+					li.innerHTML = `<a href="${f.url}" target="_blank">${f.name}</a>`;
+					filesList.appendChild(li);
+				});
+				blockDiv.appendChild(filesList);
+			}
+			// Links
+			if (block.links && block.links.length > 0) {
+				const linksList = document.createElement("ul");
+				linksList.className = "list-unstyled link-list";
+				block.links.forEach((l) => {
+					const li = document.createElement("li");
+					li.innerHTML = `<a href="${l.url}" target="_blank">${l.desc}</a>`;
+					linksList.appendChild(li);
+				});
+				blockDiv.appendChild(linksList);
+			}
+			contentEl.appendChild(blockDiv);
+			anyShown = true;
+		}
+	});
+
+	if (!anyShown) {
+		contentEl.innerHTML =
+			'<div class="text-center text-muted">Žádné materiály nejsou aktuálně dostupné.</div>';
+	}
+
+	new bootstrap.Modal(document.getElementById("materialsModal")).show();
+}
+document
+	.getElementById("materialsBtn")
+	.addEventListener("click", showMaterials);
 let scheduleData = [];
 let historyVisible = false;
 
@@ -66,11 +155,16 @@ function renderSchedule(schedule) {
 
 		const dayHeader = document.createElement("h3");
 		dayHeader.className = "day-header";
-		dayHeader.textContent = parseDay(day.date).toLocaleDateString("cs-CZ", {
+		// Capitalize only the first letter of the weekday, rest as is
+		const dateObj = parseDay(day.date);
+		let dayStr = dateObj.toLocaleDateString("cs-CZ", {
 			weekday: "long",
 			day: "numeric",
 			month: "long",
 		});
+		// Capitalize only the first word (weekday)
+		dayStr = dayStr.replace(/^([\p{L}])/u, (m) => m.toUpperCase());
+		dayHeader.textContent = dayStr;
 		scheduleEl.appendChild(dayHeader);
 
 		let lastEnd = null;
@@ -184,35 +278,77 @@ function createBlockCard(block, duration, isNow, isPastGroup, index = 0) {
 	card.style.animation = `fadeInUp 0.4s forwards`;
 	card.style.animationDelay = `${index * 0.05}s`;
 
+	// --- Sources icon logic ---
+	let hasSources =
+		(block.files && block.files.length > 0) ||
+		(block.links && block.links.length > 0);
+	let showSources = false;
+	let sourcesIcon = "";
+	// Only for blocks where info is available (program, ostatní)
+	if (["program", "ostatní"].includes(block.type)) {
+		if (hasSources) {
+			// Find block date
+			let blockDate = null;
+			for (const day of scheduleData) {
+				if (day.blocks && Array.isArray(day.blocks)) {
+					for (const b of day.blocks) {
+						if (b === block) {
+							blockDate = day.date;
+							break;
+						}
+					}
+				}
+				if (blockDate) break;
+			}
+			if (blockDate && block.start) {
+				const now = new Date();
+				const blockStart = new Date(`${blockDate}T${block.start}`);
+				// Only show sources if the block has started (now >= blockStart)
+				if (now >= blockStart) {
+					showSources = true;
+				}
+			}
+			if (showSources) {
+				sourcesIcon =
+					'<span class="sources-icon" title="Materiály jsou nyní dostupné.">👁️</span>';
+			} else {
+				sourcesIcon =
+					'<span class="sources-icon" title="Materiály budou zpřístupněny až po začátku bloku.">🔒</span>';
+			}
+		} else {
+			// No sources at all
+			sourcesIcon =
+				'<span class="sources-icon no-sources" title="Žádné materiály nejsou k tomuto bloku k dispozici.">📁</span>';
+		}
+	}
+
 	if (block.type === "teploměr") {
 		card.innerHTML = `
-      <div class="card-body d-flex align-items-center p-1">
-        <strong>${icon} ${block.title}</strong>
-      </div>
-    `;
+	  <div class="card-body d-flex align-items-center p-1">
+		<strong>${icon} ${block.title}</strong>
+	  </div>
+	`;
 	} else {
 		card.innerHTML = `
-      <div class="card-body">
-        <h5 class="card-title">${icon} ${block.title}</h5>
-        ${
-									block.tema
-										? `<p class="card-subtema text-muted mb-1" style="font-size:0.85rem; text-transform: lowercase;">${block.tema}</p>`
-										: ""
-								}
-        <p class="card-text mb-1">
-          <strong>${block.start} – ${block.end || ""}</strong>
-          ${
-											block.type !== "teploměr" ? "(" + formatDuration(duration) + ")" : ""
-										}
-        </p>
-        <p class="card-text">${renderLectors(block.lectors)}</p>
-        ${
-									block.type === "jídlo" && block.description
-										? `<p class="card-text"><em>${block.description}</em></p>`
-										: ""
-								}
-      </div>
-    `;
+	  <div class="card-body">
+		<h5 class="card-title">${icon} ${block.title} ${sourcesIcon}</h5>
+		${
+			block.tema
+				? `<p class="card-subtema text-muted mb-1" style="font-size:0.85rem; text-transform: lowercase;">${block.tema}</p>`
+				: ""
+		}
+		<p class="card-text mb-1">
+		  <strong>${block.start} – ${block.end || ""}</strong>
+		  ${block.type !== "teploměr" ? "(" + formatDuration(duration) + ")" : ""}
+		</p>
+		<p class="card-text">${renderLectors(block.lectors)}</p>
+		${
+			block.type === "jídlo" && block.description
+				? `<p class="card-text"><em>${block.description}</em></p>`
+				: ""
+		}
+	  </div>
+	`;
 
 		if (!["jídlo", "zpětná vazba", "teploměr"].includes(block.type)) {
 			const btn = document.createElement("button");
@@ -242,6 +378,9 @@ function showModal(block) {
 	// Title
 	document.getElementById("modalTitle").textContent = block.title;
 
+	// Title
+	document.getElementById("modalTitle").textContent = block.title;
+
 	// Téma (top of modal, above time)
 	const modalTemaEl = document.getElementById("modalTema");
 	if (modalTemaEl) {
@@ -263,34 +402,74 @@ function showModal(block) {
 	document.getElementById("modalDesc").textContent =
 		block.description || "Bez popisu";
 
-	// Files
+	// --- Sources icon logic for modal ---
 	const filesEl = document.getElementById("modalFiles");
 	filesEl.innerHTML = "";
-	if (block.files && block.files.length > 0) {
-		filesEl.innerHTML =
-			"<strong>Soubory ke stažení:</strong><ul class='list-unstyled file-list'></ul>";
-		const ul = filesEl.querySelector("ul");
-		block.files.forEach((f) => {
-			const li = document.createElement("li");
-			li.innerHTML = `<a href="${f.url}" target="_blank">${f.name}</a>`;
-			ul.appendChild(li);
-		});
+	let hasSources =
+		(block.files && block.files.length > 0) ||
+		(block.links && block.links.length > 0);
+	let showFilesAndLinks = false;
+	let sourcesIcon = "";
+	if (hasSources) {
+		// Try to get the block's date from the scheduleData
+		let blockDate = null;
+		for (const day of scheduleData) {
+			if (day.blocks && Array.isArray(day.blocks)) {
+				for (const b of day.blocks) {
+					if (b === block) {
+						blockDate = day.date;
+						break;
+					}
+				}
+			}
+			if (blockDate) break;
+		}
+		if (blockDate && block.start) {
+			const now = new Date();
+			const blockStart = new Date(`${blockDate}T${block.start}`);
+			// Only show sources if the block has started (now >= blockStart)
+			if (now >= blockStart) {
+				showFilesAndLinks = true;
+				// No icon when sources are available in modal
+			} else {
+				sourcesIcon =
+					'<span class="sources-icon" title="Materiály budou zpřístupněny až po začátku bloku.">🔒</span>';
+			}
+		} else {
+			sourcesIcon =
+				'<span class="sources-icon" title="Materiály budou zpřístupněny až po začátku bloku.">🔒</span>';
+		}
+	}
+	// Insert icon at the top of modal files section if needed
+	if (sourcesIcon) {
+		filesEl.innerHTML = sourcesIcon;
+	}
+	if (showFilesAndLinks) {
+		if (block.files && block.files.length > 0) {
+			filesEl.innerHTML +=
+				"<strong>Soubory ke stažení:</strong><ul class='list-unstyled file-list'></ul>";
+			const ul = filesEl.querySelector("ul");
+			block.files.forEach((f) => {
+				const li = document.createElement("li");
+				li.innerHTML = `<a href=\"${f.url}\" target=\"_blank\">${f.name}</a>`;
+				ul.appendChild(li);
+			});
+		}
+		if (block.links && block.links.length > 0) {
+			const linksContainer = document.createElement("div");
+			linksContainer.innerHTML =
+				"<strong>Odkazy:</strong><ul class='list-unstyled link-list'></ul>";
+			const ul = linksContainer.querySelector("ul");
+			block.links.forEach((l) => {
+				const li = document.createElement("li");
+				li.innerHTML = `<a href=\"${l.url}\" target=\"_blank\">${l.desc}</a>`;
+				ul.appendChild(li);
+			});
+			filesEl.appendChild(linksContainer);
+		}
 	}
 
-	// Links
-	if (block.links && block.links.length > 0) {
-		const linksContainer = document.createElement("div");
-		linksContainer.innerHTML =
-			"<strong>Odkazy:</strong><ul class='list-unstyled link-list'></ul>";
-		const ul = linksContainer.querySelector("ul");
-		block.links.forEach((l) => {
-			const li = document.createElement("li");
-			li.innerHTML = `<a href="${l.url}" target="_blank">${l.desc}</a>`;
-			ul.appendChild(li);
-		});
-		filesEl.appendChild(linksContainer);
-	}
-
+	// Show the modal
 	const blockModal = new bootstrap.Modal(document.getElementById("blockModal"));
 	blockModal.show();
 
@@ -316,11 +495,16 @@ function showTable() {
 	sortedDays.forEach((day) => {
 		const dayHeader = document.createElement("h5");
 		dayHeader.className = "text-primary mt-3 mb-2";
-		dayHeader.textContent = parseDay(day.date).toLocaleDateString("cs-CZ", {
+		// Capitalize only the first letter of the weekday, rest as is
+		const dateObj = parseDay(day.date);
+		let dayStr = dateObj.toLocaleDateString("cs-CZ", {
 			weekday: "long",
 			day: "numeric",
 			month: "long",
 		});
+		// Capitalize only the first word (weekday)
+		dayStr = dayStr.replace(/^([\p{L}])/u, (m) => m.toUpperCase());
+		dayHeader.textContent = dayStr;
 		tableEl.appendChild(dayHeader);
 
 		// Sort blocks by start time
@@ -457,18 +641,15 @@ function showLectors(all = true, specificLector = null) {
 					block.end ? "–" + block.end : ""
 				}`;
 
-				// Left: tema or title + info button
-				const leftDiv = document.createElement("div");
-				leftDiv.className = "left";
-				leftDiv.textContent = block.tema || block.title;
-
+				// Info icon (always left)
+				let infoIcon = null;
 				if (["program", "ostatní"].includes(block.type)) {
-					const btn = document.createElement("span");
-					btn.className = "lector-info-icon";
-					btn.textContent = "ℹ️";
-					btn.style.cursor = "pointer";
-					btn.title = "Více informací";
-					btn.addEventListener("click", () => {
+					infoIcon = document.createElement("span");
+					infoIcon.className = "lector-info-icon";
+					infoIcon.textContent = "ℹ️";
+					infoIcon.style.cursor = "pointer";
+					infoIcon.title = "Více informací";
+					infoIcon.addEventListener("click", () => {
 						const lectorModalEl = document.getElementById("lectorModal");
 						const lectorModalInstance = bootstrap.Modal.getInstance(lectorModalEl);
 						if (lectorModalInstance) lectorModalInstance.hide();
@@ -481,15 +662,25 @@ function showLectors(all = true, specificLector = null) {
 							{ once: true }
 						);
 					});
-					leftDiv.appendChild(btn);
+				} else {
+					infoIcon = document.createElement("span");
+					infoIcon.className = "lector-info-icon";
+					infoIcon.textContent = "";
+					infoIcon.style.width = "1.5em"; // reserve space
 				}
+
+				// Block name
+				const blockName = document.createElement("span");
+				blockName.className = "lector-block-name";
+				blockName.textContent = block.tema || block.title;
 
 				// Right: day + time
 				const rightDiv = document.createElement("div");
 				rightDiv.className = "right";
 				rightDiv.textContent = timeText;
 
-				blockDiv.appendChild(leftDiv);
+				blockDiv.appendChild(infoIcon);
+				blockDiv.appendChild(blockName);
 				blockDiv.appendChild(rightDiv);
 				contentEl.appendChild(blockDiv);
 			});
