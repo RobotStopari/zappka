@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="refresh" content="0; url=/zappka/2026/" />
+		<link rel="icon" href="2026/img/logo.png" type="image/x-icon" />
+		<link rel="shortcut icon" href="2026/img/logo.png" type="image/x-icon" />
+		<title>Zappka – Oficiální aplikace kurzu Zapalovač</title>
+		<style>
+			/* Fullscreen background */
+			body,
+			html {
+				margin: 0;
+				padding: 0;
+				height: 100%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				background: #1e1e1e;
+				color: #fff;
+				font-family: "Segoe UI", sans-serif;
+				flex-direction: column;
+			}
+
+			/* Spinner */
+			.spinner {
+				width: 60px;
+				height: 60px;
+				border: 6px solid #444;
+				border-top: 6px solid #00bfff;
+				border-radius: 50%;
+				animation: spin 1s linear infinite;
+				margin-bottom: 20px;
+			}
+
+			@keyframes spin {
+				0% {
+					transform: rotate(0deg);
+				}
+				100% {
+					transform: rotate(360deg);
+				}
+			}
+
+			/* Optional text */
+			.text {
+				font-size: 1.2rem;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="spinner"></div>
+		<div class="text">
+			Probíhá přesměrování na harmonogram aktuálního ročníku kurzu Zapalovač
+		</div>
+	</body>
+</html>

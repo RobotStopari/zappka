@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Course Program Admin</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<style>
+  body { background: #f8f9fa; }
+  .lectors-list span, .lectors-assigned span { display: inline-block; padding: 3px 6px; border-radius: 4px; color: #fff; margin: 2px; font-size: 0.85em; transition: all 0.2s; }
+  .lectors-list span:hover, .lectors-assigned span:hover { transform: scale(1.05); }
+  .fade-in { animation: fadeIn 0.3s ease-in; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity:1; transform: translateY(0); } }
+  .container-admin { max-width: 900px; margin: auto; }
+</style>
+</head>
+<body class="p-3">
+
+<div class="container container-admin">
+
+<h1 class="mb-4 text-center">Course Program Admin</h1>
+
+<!-- Lectors Section -->
+<div class="card mb-4 fade-in">
+  <div class="card-header">Manage Lectors</div>
+  <div class="card-body">
+    <div class="row g-2 mb-2">
+      <div class="col-md-6"><input type="text" id="lector-name" class="form-control" placeholder="Lector name"></div>
+      <div class="col-md-4"><input type="color" id="lector-color" class="form-control form-control-color"></div>
+      <div class="col-md-2"><button class="btn btn-primary w-100" onclick="addLectorMaster()">Add</button></div>
+    </div>
+    <div class="lectors-list" id="lectors-list"></div>
+  </div>
+</div>
+
+<!-- Days Section -->
+<div class="card mb-4 fade-in">
+  <div class="card-header">Add Day</div>
+  <div class="card-body">
+    <div class="row g-2 mb-2">
+      <div class="col-md-8"><input type="date" id="new-day" class="form-control"></div>
+      <div class="col-md-4"><button class="btn btn-success w-100" onclick="addNewDay()">Add Day</button></div>
+    </div>
+    <div id="days-container"></div>
+  </div>
+</div>
+
+<div class="d-flex gap-2 mb-4 flex-wrap">
+  <button class="btn btn-outline-success" onclick="exportJSON()">Export JSON</button>
+  <button class="btn btn-outline-primary" onclick="downloadJSON()">Download JSON</button>
+  <button class="btn btn-outline-warning" onclick="copyJSON()">Copy JSON</button>
+  <label class="btn btn-outline-secondary mb-0">
+    Import JSON <input type="file" id="import-json" accept=".json" style="display:none" onchange="importJSON(event)">
+  </label>
+</div>
+
+<pre id="json-output" class="bg-dark text-success p-3" style="max-height:400px; overflow:auto;"></pre>
+
+<!-- Block Modal -->
+<div class="modal fade" id="blockModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title">Edit Block</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-2"><label>Title</label><input type="text" id="modal-title" class="form-control"></div>
+        <div class="row g-2 mb-2" id="modal-time-fields">
+          <div class="col-md-6"><label>Start</label><input type="text" id="modal-start" class="form-control timepicker"></div>
+          <div class="col-md-6" id="modal-end-container"><label>End</label><input type="text" id="modal-end" class="form-control timepicker"></div>
+        </div>
+        <div class="mb-2"><label>Type</label>
+          <select id="modal-type" class="form-select" onchange="handleTypeChange()">
+            <option>program</option>
+            <option>jídlo</option>
+            <option>teploměr</option>
+            <option>zpětná vazba</option>
+            <option>ostatní</option>
+          </select>
+        </div>
+        <div class="mb-2" id="modal-tema-container">
+          <label>Téma</label><input type="text" id="modal-tema" class="form-control" placeholder="Optional">
+        </div>
+        <div class="mb-2" id="modal-desc-container">
+          <label>Description</label><textarea id="modal-desc" class="form-control"></textarea>
+        </div>
+
+        <!-- Lectors -->
+        <div class="mb-2" id="modal-lectors-container">
+          <label>Lectors</label>
+          <div id="modal-lectors" class="mb-1"></div>
+          <select id="modal-add-lector" class="form-select" onchange="modalAssignLector(this.value)">
+            <option value="">--Add Lector--</option>
+          </select>
+        </div>
+
+        <!-- Files -->
+        <div class="mb-2" id="modal-files-container">
+          <label>Files</label>
+          <input type="file" id="modal-files" class="form-control" multiple onchange="modalHandleFiles(this.files)">
+          <ul id="modal-files-list" class="mt-1"></ul>
+        </div>
+
+        <!-- Links -->
+        <div class="mb-2" id="modal-links-container">
+          <label>Links</label>
+          <div class="d-flex mb-1 gap-2">
+            <input type="url" id="modal-new-link-url" class="form-control" placeholder="URL">
+            <input type="text" id="modal-new-link-desc" class="form-control" placeholder="Description">
+            <button class="btn btn-secondary" onclick="addLink()">Add</button>
+          </div>
+          <ul id="modal-links-list" class="mt-1"></ul>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger me-auto" onclick="removeBlockModal()">Remove Block</button>
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button id="modal-save-btn" class="btn btn-primary" onclick="saveBlockModal()" disabled>Save Block</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+let schedule = [];
+let masterLectors = [];
+let currentModal = { day: null, index: null };
+let blockModal = new bootstrap.Modal(document.getElementById('blockModal'));
+
+// --- Lectors ---
+function addLectorMaster() {
+  const name = document.getElementById('lector-name').value;
+  const color = document.getElementById('lector-color').value;
+  if(!name) return alert('Enter a name');
+  masterLectors.push({name,color});
+  renderMasterLectors();
+  document.getElementById('lector-name').value='';
+}
+function renderMasterLectors() {
+  const list = document.getElementById('lectors-list');
+  list.innerHTML='';
+  masterLectors.forEach((l,i)=>{
+    const span = document.createElement('span');
+    span.style.background = l.color;
+    span.style.cursor = 'pointer';
+    span.textContent = l.name + ' ';
+
+    const editBtn = document.createElement('button');
+    editBtn.className = 'btn btn-sm btn-light ms-1';
+    editBtn.textContent = '✎';
+    editBtn.onclick = () => editLector(i);
+
+    const removeBtn = document.createElement('button');
+    removeBtn.className = 'btn btn-sm btn-light ms-1';
+    removeBtn.textContent = 'x';
+    removeBtn.onclick = () => {
+      if(!confirm(`Remove lector "${l.name}" from everything?`)) return;
+      const removed = masterLectors.splice(i,1)[0];
+      schedule.forEach(day => day.blocks.forEach(block => block.lectors = block.lectors.filter(bl => bl.name !== removed.name)));
+      renderMasterLectors();
+      renderDays();
+      renderModalLectors();
+    };
+
+    span.appendChild(editBtn);
+    span.appendChild(removeBtn);
+    list.appendChild(span);
+  });
+  renderModalLectors();
+}
+
+function editLector(index) {
+  const lector = masterLectors[index];
+  const newName = prompt("Edit Lector Name:", lector.name);
+  if(newName === null || !newName.trim()) return;
+  const newColor = prompt("Edit Lector Color (hex):", lector.color);
+  if(newColor === null || !/^#[0-9A-Fa-f]{6}$/.test(newColor)) return alert("Invalid color!");
+  const oldName = lector.name;
+  lector.name = newName.trim();
+  lector.color = newColor;
+  schedule.forEach(day => day.blocks.forEach(block => block.lectors.forEach(bl => { if(bl.name === oldName){ bl.name=lector.name; bl.color=lector.color; } })));
+  renderMasterLectors();
+  renderDays();
+  renderModalLectors();
+}
+
+// --- Days ---
+function addNewDay() {
+  const dateInput = document.getElementById('new-day').value;
+  if(!dateInput) return alert('Select a date first');
+  if(schedule.find(d=>d.date===dateInput)) return alert('Day already exists');
+  createDay(dateInput);
+}
+function createDay(date) {
+  const day={date,blocks:[]};
+  schedule.push(day);
+  renderDays();
+}
+const blockTypeStyles = {
+  program: { color: "#0d6efd", icon: "📒" },
+  jídlo: { color: "#28a745", icon: "🍽️" },
+  "zpětná vazba": { color: "#ffc107", icon: "📝" },
+  teploměr: { color: "#fd7e14", icon: "🌡️" },
+  ostatní: { color: "#6c757d", icon: "⚪" },
+};
+
+function renderDays(){
+  const container=document.getElementById('days-container');
+  container.innerHTML='';
+  schedule.forEach(day=>{
+    const card=document.createElement('div');
+    card.className='card mb-3 fade-in';
+    
+    const blockItems = day.blocks.map((b,i)=>{
+      const style = blockTypeStyles[b.type] || blockTypeStyles["ostatní"];
+      let duration = '';
+      if(b.start && b.end && b.type !== 'teploměr'){
+        const [sh, sm] = b.start.split(':').map(Number);
+        const [eh, em] = b.end.split(':').map(Number);
+        let minutes = (eh*60 + em) - (sh*60 + sm);
+        duration = minutes>0 ? ` (${Math.floor(minutes/60)}h ${minutes%60}m)` : '';
+      }
+      const lectors = b.lectors.map(l=>l.name).join(', ');
+      return `
+        <li class="list-group-item d-flex justify-content-between align-items-start" style="border-left:4px solid ${style.color}">
+          <div>
+            <span style="margin-right:5px">${style.icon}</span>
+            <strong>${b.title || '(no title)'}</strong>
+            ${b.tema ? '<br><small>Téma: '+b.tema+'</small>' : ''}
+            ${b.start ? ' ' + b.start : ''}${b.end ? '-' + b.end : ''}${duration ? ' ' + duration : ''}
+            ${lectors ? '<br><small>Lectors: ' + lectors + '</small>' : ''}
+          </div>
+          <button class="btn btn-sm btn-primary ms-2" onclick="openBlockModal('${day.date}',${i})">Edit</button>
+        </li>
+      `;
+    }).join('');
+
+    card.innerHTML=`
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">${day.date}</h5>
+        <button class="btn btn-danger btn-sm" onclick="removeDay('${day.date}')">Remove Day</button>
+      </div>
+      <div class="card-body">
+        <ul class="list-group mb-2">
+          ${blockItems || '<li class="list-group-item">(no blocks)</li>'}
+        </ul>
+        <button class="btn btn-primary" onclick="addBlock('${day.date}')">Add Block</button>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function removeDay(date){ if(confirm('Remove day?')){ schedule=schedule.filter(d=>d.date!==date); renderDays(); }}
+
+// --- Add Block with Defaults ---
+function addBlock(date){
+  const day=schedule.find(d=>d.date===date);
+  let block={title:'',start:'',end:'',type:'program',description:'',tema:'',lectors:[],files:[],links:[]};
+  day.blocks.push(block);
+  renderDays();
+  openBlockModal(date, day.blocks.length-1);
+}
+
+// --- Modal Functions ---
+function openBlockModal(day,index){
+  currentModal={day,index};
+  const block=schedule.find(d=>d.date===day).blocks[index];
+  if(!block.lectors) block.lectors=[];
+  if(!block.files) block.files=[];
+  if(!block.links) block.links=[];
+  
+  document.getElementById('modal-title').value = block.title;
+  document.getElementById('modal-start').value = block.start;
+  document.getElementById('modal-end').value = block.end||'';
+  document.getElementById('modal-type').value = block.type;
+  document.getElementById('modal-desc').value = block.description;
+  document.getElementById('modal-tema').value = block.tema || '';
+  document.getElementById('modal-files-list').innerHTML = block.files.map((f,i)=>`<li>${f.name} <button class="btn btn-sm btn-danger" onclick="modalRemoveFile(${i})">x</button></li>`).join('');
+
+  renderModalLectors();
+  renderModalLinks();
+  blockModal.show();
+  flatpickr(".timepicker",{enableTime:true,noCalendar:true,dateFormat:"H:i",time_24hr:true});
+  handleTypeChange(true);
+}
+
+// --- Type Based Visibility ---
+function handleTypeChange(){
+  const type = document.getElementById('modal-type').value;
+  const titleInput = document.getElementById('modal-title');
+
+  // --- Set default titles for new blocks if empty ---
+  if(!titleInput.value){
+    if(type === 'teploměr') titleInput.value = 'Teploměr';
+    else if(type === 'zpětná vazba') titleInput.value = 'Zpětná vazba';
+  }
+
+  const endContainer = document.getElementById('modal-end-container');
+  const descContainer = document.getElementById('modal-desc-container');
+  const temaContainer = document.getElementById('modal-tema-container');
+  const lectorsContainer = document.getElementById('modal-lectors-container');
+  const filesContainer = document.getElementById('modal-files-container');
+  const linksContainer = document.getElementById('modal-links-container');
+
+  // --- Visibility rules ---
+  if(type==='teploměr'){
+    endContainer.style.display='none';
+    descContainer.style.display='none';
+    temaContainer.style.display='none';
+    lectorsContainer.style.display='none';
+    filesContainer.style.display='none';
+    linksContainer.style.display='none';
+  } else if(type==='zpětná vazba'){
+    endContainer.style.display='block';
+    descContainer.style.display='none';
+    temaContainer.style.display='none';
+    lectorsContainer.style.display='none';
+    filesContainer.style.display='none';
+    linksContainer.style.display='none';
+  } else if(type==='jídlo'){
+    endContainer.style.display='block';
+    descContainer.style.display='block';
+    temaContainer.style.display='none';
+    lectorsContainer.style.display='none';
+    filesContainer.style.display='none';
+    linksContainer.style.display='none';
+  } else { // program, ostatní
+    endContainer.style.display='block';
+    descContainer.style.display='block';
+    temaContainer.style.display='block';
+    lectorsContainer.style.display='block';
+    filesContainer.style.display='block';
+    linksContainer.style.display='block';
+  }
+
+  checkRequiredFields();
+}
+
+
+
+function checkRequiredFields(){
+  const type=document.getElementById('modal-type').value;
+  const start=document.getElementById('modal-start').value;
+  const end=document.getElementById('modal-end').value;
+  const saveBtn=document.getElementById('modal-save-btn');
+  if(!start) saveBtn.disabled=true;
+  else if((type!=='teploměr' && type!=='jídlo' && type!=='zpětná vazba') && !end) saveBtn.disabled=true;
+  else saveBtn.disabled=false;
+}
+
+document.getElementById('modal-start').addEventListener('input', checkRequiredFields);
+document.getElementById('modal-end').addEventListener('input', checkRequiredFields);
+
+// --- Modal Save & Remove ---
+function saveBlockModal(){
+  const block=schedule.find(d=>d.date===currentModal.day).blocks[currentModal.index];
+  block.title=document.getElementById('modal-title').value;
+  block.start=document.getElementById('modal-start').value;
+  block.type=document.getElementById('modal-type').value;
+  if(block.type!=='teploměr') block.end=document.getElementById('modal-end').value;
+  block.description=document.getElementById('modal-desc').value;
+  block.tema=document.getElementById('modal-tema').value || undefined;
+  renderDays();
+  blockModal.hide();
+}
+
+function removeBlockModal(){
+  const day=schedule.find(d=>d.date===currentModal.day);
+  if(confirm('Remove this block?')){ day.blocks.splice(currentModal.index,1); renderDays(); blockModal.hide(); }
+}
+
+// --- Lectors Modal ---
+function renderModalLectors(){
+  const block=schedule.find(d=>d.date===currentModal.day).blocks[currentModal.index];
+  const container=document.getElementById('modal-lectors');
+  container.innerHTML='';
+  block.lectors.forEach((l,i)=>{
+    const span=document.createElement('span');
+    span.style.background=l.color; span.textContent=l.name;
+    span.onclick=()=>{ block.lectors.splice(i,1); renderModalLectors(); };
+    container.appendChild(span);
+  });
+  const select=document.getElementById('modal-add-lector');
+  select.innerHTML='<option value="">--Add Lector--</option>';
+  masterLectors.forEach(l=>{
+    if(!block.lectors.find(bl=>bl.name===l.name)) select.innerHTML += `<option value="${l.name}">${l.name}</option>`;
+  });
+}
+function modalAssignLector(name){
+  if(!name) return;
+  const block=schedule.find(d=>d.date===currentModal.day).blocks[currentModal.index];
+  const l=masterLectors.find(l=>l.name===name);
+  if(l) block.lectors.push({name:l.name,color:l.color});
+  renderModalLectors();
+}
+
+// --- Files ---
+function modalHandleFiles(files){
+  const block=schedule.find(d=>d.date===currentModal.day).blocks[currentModal.index];
+  block.files.push(...Array.from(files));
+  renderModalFiles();
+}
+function renderModalFiles(){
+  const block=schedule.find(d=>d.date===currentModal.day).blocks[currentModal.index];
+  document.getElementById('modal-files-list').innerHTML=block.files.map((f,i)=>`<li>${f.name} <button class="btn btn-sm btn-danger" onclick="modalRemoveFile(${i})">x</button></li>`).join('');
+}
+function modalRemoveFile(i){
+  const block=schedule.find(d=>d.date===currentModal.day).blocks[currentModal.index];
+  block.files.splice(i,1); renderModalFiles();
+}
+
+// --- Links ---
+function renderModalLinks(){
+  const block=schedule.find(d=>d.date===currentModal.day).blocks[currentModal.index];
+  document.getElementById('modal-links-list').innerHTML=block.links.map((l,i)=>`<li>${l.url} (${l.desc}) <button class="btn btn-sm btn-danger" onclick="removeLink(${i})">x</button></li>`).join('');
+}
+function addLink(){
+  const url=document.getElementById('modal-new-link-url').value;
+  const desc=document.getElementById('modal-new-link-desc').value;
+  if(!url) return alert('Enter URL');
+  const block=schedule.find(d=>d.date===currentModal.day).blocks[currentModal.index];
+  block.links.push({url,desc});
+  renderModalLinks();
+  document.getElementById('modal-new-link-url').value='';
+  document.getElementById('modal-new-link-desc').value='';
+}
+function removeLink(i){
+  const block=schedule.find(d=>d.date===currentModal.day).blocks[currentModal.index];
+  block.links.splice(i,1); renderModalLinks();
+}
+
+// --- JSON ---
+function exportJSON(){ document.getElementById('json-output').textContent=JSON.stringify(schedule,null,2); }
+function downloadJSON(){ const blob = new Blob([JSON.stringify(schedule,null,2)], {type:'application/json'}); const url = URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='schedule.json'; a.click(); URL.revokeObjectURL(url); }
+function copyJSON(){ navigator.clipboard.writeText(JSON.stringify(schedule,null,2)); alert('JSON copied'); }
+function importJSON(event){
+  const file=event.target.files[0]; if(!file) return;
+  const reader=new FileReader();
+  reader.onload=function(e){
+    try{
+      const data=JSON.parse(e.target.result);
+      if(!Array.isArray(data)) throw new Error('Invalid JSON');
+      schedule=data.map(day=>{
+        day.blocks = Array.isArray(day.blocks)?day.blocks:[];
+        day.blocks.forEach(block=>{
+          block.lectors=Array.isArray(block.lectors)?block.lectors:[];
+          block.files=Array.isArray(block.files)?block.files:[];
+          block.links=Array.isArray(block.links)?block.links:[];
+          block.title = block.title||'';
+          block.start = block.start||'';
+          block.end = block.type==='teploměr'?undefined:(block.end||'');
+          block.type = block.type||'program';
+          block.description = block.description||'';
+          block.tema = block.tema||undefined;
+        });
+        return day;
+      });
+      renderDays();
+      alert('JSON imported successfully');
+    }catch(err){ alert('Invalid JSON'); }
+  };
+  reader.readAsText(file);
+}
+
+// --- Init ---
+renderMasterLectors();
+renderDays();
+</script>
+</body>
+</html>
