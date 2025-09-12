@@ -4,14 +4,29 @@ function showMaterials() {
 	contentEl.innerHTML = "";
 
 	// Gather all blocks with sources
-	const allBlocks = [];
+	const allBlocksRaw = [];
 	scheduleData.forEach((day) => {
 		day.blocks.forEach((block) => {
-			allBlocks.push({ ...block, date: day.date });
+			allBlocksRaw.push({ ...block, date: day.date });
 		});
 	});
 
-	// Sort by date+start
+	// Deduplicate only within the same day
+	const allBlocks = [];
+	const seenPerDay = {};
+	allBlocksRaw.forEach((block) => {
+		const lectorsStr = (block.lectors || [])
+			.map((l) => l.name + (l.color || ""))
+			.sort()
+			.join(",");
+		const key = `${block.title}||${block.tema || ""}||${
+			block.description || ""
+		}||${lectorsStr}`;
+		if (!seenPerDay[block.date]) seenPerDay[block.date] = new Set();
+		if (seenPerDay[block.date].has(key)) return;
+		seenPerDay[block.date].add(key);
+		allBlocks.push(block);
+	});
 	allBlocks.sort((a, b) => {
 		const dateA = new Date(`${a.date}T${a.start || "00:00"}`);
 		const dateB = new Date(`${b.date}T${b.start || "00:00"}`);
@@ -511,55 +526,115 @@ function showTable() {
 		const blocksSorted = [...day.blocks].sort((a, b) =>
 			(a.start || "").localeCompare(b.start || "")
 		);
-		blocksSorted.forEach((block, index) => {
-			const card = document.createElement("div");
-			card.className = "card mb-2 shadow-sm";
-
-			const typeStyle = blockTypeStyles[block.type] || blockTypeStyles["ostatní"];
-			card.style.background = typeStyle.color;
-			card.style.color = "white";
-			card.style.opacity = 0;
-			card.style.animation = `fadeInUp 0.4s forwards`;
-			card.style.animationDelay = `${index * 0.05}s`;
-
-			const cardBody = document.createElement("div");
-			cardBody.className =
-				"card-body d-flex justify-content-between align-items-center p-2";
-
-			const leftDiv = document.createElement("div");
-			const blockLabel = block.tema || block.title; // Use tema or fallback to title
-			leftDiv.innerHTML = `<span class="me-2">${
-				typeStyle.icon
-			}</span> <strong>${blockLabel}</strong> ${
-				block.type === "teploměr" ? "" : block.start || ""
-			} ${block.type === "teploměr" ? "" : block.end ? "– " + block.end : ""}`;
-			cardBody.appendChild(leftDiv);
-
-			// ℹ️ button for info
-			if (["program", "ostatní"].includes(block.type)) {
-				const btn = document.createElement("span");
-				btn.className = "table-info-icon";
-				btn.textContent = "ℹ️";
-				btn.style.cursor = "pointer";
-				btn.title = "Více informací";
-				btn.addEventListener("click", () => {
-					const tableModalEl = document.getElementById("tableModal");
-					const tableModalInstance = bootstrap.Modal.getInstance(tableModalEl);
-					if (tableModalInstance) tableModalInstance.hide();
-					showModal(block);
-					document.getElementById("blockModal").addEventListener(
-						"hidden.bs.modal",
-						() => {
-							if (tableModalInstance) tableModalInstance.show();
-						},
-						{ once: true }
-					);
-				});
-				cardBody.appendChild(btn);
+		// Group blocks by start time for parallel display, but never group teploměr blocks as parallel
+		const groups = {};
+		blocksSorted.forEach((block) => {
+			if (block.type === "teploměr") {
+				// Each teploměr block is its own group
+				groups[`${block.start}_teplomer_${block.title}`] = [block];
+			} else {
+				if (!groups[block.start]) groups[block.start] = [];
+				groups[block.start].push(block);
 			}
-
-			card.appendChild(cardBody);
-			tableEl.appendChild(card);
+		});
+		Object.values(groups).forEach((group, groupIdx) => {
+			if (group.length > 1) {
+				// Parallel blocks (none are teploměr)
+				const parallelDiv = document.createElement("div");
+				parallelDiv.className = "table-parallel-group";
+				group.forEach((block, index) => {
+					const card = document.createElement("div");
+					card.className = "card mb-2 shadow-sm flex-fill";
+					card.style.minWidth = "260px";
+					const typeStyle =
+						blockTypeStyles[block.type] || blockTypeStyles["ostatní"];
+					card.style.background = typeStyle.color;
+					card.style.color = "white";
+					card.style.opacity = 0;
+					card.style.animation = `fadeInUp 0.4s forwards`;
+					card.style.animationDelay = `${index * 0.05}s`;
+					const cardBody = document.createElement("div");
+					cardBody.className =
+						"card-body d-flex justify-content-between align-items-center p-2";
+					const leftDiv = document.createElement("div");
+					const blockLabel = block.tema || block.title;
+					leftDiv.innerHTML = `<span class=\"me-2\">${
+						typeStyle.icon
+					}</span> <strong>${blockLabel}</strong> ${
+						block.type === "teploměr" ? "" : block.start || ""
+					} ${block.type === "teploměr" ? "" : block.end ? "– " + block.end : ""}`;
+					cardBody.appendChild(leftDiv);
+					if (["program", "ostatní"].includes(block.type)) {
+						const btn = document.createElement("span");
+						btn.className = "table-info-icon";
+						btn.textContent = "ℹ️";
+						btn.style.cursor = "pointer";
+						btn.title = "Více informací";
+						btn.addEventListener("click", () => {
+							const tableModalEl = document.getElementById("tableModal");
+							const tableModalInstance = bootstrap.Modal.getInstance(tableModalEl);
+							if (tableModalInstance) tableModalInstance.hide();
+							showModal(block);
+							document.getElementById("blockModal").addEventListener(
+								"hidden.bs.modal",
+								() => {
+									if (tableModalInstance) tableModalInstance.show();
+								},
+								{ once: true }
+							);
+						});
+						cardBody.appendChild(btn);
+					}
+					card.appendChild(cardBody);
+					parallelDiv.appendChild(card);
+				});
+				tableEl.appendChild(parallelDiv);
+			} else {
+				// Single block
+				const block = group[0];
+				const card = document.createElement("div");
+				card.className = "card mb-2 shadow-sm";
+				const typeStyle = blockTypeStyles[block.type] || blockTypeStyles["ostatní"];
+				card.style.background = typeStyle.color;
+				card.style.color = "white";
+				card.style.opacity = 0;
+				card.style.animation = `fadeInUp 0.4s forwards`;
+				card.style.animationDelay = `${groupIdx * 0.05}s`;
+				const cardBody = document.createElement("div");
+				cardBody.className =
+					"card-body d-flex justify-content-between align-items-center p-2";
+				const leftDiv = document.createElement("div");
+				const blockLabel = block.tema || block.title;
+				leftDiv.innerHTML = `<span class=\"me-2\">${
+					typeStyle.icon
+				}</span> <strong>${blockLabel}</strong> ${
+					block.type === "teploměr" ? "" : block.start || ""
+				} ${block.type === "teploměr" ? "" : block.end ? "– " + block.end : ""}`;
+				cardBody.appendChild(leftDiv);
+				if (["program", "ostatní"].includes(block.type)) {
+					const btn = document.createElement("span");
+					btn.className = "table-info-icon";
+					btn.textContent = "ℹ️";
+					btn.style.cursor = "pointer";
+					btn.title = "Více informací";
+					btn.addEventListener("click", () => {
+						const tableModalEl = document.getElementById("tableModal");
+						const tableModalInstance = bootstrap.Modal.getInstance(tableModalEl);
+						if (tableModalInstance) tableModalInstance.hide();
+						showModal(block);
+						document.getElementById("blockModal").addEventListener(
+							"hidden.bs.modal",
+							() => {
+								if (tableModalInstance) tableModalInstance.show();
+							},
+							{ once: true }
+						);
+					});
+					cardBody.appendChild(btn);
+				}
+				card.appendChild(cardBody);
+				tableEl.appendChild(card);
+			}
 		});
 	});
 
@@ -615,22 +690,38 @@ function showLectors(all = true, specificLector = null) {
 		.sort()
 		.forEach((lectorName) => {
 			const blocks = lectorsMap[lectorName];
+			// Deduplicate only within the same day
+			const seenPerDay = {};
+			const dedupedBlocks = [];
+			blocks.forEach((block) => {
+				const lectorsStr = (block.lectors || [])
+					.map((l) => l.name + (l.color || ""))
+					.sort()
+					.join(",");
+				const key = `${block.title}||${block.tema || ""}||${
+					block.description || ""
+				}||${lectorsStr}`;
+				if (!seenPerDay[block.date]) seenPerDay[block.date] = new Set();
+				if (seenPerDay[block.date].has(key)) return;
+				seenPerDay[block.date].add(key);
+				dedupedBlocks.push(block);
+			});
 
 			// Sort blocks by date + start time
-			blocks.sort((a, b) => {
+			dedupedBlocks.sort((a, b) => {
 				const dateA = new Date(`${a.date}T${a.start || "00:00"}`);
 				const dateB = new Date(`${b.date}T${b.start || "00:00"}`);
 				return dateA - dateB;
 			});
 
-			const blocksCount = blocks.length;
+			const blocksCount = dedupedBlocks.length;
 
 			// Lector header
 			const lectorHeader = document.createElement("h6");
 			lectorHeader.textContent = `${lectorName} (${blocksCount})`;
 			contentEl.appendChild(lectorHeader);
 
-			blocks.forEach((block) => {
+			dedupedBlocks.forEach((block) => {
 				const blockDiv = document.createElement("div");
 				blockDiv.className = "lector-block";
 
