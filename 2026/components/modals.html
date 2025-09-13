@@ -1,0 +1,86 @@
+<!-- Block Info Modal -->
+<div class="modal fade" id="blockModal" tabindex="-1">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="modalTitle"></h5>
+				<button
+					type="button"
+					class="btn-close"
+					data-bs-dismiss="modal"
+					aria-label="Zavřít"
+				></button>
+			</div>
+			<div class="modal-body">
+				<p
+					id="modalTema"
+					style="
+						font-size: 1rem;
+						font-weight: 500;
+						color: #000;
+						margin: 0.25rem 0 0.5rem 0;
+					"
+				></p>
+				<p><strong>Čas:</strong> <span id="modalTime"></span></p>
+
+				<p><strong>Lektoruje:</strong> <span id="modalLectors"></span></p>
+				<p id="modalDesc"></p>
+				<div id="modalFiles" class="mt-2"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Programs Modal -->
+<div class="modal fade" id="tableModal" tabindex="-1">
+	<div class="modal-dialog modal-dialog-scrollable">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">📋 Programy na kurzu</h5>
+				<button
+					type="button"
+					class="btn-close"
+					data-bs-dismiss="modal"
+					aria-label="Zavřít"
+				></button>
+			</div>
+			<div class="modal-body" id="tableContent"></div>
+		</div>
+	</div>
+</div>
+
+<!-- Materials Modal -->
+<div class="modal fade" id="materialsModal" tabindex="-1">
+	<div class="modal-dialog modal-dialog-scrollable">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">🗂️ Soubory a Odkazy</h5>
+				<button
+					type="button"
+					class="btn-close"
+					data-bs-dismiss="modal"
+					aria-label="Zavřít"
+				></button>
+			</div>
+			<div class="modal-body" id="materialsContent"></div>
+		</div>
+	</div>
+</div>
+
+<!-- Lektor Modal -->
+<div class="modal fade" id="lectorModal" tabindex="-1">
+	<div class="modal-dialog modal-dialog-scrollable">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">👩‍🏫 Lektorstvo</h5>
+				<button
+					type="button"
+					class="btn-close"
+					data-bs-dismiss="modal"
+					aria-label="Zavřít"
+				></button>
+			</div>
+			<div class="modal-body" id="lectorContent"></div>
+		</div>
+	</div>
+</div>
