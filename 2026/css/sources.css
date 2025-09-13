@@ -1,3 +1,17 @@
+.modal-lock {
+	opacity: 1 !important;
+	filter: none !important;
+	cursor: default !important;
+	pointer-events: none;
+}
+.sources-modal-msg {
+	display: inline-block;
+	margin-left: 0.5em;
+	color: #444;
+	font-size: 0.98em;
+	font-weight: 500;
+	vertical-align: middle;
+}
 /* Sources icon styles */
 .sources-icon.no-sources {
 	filter: grayscale(1);
@@ -19,9 +33,11 @@
 	margin-left: 0.4em;
 	vertical-align: middle;
 	cursor: pointer !important;
-	opacity: 0.8;
-	transition: opacity 0.2s;
+	opacity: 0.5;
+	filter: grayscale(80%);
+	transition: opacity 0.2s, filter 0.2s;
 }
 .sources-icon:hover {
-	opacity: 1;
+	opacity: 0.8;
+	filter: grayscale(50%);
 }

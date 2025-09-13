@@ -1,3 +1,9 @@
+/* Passed (history) block cards are 50% transparent */
+.schedule-card.past-block {
+	opacity: 0.5 !important;
+	filter: grayscale(50%) !important;
+	transition: opacity 0.2s, filter 0.2s;
+}
 .block-time {
 	display: block;
 	white-space: nowrap;

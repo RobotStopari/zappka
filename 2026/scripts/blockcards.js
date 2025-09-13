@@ -25,6 +25,8 @@ export function createPauseCard(minutes) {
 function getSourcesIcon(scheduleData, block) {
 	const hasSources =
 		(block.files?.length || 0) > 0 || (block.links?.length || 0) > 0;
+	let iconType = "none";
+	let popupText = TEXTS.sources.none;
 	if (["program", "ostatní"].includes(block.type)) {
 		if (hasSources) {
 			let blockDate = null;
@@ -38,12 +40,20 @@ function getSourcesIcon(scheduleData, block) {
 			const blockStart =
 				blockDate && block.start ? new Date(`${blockDate}T${block.start}`) : null;
 			const showSources = blockStart && now >= blockStart;
-			return showSources
-				? `<span class="sources-icon" title="${TEXTS.sources.unlocked}">${MATERIAL_ICONS.unlocked}</span>`
-				: `<span class="sources-icon" title="${TEXTS.sources.locked}">${MATERIAL_ICONS.locked}</span>`;
-		} else {
-			return `<span class="sources-icon no-sources" title="${TEXTS.sources.none}">${MATERIAL_ICONS.none}</span>`;
+			if (showSources) {
+				iconType = "unlocked";
+				popupText = TEXTS.sources.unlocked;
+			} else {
+				iconType = "locked";
+				popupText = TEXTS.sources.locked;
+			}
 		}
+		// Use data-popup attribute for instant popup
+		return `<span class="sources-icon${
+			iconType === "none" ? " no-sources" : ""
+		}" data-popup="${popupText.replace(/"/g, "&quot;")}">${
+			MATERIAL_ICONS[iconType]
+		}</span>`;
 	}
 	return "";
 }
@@ -117,13 +127,42 @@ export function createBlockCard(
 		if (!["jídlo", "zpětná vazba", "teploměr"].includes(block.type)) {
 			card.querySelector(".card-body").appendChild(createInfoButton(block));
 		}
+
+		// --- Custom instant popup for sources icons ---
+		const sourcesEl = card.querySelector(".sources-icon");
+		if (sourcesEl) {
+			let popupDiv = null;
+			sourcesEl.addEventListener("mouseenter", (e) => {
+				if (popupDiv) return;
+				popupDiv = document.createElement("div");
+				popupDiv.className = "sources-popup";
+				popupDiv.textContent = sourcesEl.getAttribute("data-popup") || "";
+				document.body.appendChild(popupDiv);
+				const rect = sourcesEl.getBoundingClientRect();
+				popupDiv.style.left = `${
+					rect.left + window.scrollX + rect.width / 2 - popupDiv.offsetWidth / 2
+				}px`;
+				popupDiv.style.top = `${rect.bottom + window.scrollY + 6}px`;
+				// Position after adding to DOM
+				setTimeout(() => {
+					const rect2 = sourcesEl.getBoundingClientRect();
+					popupDiv.style.left = `${
+						rect2.left + window.scrollX + rect2.width / 2 - popupDiv.offsetWidth / 2
+					}px`;
+					popupDiv.style.top = `${rect2.bottom + window.scrollY + 6}px`;
+				}, 0);
+			});
+			sourcesEl.addEventListener("mouseleave", () => {
+				if (popupDiv) {
+					popupDiv.remove();
+					popupDiv = null;
+				}
+			});
+		}
 	}
 
 	if (isPastGroup) {
-		Object.assign(card.style, {
-			opacity: "0.5",
-			filter: "grayscale(80%)",
-		});
+		card.classList.add("schedule-card", "past-block");
 	}
 
 	col.appendChild(card);

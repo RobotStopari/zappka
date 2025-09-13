@@ -55,10 +55,10 @@ export function showModal(scheduleData, block) {
 			if (now >= blockStart) {
 				showFilesAndLinks = true;
 			} else {
-				sourcesIcon = `<span class="sources-icon" title="Materiály budou zpřístupněny až po začátku bloku.">🔒</span>`;
+				sourcesIcon = `<span class="sources-icon modal-lock" style="opacity:1;filter:none;cursor:default;">🔒</span><span class="sources-modal-msg">Materiály budou zpřístupněny až po začátku bloku.</span>`;
 			}
 		} else {
-			sourcesIcon = `<span class="sources-icon" title="Materiály budou zpřístupněny až po začátku bloku.">🔒</span>`;
+			sourcesIcon = `<span class="sources-icon modal-lock" style="opacity:1;filter:none;cursor:default;">🔒</span><span class="sources-modal-msg">Materiály budou zpřístupněny až po začátku bloku.</span>`;
 		}
 	}
 
