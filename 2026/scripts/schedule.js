@@ -83,11 +83,15 @@ export const renderSchedule = (
 				`${day.date}T${group[0].end || group[0].start}`
 			);
 
-			// Insert pause if needed
+			// Insert pause if needed, but ignore teploměr blocks for pause calculation
 			if (lastEnd) {
-				const pauzaDur = Math.max(0, Math.round((start - lastEnd) / 60000));
-				if (pauzaDur > 0 && (showHistory || start >= now)) {
-					scheduleEl.appendChild(createPauseCard(pauzaDur));
+				// If the current group is only teploměr, skip pause calculation
+				const hasNonTeplomer = group.some((b) => b.type !== "teploměr");
+				if (hasNonTeplomer) {
+					const pauzaDur = Math.max(0, Math.round((start - lastEnd) / 60000));
+					if (pauzaDur > 0 && (showHistory || start >= now)) {
+						scheduleEl.appendChild(createPauseCard(pauzaDur));
+					}
 				}
 			}
 
@@ -101,7 +105,13 @@ export const renderSchedule = (
 			});
 
 			if (!showHistory && isPastGroup && !isRunningGroup) {
-				lastEnd = earliestEnd;
+				// Only update lastEnd if the group has a non-teploměr block
+				const nonTeplomerBlock = group.find((b) => b.type !== "teploměr");
+				if (nonTeplomerBlock) {
+					lastEnd = new Date(
+						`${day.date}T${nonTeplomerBlock.end || nonTeplomerBlock.start}`
+					);
+				}
 				return;
 			}
 
@@ -118,10 +128,14 @@ export const renderSchedule = (
 					createBlockCard(block, duration, isNow, isPastGroup, index)
 				);
 				scheduleEl.appendChild(row);
-				lastEnd = end;
+				// Only update lastEnd if not teploměr
+				if (block.type !== "teploměr") {
+					lastEnd = end;
+				}
 			} else {
 				const parallelGroup = document.createElement("div");
 				parallelGroup.className = "row g-3 parallel-group";
+				let lastNonTeplomerEnd = null;
 				group.forEach((block, idx) => {
 					const end = new Date(`${day.date}T${block.end || block.start}`);
 					const duration =
@@ -132,9 +146,17 @@ export const renderSchedule = (
 					col.className = "col-12 col-md";
 					col.appendChild(createBlockCard(block, duration, isNow, isPastGroup, idx));
 					parallelGroup.appendChild(col);
+					if (block.type !== "teploměr") {
+						if (!lastNonTeplomerEnd || end > lastNonTeplomerEnd) {
+							lastNonTeplomerEnd = end;
+						}
+					}
 				});
 				scheduleEl.appendChild(parallelGroup);
-				lastEnd = earliestEnd;
+				// Only update lastEnd to the latest non-teploměr block in the group
+				if (lastNonTeplomerEnd) {
+					lastEnd = lastNonTeplomerEnd;
+				}
 			}
 		});
 	}
