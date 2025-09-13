@@ -1,0 +1,27 @@
+/* Sources icon styles */
+.sources-icon.no-sources {
+	filter: grayscale(1);
+	opacity: 0.18;
+	cursor: pointer;
+	transition: none;
+}
+.sources-icon.no-sources:hover {
+	opacity: 0.18;
+	cursor: pointer;
+}
+.btn-materials {
+	background: linear-gradient(120deg, #fd7e14, #ffb366);
+	color: #fff !important;
+	border: none;
+}
+.sources-icon {
+	font-size: 1.1em;
+	margin-left: 0.4em;
+	vertical-align: middle;
+	cursor: pointer;
+	opacity: 0.8;
+	transition: opacity 0.2s;
+}
+.sources-icon:hover {
+	opacity: 1;
+}

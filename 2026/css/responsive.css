@@ -1,0 +1,9 @@
+/* Responsive styles */
+@media (max-width: 576px) {
+	.top-buttons {
+		justify-content: center;
+	}
+	.schedule-card {
+		font-size: 0.9rem;
+	}
+}

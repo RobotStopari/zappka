@@ -1,0 +1,26 @@
+/* Base styles: fonts, body, container, headings */
+body {
+	font-family: "Inter", "Segoe UI", sans-serif;
+	background: #f2f4f7;
+	color: #2c2c2c;
+	line-height: 1.5;
+	transition: background 0.3s ease;
+}
+.container {
+	max-width: 960px;
+	padding: 0 1rem;
+}
+.main-heading {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5rem;
+	font-size: 2rem;
+	font-weight: 700;
+	color: #0d6efd;
+}
+.logo-small {
+	width: 45px;
+	height: auto;
+	vertical-align: middle;
+}

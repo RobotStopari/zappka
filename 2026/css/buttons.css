@@ -1,0 +1,49 @@
+/* Button styles: top buttons, colored, social */
+.top-buttons {
+	display: flex;
+	gap: 0.5rem;
+}
+.top-buttons .btn {
+	border-radius: 1rem;
+	padding: 0.4rem 0.9rem;
+	font-weight: 600;
+	font-size: 0.9rem;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
+	transition: all 0.3s ease;
+	transform-origin: center;
+	border: none;
+	background-clip: padding-box;
+	color: #fff;
+}
+.top-buttons .btn:hover {
+	transform: translateY(-3px) scale(1.08);
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+.btn-history {
+	background: #6c757d !important;
+	color: #fff !important;
+}
+.btn-lector {
+	background: linear-gradient(120deg, #198754, #3cc27f);
+	color: #fff !important;
+}
+.btn-feedback {
+	background: linear-gradient(120deg, #ff3b3b, #ff7676);
+	color: #fff !important;
+}
+.btn-social {
+	font-size: 0.9rem;
+	padding: 0.35rem 0.75rem;
+	color: #333 !important;
+	border: 1px solid #ddd;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+	transition: all 0.3s ease;
+}
+.btn-social.ig:hover {
+	background: linear-gradient(120deg, #e1306c, #f77737) !important;
+	color: #fff;
+}
+.btn-social.linktree:hover {
+	background: #06c167 !important;
+	color: #fff;
+}

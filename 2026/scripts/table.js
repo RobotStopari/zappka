@@ -78,10 +78,15 @@ function createBlockCard(block, scheduleData, animIdx = 0) {
 	const blockLabel = block.tema || block.title;
 	const leftDiv = document.createElement("div");
 	leftDiv.innerHTML = `
-    <span class=\"me-2\">${typeStyle.icon}</span>
-    <strong>${blockLabel}</strong>
-    ${block.type === "teploměr" ? "" : block.start || ""}
-    ${block.type === "teploměr" ? "" : block.end ? "– " + block.end : ""}
+	<span class=\"me-2\">${typeStyle.icon}</span>
+	<strong>${blockLabel}</strong>
+	${
+		block.type === "teploměr"
+			? ""
+			: `<span class=\"block-time\">${
+					block.start ? `${block.start}${block.end ? ` – ${block.end}` : ""}` : ""
+			  }</span>`
+	}
   `;
 	cardBody.appendChild(leftDiv);
 
