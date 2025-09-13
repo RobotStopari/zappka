@@ -104,10 +104,27 @@ function getSourcesIcon(scheduleData, block) {
 
 function createInfoButton(block) {
 	const btn = document.createElement("button");
-	btn.className = "btn btn-light btn-sm mt-2 info-btn";
-	btn.textContent = "ℹ️ Více informací";
-	btn.style.cursor = "pointer";
-	btn.onclick = () => window.showModal(block);
+	btn.className = "info-btn-modern mt-2";
+	btn.innerHTML = `<span class="info-icon">ℹ️</span><span class="info-text">${TEXTS.moreInfo
+		.replace("ℹ️", "")
+		.trim()}</span>`;
+	btn.type = "button";
+	btn.addEventListener("click", () => {
+		btn.classList.add("no-tilt");
+		window.showModal(block);
+		// Listen for modal close to re-enable tilt
+		const blockModal = document.getElementById("blockModal");
+		if (blockModal) {
+			const handler = () => {
+				btn.classList.remove("no-tilt");
+				blockModal.removeEventListener("hidden.bs.modal", handler);
+			};
+			blockModal.addEventListener("hidden.bs.modal", handler);
+		} else {
+			// fallback: re-enable after 2s if modal not found
+			setTimeout(() => btn.classList.remove("no-tilt"), 2000);
+		}
+	});
 	return btn;
 }
 

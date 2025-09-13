@@ -5,7 +5,7 @@ export const renderLectors = (lectors = []) =>
 		? lectors
 				.map(
 					({ color, name }) =>
-						`<span class="badge me-1" style="background:${color}; cursor:pointer" onclick="showLectors(false, '${name}')">${name}</span>`
+						`<span class="badge me-1 lector-block-name-tilt" style="background:${color}; cursor:pointer" onclick="showLectors(false, '${name}')">${name}</span>`
 				)
 				.join(" ")
 		: "";

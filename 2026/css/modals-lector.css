@@ -1,4 +1,3 @@
-#lectorContent .lector-block-name,
 #lectorContent .lector-info-icon {
 	cursor: pointer !important;
 }
@@ -43,6 +42,7 @@
 }
 #lectorContent .lector-info-icon:hover {
 	color: #0a58ca;
+	transform: scale(1.13) rotate(-7deg);
 }
 #lectorContent .lector-block-name {
 	flex: 1 1 auto;

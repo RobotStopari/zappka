@@ -26,6 +26,7 @@ export const MATERIAL_ICONS = {
 export const TEXTS = {
 	pause: "☕ Pauza",
 	moreInfo: "ℹ️ Podrobnosti",
+	infoIconDescription: "Podrobnosti k programu",
 	sources: {
 		unlocked: "Materiály jsou nyní dostupné.",
 		locked: "Materiály budou zpřístupněny až po začátku bloku.",

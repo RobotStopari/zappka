@@ -166,6 +166,39 @@ function createBlockCard(block, scheduleData, animIdx = 0) {
 			style: "cursor:pointer;",
 			title: "Více informací",
 		});
+		// Add hover popup (like lock icon)
+		let infoPopupDiv = null;
+		btn.addEventListener("mouseenter", (e) => {
+			if (infoPopupDiv) return;
+			import("./config.js").then(({ TEXTS }) => {
+				infoPopupDiv = document.createElement("div");
+				infoPopupDiv.className = "sources-popup";
+				infoPopupDiv.textContent = TEXTS.infoIconDescription;
+				document.body.appendChild(infoPopupDiv);
+				const rect = btn.getBoundingClientRect();
+				infoPopupDiv.style.left = `${
+					rect.left + window.scrollX + rect.width / 2 - infoPopupDiv.offsetWidth / 2
+				}px`;
+				infoPopupDiv.style.top = `${rect.bottom + window.scrollY + 6}px`;
+				setTimeout(() => {
+					if (!infoPopupDiv || !infoPopupDiv.isConnected) return;
+					const rect2 = btn.getBoundingClientRect();
+					infoPopupDiv.style.left = `${
+						rect2.left +
+						window.scrollX +
+						rect2.width / 2 -
+						infoPopupDiv.offsetWidth / 2
+					}px`;
+					infoPopupDiv.style.top = `${rect2.bottom + window.scrollY + 6}px`;
+				}, 0);
+			});
+		});
+		btn.addEventListener("mouseleave", () => {
+			if (infoPopupDiv) {
+				infoPopupDiv.remove();
+				infoPopupDiv = null;
+			}
+		});
 		btn.addEventListener("click", () => {
 			const tableModalEl = document.getElementById("tableModal");
 			const tableModalInstance = bootstrap.Modal.getInstance(tableModalEl);
