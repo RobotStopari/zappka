@@ -54,29 +54,24 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 document.addEventListener("DOMContentLoaded", function () {
+	// Load feedback modal HTML and popup script/CSS only once
 	fetch("components/feedback.html")
 		.then((response) => response.text())
 		.then((html) => {
 			document.body.insertAdjacentHTML("beforeend", html);
-			setupFeedbackModal();
-		});
-	// Load feedback popup script and CSS, then feedback modal
-	var popupCss = document.createElement("link");
-	popupCss.rel = "stylesheet";
-	popupCss.href = "css/feedback-popup.css";
-	document.head.appendChild(popupCss);
-
-	var popupScript = document.createElement("script");
-	popupScript.src = "scripts/feedback-popup.js";
-	popupScript.onload = function () {
-		fetch("components/feedback.html")
-			.then((response) => response.text())
-			.then((html) => {
-				document.body.insertAdjacentHTML("beforeend", html);
+			// Load feedback popup CSS
+			var popupCss = document.createElement("link");
+			popupCss.rel = "stylesheet";
+			popupCss.href = "css/feedback-popup.css";
+			document.head.appendChild(popupCss);
+			// Load feedback popup script, then setup modal
+			var popupScript = document.createElement("script");
+			popupScript.src = "scripts/feedback-popup.js";
+			popupScript.onload = function () {
 				setupFeedbackModal();
-			});
-	};
-	document.body.appendChild(popupScript);
+			};
+			document.body.appendChild(popupScript);
+		});
 
 	async function setupFeedbackModal() {
 		const feedbackBtn = document.getElementById("feedbackBtn");
