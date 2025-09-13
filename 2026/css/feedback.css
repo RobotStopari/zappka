@@ -1,3 +1,33 @@
+/* Small feedback icon for table modal */
+.feedback-icon-table-modal {
+	font-size: 1.25rem !important;
+	color: #ffc107;
+	filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.13));
+	cursor: pointer;
+	transition: transform 0.13s, color 0.13s;
+	margin-right: 0.3rem;
+	margin-left: 0.1rem;
+	position: static;
+}
+.feedback-icon-table-modal:hover {
+	color: #ff9800;
+	transform: scale(1.13) rotate(-7deg);
+}
+/* Feedback icon in modal header (more info popup) */
+.modal-header-feedback-icon {
+	font-size: 1.45rem !important;
+	margin-right: 0.5rem;
+	margin-left: auto;
+	color: #ffc107;
+	filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.13));
+	cursor: pointer;
+	transition: transform 0.13s, color 0.13s;
+	position: static;
+}
+.modal-header-feedback-icon:hover {
+	color: #ff9800;
+	transform: scale(1.13) rotate(-7deg);
+}
 /* Modern feedback form enhancements */
 #feedbackModal .modal-body {
 	background: linear-gradient(135deg, #f8fafc 0%, #e9f0fb 100%);

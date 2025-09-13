@@ -1,3 +1,46 @@
+// Allow opening modal for a specific block (preselect program)
+window.openFeedbackModalForBlock = function (block) {
+	// Wait for modal to be loaded
+	const show = () => {
+		const feedbackModal = document.getElementById("feedbackModal");
+		const programSelect = document.getElementById("feedbackProgramSelect");
+		if (!feedbackModal || !programSelect) return;
+		// Open modal
+		if (window.bootstrap) {
+			const bsModal = window.bootstrap.Modal.getOrCreateInstance(feedbackModal);
+			bsModal.show();
+		}
+		// Try to preselect the correct option
+		const options = Array.from(programSelect.options);
+		let found = false;
+		for (const opt of options) {
+			if (
+				opt.textContent &&
+				block.title &&
+				opt.textContent.startsWith(block.title)
+			) {
+				programSelect.value = opt.value;
+				found = true;
+				break;
+			}
+		}
+		if (!found) {
+			programSelect.selectedIndex = 0;
+		}
+		// Trigger change event for validation
+		programSelect.dispatchEvent(new Event("change"));
+	};
+	if (!document.getElementById("feedbackModal")) {
+		fetch("components/feedback.html")
+			.then((response) => response.text())
+			.then((html) => {
+				document.body.insertAdjacentHTML("beforeend", html);
+				setTimeout(show, 200);
+			});
+	} else {
+		show();
+	}
+};
 // Firebase initialization
 const firebaseConfig = {
 	apiKey: "AIzaSyCxFc5gOOdM87Sj44oTV9Un2P1c1NklY_I",

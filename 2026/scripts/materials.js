@@ -51,10 +51,42 @@ export function showMaterials(scheduleData) {
 
 		// Locked sources
 		if (hasSources && !sourcesUnlocked) {
-			contentEl.insertAdjacentHTML(
-				"beforeend",
-				`<div class="mb-3"><span style="font-weight:600; font-size:1rem;">${blockLabel} <span class='sources-icon' title='${TEXTS.sources.locked}'>🔒</span></span></div>`
-			);
+			const div = document.createElement("div");
+			div.className = "mb-3";
+			div.innerHTML = `<span style="font-weight:600; font-size:1rem;">${blockLabel} <span class='sources-icon' title='${TEXTS.sources.locked}'>🔒</span></span>`;
+			// Add popup and pointer to lock icon
+			const lockIcon = div.querySelector(".sources-icon");
+			if (lockIcon) {
+				lockIcon.style.cursor = "pointer";
+				let popupDiv = null;
+				lockIcon.addEventListener("mouseenter", (e) => {
+					if (popupDiv) return;
+					popupDiv = document.createElement("div");
+					popupDiv.className = "sources-popup";
+					popupDiv.textContent = TEXTS.sources.locked;
+					document.body.appendChild(popupDiv);
+					const rect = lockIcon.getBoundingClientRect();
+					popupDiv.style.left = `${
+						rect.left + window.scrollX + rect.width / 2 - popupDiv.offsetWidth / 2
+					}px`;
+					popupDiv.style.top = `${rect.bottom + window.scrollY + 6}px`;
+					setTimeout(() => {
+						if (!popupDiv || !popupDiv.isConnected) return;
+						const rect2 = lockIcon.getBoundingClientRect();
+						popupDiv.style.left = `${
+							rect2.left + window.scrollX + rect2.width / 2 - popupDiv.offsetWidth / 2
+						}px`;
+						popupDiv.style.top = `${rect2.bottom + window.scrollY + 6}px`;
+					}, 0);
+				});
+				lockIcon.addEventListener("mouseleave", () => {
+					if (popupDiv) {
+						popupDiv.remove();
+						popupDiv = null;
+					}
+				});
+			}
+			contentEl.appendChild(div);
 			anyShown = true;
 			continue;
 		}

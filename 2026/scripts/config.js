@@ -1,3 +1,8 @@
+// Feedback icon and tooltip config
+export const FEEDBACK_ICON = {
+	icon: "📝",
+	tooltip: "Dát k programu zpětnou vazbu",
+};
 // Current year for dynamic heading
 export const CURRENT_YEAR = 2026;
 

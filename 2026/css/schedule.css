@@ -1,3 +1,27 @@
+/* Feedback icon right-aligned and large on block cards */
+.block-icons-right {
+	position: absolute;
+	top: 0;
+	right: 0.7rem;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	z-index: 2;
+}
+.feedback-icon {
+	font-size: 2.5rem !important;
+	line-height: 1;
+	color: #ffc107;
+	filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.13));
+	transition: transform 0.13s, color 0.13s;
+}
+.feedback-icon:hover {
+	color: #ff9800;
+	transform: scale(1.13) rotate(-7deg);
+}
+.card-body {
+	position: relative;
+}
 /* Passed (history) block cards are 50% transparent */
 .schedule-card.past-block {
 	opacity: 0.5 !important;
@@ -65,6 +89,23 @@
 	position: relative;
 	padding-left: 0.5rem;
 	margin-bottom: 0.5rem;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.1rem 0.7rem;
+}
+.parallel-group > .col-12,
+.parallel-group > .col-md {
+	flex: 1 1 calc(50% - 0.35rem);
+	max-width: calc(50% - 0.35rem);
+	min-width: 260px;
+	box-sizing: border-box;
+}
+@media (max-width: 900px) {
+	.parallel-group > .col-12,
+	.parallel-group > .col-md {
+		flex-basis: 100%;
+		max-width: 100%;
+	}
 }
 .parallel-group::before {
 	content: "";

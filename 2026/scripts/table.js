@@ -1,3 +1,58 @@
+import { FEEDBACK_ICON } from "./config.js";
+function createSmallFeedbackIcon(block) {
+	// Only for past or running blocks of type program/ostatní
+	if (!["program", "ostatní"].includes(block.type)) return null;
+	const now = new Date();
+	const today = new Date();
+	let blockDate = null;
+	if (block.date) blockDate = block.date;
+	// Try to get date from block if not present
+	if (!blockDate && block.start) {
+		// fallback: do not show
+		return null;
+	}
+	const start =
+		blockDate && block.start ? new Date(`${blockDate}T${block.start}`) : null;
+	if (start && start > now) return null;
+	const span = document.createElement("span");
+	span.className = "feedback-icon-table-modal me-2";
+	span.textContent = FEEDBACK_ICON.icon;
+	span.setAttribute("data-popup", FEEDBACK_ICON.tooltip);
+	span.style.cursor = "pointer";
+	span.addEventListener("click", (e) => {
+		e.stopPropagation();
+		window.openFeedbackModalForBlock && window.openFeedbackModalForBlock(block);
+	});
+	// Tooltip popup (same as sources icon)
+	let popupDiv = null;
+	span.addEventListener("mouseenter", (e) => {
+		if (popupDiv) return;
+		popupDiv = document.createElement("div");
+		popupDiv.className = "sources-popup";
+		popupDiv.textContent = FEEDBACK_ICON.tooltip;
+		document.body.appendChild(popupDiv);
+		const rect = span.getBoundingClientRect();
+		popupDiv.style.left = `${
+			rect.left + window.scrollX + rect.width / 2 - popupDiv.offsetWidth / 2
+		}px`;
+		popupDiv.style.top = `${rect.bottom + window.scrollY + 6}px`;
+		setTimeout(() => {
+			if (!popupDiv || !popupDiv.isConnected) return;
+			const rect2 = span.getBoundingClientRect();
+			popupDiv.style.left = `${
+				rect2.left + window.scrollX + rect2.width / 2 - popupDiv.offsetWidth / 2
+			}px`;
+			popupDiv.style.top = `${rect2.bottom + window.scrollY + 6}px`;
+		}, 0);
+	});
+	span.addEventListener("mouseleave", () => {
+		if (popupDiv) {
+			popupDiv.remove();
+			popupDiv = null;
+		}
+	});
+	return span;
+}
 import { blockTypeStyles, LOCALE } from "./config.js";
 import { showModal } from "./moreinfo.js";
 
@@ -11,6 +66,10 @@ export function showTable(scheduleData, parseDay) {
 	);
 
 	for (const day of sortedDays) {
+		// Attach date to each block for feedback icon logic
+		for (const block of day.blocks) {
+			block.date = day.date;
+		}
 		// Header
 		const dateObj = parseDay(day.date);
 		let dayStr = dateObj.toLocaleDateString(LOCALE, {
@@ -95,6 +154,12 @@ function createBlockCard(block, scheduleData, animIdx = 0) {
 	cardBody.appendChild(leftDiv);
 
 	if (["program", "ostatní"].includes(block.type)) {
+		// Place feedback icon and info icon in a flex row
+		const iconRow = document.createElement("div");
+		iconRow.style.display = "flex";
+		iconRow.style.alignItems = "center";
+		const feedbackIcon = createSmallFeedbackIcon(block);
+		if (feedbackIcon) iconRow.appendChild(feedbackIcon);
 		const btn = Object.assign(document.createElement("span"), {
 			className: "table-info-icon",
 			textContent: "ℹ️",
@@ -114,7 +179,8 @@ function createBlockCard(block, scheduleData, animIdx = 0) {
 					{ once: true }
 				);
 		});
-		cardBody.appendChild(btn);
+		iconRow.appendChild(btn);
+		cardBody.appendChild(iconRow);
 	}
 
 	card.appendChild(cardBody);
