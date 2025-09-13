@@ -1,5 +1,37 @@
 [
 	{
+		"date": "2025-01-01",
+		"blocks": [
+			{
+				"title": "Testovací blok jež bude smazán",
+				"start": "01:00",
+				"type": "program",
+				"description": "Blok určen k testování.",
+				"lectors": [
+					{
+						"name": "Robot",
+						"color": "#f9da00",
+						"realName": "Jakub Procházka"
+					}
+				],
+				"files": [
+					{
+						"name": "download.webp",
+						"url": "files/download.webp"
+					}
+				],
+				"links": [
+					{
+						"url": "https://kurzzapalovac.cz",
+						"desc": "Web kurzu"
+					}
+				],
+				"end": "03:00",
+				"tema": "Testovací blok"
+			}
+		]
+	},
+	{
 		"date": "2026-02-12",
 		"blocks": [
 			{
@@ -19,7 +51,7 @@
 					}
 				],
 				"files": [],
-				"links": ["https://www.zdravo.cz/cs/"],
+				"links": [],
 				"end": "19:00"
 			},
 			{

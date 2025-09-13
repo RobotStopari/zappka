@@ -137,7 +137,7 @@ export function showModal(scheduleData, block) {
 			const ul = filesEl.querySelector("ul");
 			block.files.forEach((f) => {
 				const li = document.createElement("li");
-				li.innerHTML = `<a href="${f.url}" target="_blank">${f.name}</a>`;
+				li.innerHTML = `<a href="${f.url}" target="_blank" download>${f.name}</a>`;
 				ul.appendChild(li);
 			});
 		}
@@ -147,7 +147,7 @@ export function showModal(scheduleData, block) {
 			const ul = linksContainer.querySelector("ul");
 			block.links.forEach((l) => {
 				const li = document.createElement("li");
-				li.innerHTML = `<a href="${l.url}" target="_blank">${l.desc}</a>`;
+				li.innerHTML = `<a href="${l.url}" target="_blank" download>${l.desc}</a>`;
 				ul.appendChild(li);
 			});
 			filesEl.appendChild(linksContainer);

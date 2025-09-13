@@ -96,12 +96,18 @@ export function showMaterials(scheduleData) {
 			let html = `<div style="font-weight:600; font-size:1rem; margin-bottom:0.2em;">${blockLabel}</div>`;
 			if (hasFiles) {
 				html += `<ul class="list-unstyled file-list">${block.files
-					.map((f) => `<li><a href="${f.url}" target="_blank">${f.name}</a></li>`)
+					.map(
+						(f) =>
+							`<li><a href="${f.url}" target="_blank" download>${f.name}</a></li>`
+					)
 					.join("")}</ul>`;
 			}
 			if (hasLinks) {
 				html += `<ul class="list-unstyled link-list">${block.links
-					.map((l) => `<li><a href="${l.url}" target="_blank">${l.desc}</a></li>`)
+					.map(
+						(l) =>
+							`<li><a href="${l.url}" target="_blank" download>${l.desc}</a></li>`
+					)
 					.join("")}</ul>`;
 			}
 			contentEl.insertAdjacentHTML("beforeend", `<div class="mb-3">${html}</div>`);

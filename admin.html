@@ -819,9 +819,27 @@ function duplicateBlock(date, index){
 }
 
 /* --- JSON operations --- */
-function exportJSON(){ document.getElementById('json-output').textContent=JSON.stringify(schedule,null,2); }
-function downloadJSON(){ const blob = new Blob([JSON.stringify(schedule,null,2)], {type:'application/json'}); const url = URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='schedule.json'; a.click(); URL.revokeObjectURL(url); }
-function copyJSON(){ navigator.clipboard.writeText(JSON.stringify(schedule,null,2)); alert('JSON copied'); }
+function serializeScheduleWithFiles() {
+  // Deep copy schedule and convert files to correct format
+  return schedule.map(day => ({
+    ...day,
+    blocks: (day.blocks || []).map(block => ({
+      ...block,
+      files: (block.files || []).map(f => {
+        if (typeof f === 'string') {
+          return { name: f, url: 'files/' + f };
+        } else if (f && typeof f === 'object' && f.name) {
+          return { name: f.name, url: 'files/' + f.name };
+        } else {
+          return f;
+        }
+      })
+    }))
+  }));
+}
+function exportJSON(){ document.getElementById('json-output').textContent=JSON.stringify(serializeScheduleWithFiles(),null,2); }
+function downloadJSON(){ const blob = new Blob([JSON.stringify(serializeScheduleWithFiles(),null,2)], {type:'application/json'}); const url = URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='schedule.json'; a.click(); URL.revokeObjectURL(url); }
+function copyJSON(){ navigator.clipboard.writeText(JSON.stringify(serializeScheduleWithFiles(),null,2)); alert('JSON copied'); }
 function importJSON(event){
   const file=event.target.files[0]; 
   if(!file) return;
