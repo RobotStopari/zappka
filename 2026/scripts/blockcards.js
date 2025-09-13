@@ -129,26 +129,38 @@ function createInfoButton(block) {
 }
 
 function getCardBodyHtml(block, icon, sourcesIcon, duration) {
+	// Keep icon and last word together with non-breaking space if icon exists
+	let titleHtml = block.title;
+	if (sourcesIcon) {
+		// Find last word in title
+		const match = /^(.*?)(\s+)(\S+)$/.exec(block.title);
+		if (match) {
+			// Insert &nbsp; between last word and icon
+			titleHtml = `${match[1]}&nbsp;${match[3]}`;
+		}
+	}
 	return `
-		<div class="card-body">
-			<h5 class="card-title">${icon} ${block.title} ${sourcesIcon}</h5>
-			${
-				block.tema
-					? `<p class="card-subtema text-muted mb-1" style="font-size:0.85rem; text-transform: lowercase;">${block.tema}</p>`
-					: ""
-			}
-			<p class="card-text mb-1">
-				<strong>${block.start} – ${block.end || ""}</strong>
-				${block.type !== "teploměr" ? `(${formatDuration(duration)})` : ""}
-			</p>
-			<p class="card-text">${renderLectors(block.lectors)}</p>
-			${
-				block.type === "jídlo" && block.description
-					? `<p class="card-text"><em>${block.description}</em></p>`
-					: ""
-			}
-		</div>
-	`;
+			<div class="card-body">
+				<h5 class="card-title">${icon} ${titleHtml}${
+		sourcesIcon ? "&nbsp;" + sourcesIcon : ""
+	}</h5>
+				${
+					block.tema
+						? `<p class="card-subtema text-muted mb-1" style="font-size:0.85rem; text-transform: lowercase;">${block.tema}</p>`
+						: ""
+				}
+				<p class="card-text mb-1">
+					<strong>${block.start} – ${block.end || ""}</strong>
+					${block.type !== "teploměr" ? `(${formatDuration(duration)})` : ""}
+				</p>
+				<p class="card-text">${renderLectors(block.lectors)}</p>
+				${
+					block.type === "jídlo" && block.description
+						? `<p class="card-text"><em>${block.description}</em></p>`
+						: ""
+				}
+			</div>
+		`;
 }
 
 export function createBlockCard(
