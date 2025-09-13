@@ -17,6 +17,22 @@
 				"files": [],
 				"links": ["https://www.zdravo.cz/cs/"],
 				"end": "18:00"
+			},
+			{
+				"title": "Předprogram 2",
+				"start": "17:00",
+				"type": "program",
+				"description": "Neformální zahájení, příprava prostoru a přivítání prvních účastníků.",
+				"lectors": [
+					{
+						"name": "Robot",
+						"color": "#f9da00",
+						"realName": "Jakub Procházka"
+					}
+				],
+				"files": [],
+				"links": ["https://www.zdravo.cz/cs/"],
+				"end": "18:00"
 			}
 		]
 	},

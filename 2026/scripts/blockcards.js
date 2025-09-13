@@ -99,7 +99,7 @@ export function createBlockCard(
 	index = 0
 ) {
 	const col = document.createElement("div");
-	col.className = "schedule-card";
+	col.className = "schedule-card" + (isPastGroup ? " past-block" : "");
 
 	const { color: bgColor, icon } =
 		blockTypeStyles[block.type] || blockTypeStyles["ostatní"];
@@ -112,6 +112,7 @@ export function createBlockCard(
 		opacity: 0,
 		animation: "fadeInUp 0.4s forwards",
 		animationDelay: `${index * 0.05}s`,
+		// No padding here; let CSS handle it for normal and past blocks
 	});
 
 	const sourcesIcon = getSourcesIcon(scheduleData, block);
@@ -161,10 +162,7 @@ export function createBlockCard(
 		}
 	}
 
-	if (isPastGroup) {
-		card.classList.add("schedule-card", "past-block");
-	}
-
+	// Do NOT add schedule-card or past-block to the inner card
 	col.appendChild(card);
 	return col;
 }
