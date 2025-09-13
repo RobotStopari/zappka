@@ -1,33 +1,69 @@
 <!-- Main heading with small logo -->
-<h1 class="text-center mb-3 main-heading">
-	<img src="img/logo.png" alt="Logo kurzu" class="logo-small me-2" />
-	Zapalovač&nbsp;2026
-</h1>
-<!-- Top navigation -->
-<div class="d-flex justify-content-center flex-wrap gap-2 mb-3 top-buttons">
-	<button id="historyBtn" class="btn btn-history">📜 Historie</button>
-	<button id="tableBtn" class="btn btn-primary">📋 Programy</button>
-	<button id="materialsBtn" class="btn btn-materials">🗂️ Materiály</button>
-	<button id="lectorBtn" class="btn btn-lector">🎓 Lektorstvo</button>
-	<a
-		href="https://docs.google.com/forms/d/e/1FAIpQLSeH_anh7ASEvtBuC8xd7KLhg-ZOUBJeSvyNf79Z26eJu6zt0w/viewform?usp=dialog"
-		target="_blank"
-		class="btn btn-feedback"
-	>
-		📝 Zpětná vazba
-	</a>
-	<a
-		href="https://www.instagram.com/popcorn_puk/"
-		target="_blank"
-		class="btn btn-social btn-instagram"
-	>
-		<i class="bi bi-instagram"></i> Instagram
-	</a>
-	<a
-		href="https://linktr.ee/kurz.zapalovac"
-		target="_blank"
-		class="btn btn-social btn-linktree"
-	>
-		<i class="bi bi-grid-3x3-gap"></i> Linktree
-	</a>
+<div class="main-heading-wrap">
+	<img src="img/logo.png" alt="Logo kurzu" class="logo-small align-middle" />
+	<div class="heading-text-block">
+		<h1 class="main-heading">Zapalovač&nbsp;2026</h1>
+		<div class="main-subheading">Zappka &ndash; oficiální aplikace kurzu</div>
+	</div>
 </div>
+<nav class="main-navbar mb-3">
+	<div class="navbar-section navbar-center">
+		<button
+			id="historyBtn"
+			class="btn btn-nav btn-history-toggle"
+			title="Zobrazit historii"
+		>
+			<i class="bi bi-clock-history"></i>
+			<span class="switch-track"><span class="switch-thumb"></span></span>
+		</button>
+		<button id="tableBtn" class="btn btn-nav btn-primary" title="Programy">
+			<i class="bi bi-journal-text"></i><span>Programy</span>
+		</button>
+		<button id="materialsBtn" class="btn btn-nav btn-materials" title="Materiály">
+			<i class="bi bi-folder2-open"></i><span>Materiály</span>
+		</button>
+		<button id="lectorBtn" class="btn btn-nav btn-lector" title="Lektorstvo">
+			<i class="bi bi-mortarboard"></i><span>Lektorstvo</span>
+		</button>
+		<a
+			href="https://docs.google.com/forms/d/e/1FAIpQLSeH_anh7ASEvtBuC8xd7KLhg-ZOUBJeSvyNf79Z26eJu6zt0w/viewform?usp=dialog"
+			target="_blank"
+			class="btn btn-nav btn-feedback"
+			title="Zpětná vazba"
+		>
+			<i class="bi bi-chat-dots"></i
+			><span style="white-space: nowrap">Zpětná&nbsp;vazba</span>
+		</a>
+		<div class="dropdown d-inline-block">
+			<button
+				class="btn btn-nav btn-more"
+				type="button"
+				id="moreMenuBtn"
+				data-bs-toggle="dropdown"
+				aria-expanded="false"
+			>
+				<i class="bi bi-three-dots"></i>
+			</button>
+			<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreMenuBtn">
+				<li>
+					<a
+						class="dropdown-item"
+						href="https://www.instagram.com/popcorn_puk/"
+						target="_blank"
+					>
+						<i class="bi bi-instagram"></i> Instagram
+					</a>
+				</li>
+				<li>
+					<a
+						class="dropdown-item"
+						href="https://linktr.ee/kurz.zapalovac"
+						target="_blank"
+					>
+						<i class="bi bi-grid-3x3-gap"></i> Linktree
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>

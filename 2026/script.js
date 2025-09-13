@@ -5,7 +5,7 @@ import {
 	parseDay,
 } from "./scripts/schedule.js";
 import { createBlockCard, createPauseCard } from "./scripts/blockcards.js";
-import { toggleHistory } from "./scripts/history.js";
+import { toggleHistory, setHistoryButtonState } from "./scripts/history.js";
 let historyVisible = false;
 
 // Setup all modal and popup buttons, and expose info globally
@@ -53,6 +53,7 @@ const setHistoryState = (val) => {
 const setupHistoryButton = () => {
 	const historyBtn = document.getElementById("historyBtn");
 	if (historyBtn) {
+		setHistoryButtonState(historyVisible);
 		historyBtn.addEventListener("click", () => {
 			toggleHistory(
 				historyVisible,

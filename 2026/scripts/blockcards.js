@@ -52,6 +52,7 @@ function createInfoButton(block) {
 	const btn = document.createElement("button");
 	btn.className = "btn btn-light btn-sm mt-2 info-btn";
 	btn.textContent = "ℹ️ Více informací";
+	btn.style.cursor = "pointer";
 	btn.onclick = () => window.showModal(block);
 	return btn;
 }

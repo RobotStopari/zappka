@@ -27,7 +27,7 @@
 	transform: translateY(15px);
 	animation: fadeInUp 0.5s forwards;
 	transition: transform 0.25s ease, box-shadow 0.25s ease;
-	cursor: pointer;
+	cursor: default;
 }
 .schedule-card:hover {
 	transform: translateY(-3px) scale(1.03);
@@ -89,6 +89,7 @@
 	animation: fadeInUp 0.5s forwards;
 	background: #fff;
 	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+	cursor: default;
 }
 #tableContent .card:hover {
 	transform: translateY(-3px) scale(1.03);

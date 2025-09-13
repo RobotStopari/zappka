@@ -1,3 +1,7 @@
+#lectorContent .lector-block-name,
+#lectorContent .lector-info-icon {
+	cursor: pointer !important;
+}
 /* Modal and lector popup styles */
 .modal-content {
 	border-radius: 1.2rem;

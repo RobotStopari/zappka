@@ -1,3 +1,49 @@
+/* Prevent text selection everywhere by default */
+html,
+body,
+#app,
+.container,
+.main-heading,
+.schedule-card,
+.card,
+.modal,
+.modal-content,
+.footer,
+.navbar,
+.navbar-section,
+.navbar-title,
+.btn,
+button,
+a,
+div,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+li,
+table,
+th,
+td,
+input,
+label,
+select,
+option {
+	user-select: none !important;
+	-webkit-user-select: none !important;
+	-ms-user-select: none !important;
+}
+
+/* Allow selection only for the block description in the more info popup */
+#modalDesc {
+	user-select: text !important;
+	-webkit-user-select: text !important;
+	-ms-user-select: text !important;
+	cursor: text;
+}
 /* Base styles: fonts, body, container, headings */
 body {
 	font-family: "Inter", "Segoe UI", sans-serif;

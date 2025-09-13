@@ -18,7 +18,11 @@ export function showTable(scheduleData, parseDay) {
 			day: "numeric",
 			month: "long",
 		});
-		dayStr = dayStr.replace(/^([\p{L}])/, (m) => m.toUpperCase());
+		// Capitalize the first word (not just first letter)
+		dayStr = dayStr.replace(
+			/^([\p{L}]+)/u,
+			(w) => w.charAt(0).toUpperCase() + w.slice(1)
+		);
 		const dayHeader = Object.assign(document.createElement("h5"), {
 			className: "text-primary mt-3 mb-2",
 			textContent: dayStr,
