@@ -1,3 +1,6 @@
+// Current year for dynamic heading
+export const CURRENT_YEAR = 2026;
+
 // Block type styles
 export const blockTypeStyles = {
 	program: { color: "#0d6efd", icon: "📒" },
