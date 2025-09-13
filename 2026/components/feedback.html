@@ -1,0 +1,336 @@
+<div class="modal fade" id="feedbackModal" tabindex="-1">
+	<div class="modal-dialog modal-dialog-scrollable">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">💬 Zpětná vazba</h5>
+				<button
+					type="button"
+					class="btn-close"
+					id="feedbackModalClose"
+					aria-label="Zavřít"
+				></button>
+			</div>
+			<div class="modal-body" id="feedbackContent">
+				<form id="feedbackForm">
+					<div class="mb-3">
+						<label for="feedbackProgramSelect" class="form-label"
+							>Vyber blok programu</label
+						>
+						<select
+							class="form-select"
+							id="feedbackProgramSelect"
+							name="program"
+							required
+						>
+							<option value="" disabled selected>Načítání…</option>
+						</select>
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label">Vyber, jak se po programu cítíš</label>
+						<div <div class="emoji-selector text-center" id="programFeelingGroup">
+							<div class="d-flex justify-content-center gap-2 mb-2">
+								<input
+									type="radio"
+									class="btn-check"
+									name="programFeeling"
+									id="feeling1"
+									value="😄"
+									autocomplete="off"
+								/>
+								<label class="btn btn-outline-secondary fs-3" for="feeling1">😄</label>
+								<input
+									type="radio"
+									class="btn-check"
+									name="programFeeling"
+									id="feeling2"
+									value="😊"
+									autocomplete="off"
+								/>
+								<label class="btn btn-outline-secondary fs-3" for="feeling2">😊</label>
+								<input
+									type="radio"
+									class="btn-check"
+									name="programFeeling"
+									id="feeling3"
+									value="🙂"
+									autocomplete="off"
+								/>
+								<label class="btn btn-outline-secondary fs-3" for="feeling3">🙂</label>
+								<input
+									type="radio"
+									class="btn-check"
+									name="programFeeling"
+									id="feeling4"
+									value="😐"
+									autocomplete="off"
+								/>
+								<label class="btn btn-outline-secondary fs-3" for="feeling4">😐</label>
+								<input
+									type="radio"
+									class="btn-check"
+									name="programFeeling"
+									id="feeling5"
+									value="😕"
+									autocomplete="off"
+								/>
+								<label class="btn btn-outline-secondary fs-3" for="feeling5">😕</label>
+							</div>
+							<div class="d-flex justify-content-center gap-2">
+								<input
+									type="radio"
+									class="btn-check"
+									name="programFeeling"
+									id="feeling6"
+									value="🙁"
+									autocomplete="off"
+								/>
+								<label class="btn btn-outline-secondary fs-3" for="feeling6">🙁</label>
+								<input
+									type="radio"
+									class="btn-check"
+									name="programFeeling"
+									id="feeling7"
+									value="😢"
+									autocomplete="off"
+								/>
+								<label class="btn btn-outline-secondary fs-3" for="feeling7">😢</label>
+								<input
+									type="radio"
+									class="btn-check"
+									name="programFeeling"
+									id="feeling8"
+									value="😠"
+									autocomplete="off"
+								/>
+								<label class="btn btn-outline-secondary fs-3" for="feeling8">😠</label>
+								<input
+									type="radio"
+									class="btn-check"
+									name="programFeeling"
+									id="feeling9"
+									value="🤩"
+									autocomplete="off"
+								/>
+								<label class="btn btn-outline-secondary fs-3" for="feeling9">🤩</label>
+								<input
+									type="radio"
+									class="btn-check"
+									name="programFeeling"
+									id="feeling10"
+									value="🥱"
+									autocomplete="off"
+								/>
+								<label class="btn btn-outline-secondary fs-3" for="feeling10">🥱</label>
+							</div>
+						</div>
+					</div>
+
+					<div class="mb-3">
+						<label for="feedbackUseful" class="form-label"
+							>Co pro mě bylo přínosné?</label
+						>
+						<textarea
+							class="form-control"
+							id="feedbackUseful"
+							name="useful"
+							rows="3"
+							placeholder="Nemusíš vyplňovat, ale budeme rádi..."
+						></textarea>
+					</div>
+					<div class="mb-3">
+						<label for="feedbackInteresting" class="form-label"
+							>Co mě na programu zaujalo?</label
+						>
+						<textarea
+							class="form-control"
+							id="feedbackInteresting"
+							name="interesting"
+							rows="3"
+							placeholder="Nemusíš vyplňovat, ale budeme rádi..."
+						></textarea>
+					</div>
+					<div class="mb-3">
+						<label for="feedbackMissing" class="form-label"
+							>Co mi na programu chybělo?</label
+						>
+						<textarea
+							class="form-control"
+							id="feedbackMissing"
+							name="missing"
+							rows="3"
+							placeholder="Nemusíš vyplňovat, ale budeme rádi..."
+						></textarea>
+					</div>
+
+					<hr class="my-4" />
+
+					<div class="mb-3">
+						<label class="form-label">Jaké máš pocity z lektorujících?</label>
+						<div class="emoji-selector text-center" id="lectorsFeelingGroup">
+							<div class="d-flex justify-content-center gap-2 mb-2">
+								<input
+									type="radio"
+									class="btn-check"
+									name="lectorsFeeling"
+									id="lectorsFeeling1"
+									value="😄"
+									autocomplete="off"
+								/>
+								<label class="btn btn-outline-secondary fs-3" for="lectorsFeeling1"
+									>😄</label
+								>
+								<input
+									type="radio"
+									class="btn-check"
+									name="lectorsFeeling"
+									id="lectorsFeeling2"
+									value="😊"
+									autocomplete="off"
+								/>
+								<label class="btn btn-outline-secondary fs-3" for="lectorsFeeling2"
+									>😊</label
+								>
+								<input
+									type="radio"
+									class="btn-check"
+									name="lectorsFeeling"
+									id="lectorsFeeling3"
+									value="🙂"
+									autocomplete="off"
+								/>
+								<label class="btn btn-outline-secondary fs-3" for="lectorsFeeling3"
+									>🙂</label
+								>
+								<input
+									type="radio"
+									class="btn-check"
+									name="lectorsFeeling"
+									id="lectorsFeeling4"
+									value="😐"
+									autocomplete="off"
+								/>
+								<label class="btn btn-outline-secondary fs-3" for="lectorsFeeling4"
+									>😐</label
+								>
+								<input
+									type="radio"
+									class="btn-check"
+									name="lectorsFeeling"
+									id="lectorsFeeling5"
+									value="😕"
+									autocomplete="off"
+								/>
+								<label class="btn btn-outline-secondary fs-3" for="lectorsFeeling5"
+									>😕</label
+								>
+							</div>
+							<div class="d-flex justify-content-center gap-2">
+								<input
+									type="radio"
+									class="btn-check"
+									name="lectorsFeeling"
+									id="lectorsFeeling6"
+									value="🙁"
+									autocomplete="off"
+								/>
+								<label class="btn btn-outline-secondary fs-3" for="lectorsFeeling6"
+									>🙁</label
+								>
+								<input
+									type="radio"
+									class="btn-check"
+									name="lectorsFeeling"
+									id="lectorsFeeling7"
+									value="😢"
+									autocomplete="off"
+								/>
+								<label class="btn btn-outline-secondary fs-3" for="lectorsFeeling7"
+									>😢</label
+								>
+								<input
+									type="radio"
+									class="btn-check"
+									name="lectorsFeeling"
+									id="lectorsFeeling8"
+									value="😠"
+									autocomplete="off"
+								/>
+								<label class="btn btn-outline-secondary fs-3" for="lectorsFeeling8"
+									>😠</label
+								>
+								<input
+									type="radio"
+									class="btn-check"
+									name="lectorsFeeling"
+									id="lectorsFeeling9"
+									value="🤩"
+									autocomplete="off"
+								/>
+								<label class="btn btn-outline-secondary fs-3" for="lectorsFeeling9"
+									>🤩</label
+								>
+								<input
+									type="radio"
+									class="btn-check"
+									name="lectorsFeeling"
+									id="lectorsFeeling10"
+									value="🥱"
+									autocomplete="off"
+								/>
+								<label class="btn btn-outline-secondary fs-3" for="lectorsFeeling10"
+									>🥱</label
+								>
+							</div>
+						</div>
+					</div>
+
+					<div class="mb-3">
+						<label for="feedbackLectorsRecommend" class="form-label"
+							>Lektorujícím chci doporučit</label
+						>
+						<textarea
+							class="form-control"
+							id="feedbackLectorsRecommend"
+							name="lectorsRecommend"
+							rows="3"
+							placeholder="Nemusíš vyplňovat, ale budeme rádi..."
+						></textarea>
+					</div>
+					<div class="mb-3">
+						<label for="feedbackLectorsPraise" class="form-label"
+							>Lektorující chci pochválit za</label
+						>
+						<textarea
+							class="form-control"
+							id="feedbackLectorsPraise"
+							name="lectorsPraise"
+							rows="3"
+							placeholder="Nemusíš vyplňovat, ale budeme rádi..."
+						></textarea>
+					</div>
+
+					<hr class="my-4" />
+
+					<div class="mb-3">
+						<label for="feedbackSignature" class="form-label"
+							>Dobrovolný podpis</label
+						>
+						<input
+							type="text"
+							class="form-control"
+							id="feedbackSignature"
+							name="signature"
+							maxlength="64"
+							placeholder="Zde můžeš napsat své jméno (Nemusíš vyplňovat)"
+						/>
+					</div>
+
+					<div class="d-grid mt-4">
+						<button type="submit" class="btn btn-primary btn-lg">Odeslat</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
