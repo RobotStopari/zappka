@@ -9,12 +9,33 @@ export const parseDay = (dateStr) => {
 };
 
 // Load schedule data and render
+
+// Helper: replace space after one-letter word with &nbsp;
+function fixOneLetterWords(str) {
+	if (typeof str !== "string") return str;
+	// Only a, i, k, o, s, u, v, z (case-insensitive, Czech)
+	return str.replace(/\b([aikosuvzAIKOSUVZ]) (?=\S)/g, "$1\u00A0");
+}
+
+function fixScheduleOneLetterWords(schedule) {
+	for (const day of schedule) {
+		if (!Array.isArray(day.blocks)) continue;
+		for (const block of day.blocks) {
+			if (block.title) block.title = fixOneLetterWords(block.title);
+			if (block.tema) block.tema = fixOneLetterWords(block.tema);
+			if (block.description)
+				block.description = fixOneLetterWords(block.description);
+		}
+	}
+}
+
 export const loadSchedule = async (renderSchedule) => {
 	const loadingEl = document.getElementById("loading");
 	loadingEl.style.display = "block";
 	try {
 		const response = await fetch("schedule.json");
 		scheduleData = await response.json();
+		fixScheduleOneLetterWords(scheduleData);
 		renderSchedule(scheduleData);
 	} catch (err) {
 		console.error("Chyba při načítání dat:", err);
