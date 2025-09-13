@@ -105,7 +105,9 @@ document.addEventListener("DOMContentLoaded", function () {
 				Vytvořeno: new Date().toISOString(),
 			};
 			try {
-				await db.collection("ZV_Zappka_2026").add(data);
+				await db
+					.collection("ZV_Zappka_" + String(window.CURRENT_YEAR || CURRENT_YEAR))
+					.add(data);
 				alert("Děkujeme za zpětnou vazbu!");
 				form.reset();
 				// Reset dropdown to placeholder
