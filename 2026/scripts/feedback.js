@@ -60,6 +60,23 @@ document.addEventListener("DOMContentLoaded", function () {
 			document.body.insertAdjacentHTML("beforeend", html);
 			setupFeedbackModal();
 		});
+	// Load feedback popup script and CSS, then feedback modal
+	var popupCss = document.createElement("link");
+	popupCss.rel = "stylesheet";
+	popupCss.href = "css/feedback-popup.css";
+	document.head.appendChild(popupCss);
+
+	var popupScript = document.createElement("script");
+	popupScript.src = "scripts/feedback-popup.js";
+	popupScript.onload = function () {
+		fetch("components/feedback.html")
+			.then((response) => response.text())
+			.then((html) => {
+				document.body.insertAdjacentHTML("beforeend", html);
+				setupFeedbackModal();
+			});
+	};
+	document.body.appendChild(popupScript);
 
 	async function setupFeedbackModal() {
 		const feedbackBtn = document.getElementById("feedbackBtn");
@@ -108,7 +125,9 @@ document.addEventListener("DOMContentLoaded", function () {
 				await db
 					.collection("ZV_Zappka_" + String(window.CURRENT_YEAR || CURRENT_YEAR))
 					.add(data);
-				alert("Děkujeme za zpětnou vazbu!");
+				if (window.showFeedbackPopup) {
+					window.showFeedbackPopup("Děkujeme za zpětnou vazbu!", false);
+				}
 				form.reset();
 				// Reset dropdown to placeholder
 				if (programSelect) {
@@ -117,7 +136,9 @@ document.addEventListener("DOMContentLoaded", function () {
 				// Optionally close modal if desired
 				if (bsModal) bsModal.hide();
 			} catch (err) {
-				alert("Chyba při odesílání: " + err.message);
+				if (window.showFeedbackPopup) {
+					window.showFeedbackPopup("Chyba při odesílání: " + err.message, true);
+				}
 			}
 		});
 

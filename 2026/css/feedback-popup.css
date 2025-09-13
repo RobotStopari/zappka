@@ -1,0 +1,53 @@
+/* Feedback custom popup styles */
+.feedback-popup {
+	position: fixed;
+	z-index: 2000;
+	left: 50%;
+	top: 10%;
+	transform: translate(-50%, 0);
+	background: #fff;
+	color: #222;
+	border-radius: 1.1rem;
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+	padding: 1.2rem 2.2rem 1.2rem 1.5rem;
+	min-width: 260px;
+	max-width: 90vw;
+	font-size: 1.1rem;
+	font-weight: 500;
+	display: none;
+	align-items: center;
+	gap: 1.2rem;
+	animation: feedback-popup-fadein 0.4s;
+}
+.feedback-popup-content {
+	display: flex;
+	align-items: center;
+	gap: 1.2rem;
+}
+.feedback-popup.success {
+	border: 2px solid #198754;
+	color: #198754;
+}
+.feedback-popup.error {
+	border: 2px solid #dc3545;
+	color: #dc3545;
+}
+#feedbackPopupClose {
+	background: none;
+	border: none;
+	font-size: 1.5rem;
+	color: inherit;
+	cursor: pointer;
+	margin-left: 1.2rem;
+	line-height: 1;
+}
+@keyframes feedback-popup-fadein {
+	from {
+		opacity: 0;
+		transform: translate(-50%, -30px);
+	}
+	to {
+		opacity: 1;
+		transform: translate(-50%, 0);
+	}
+}
