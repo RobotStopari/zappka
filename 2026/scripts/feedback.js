@@ -124,9 +124,17 @@ document.addEventListener("DOMContentLoaded", function () {
 			form.querySelectorAll('input[name="lectorsFeeling"]');
 		const submitBtn = form.querySelector('button[type="submit"]');
 
+		// Prevent double submission
+		let isSubmitting = false;
 		// Handle form submission to Firestore
 		form.addEventListener("submit", async function (e) {
 			e.preventDefault();
+			if (isSubmitting) return;
+			isSubmitting = true;
+			if (submitBtn) {
+				submitBtn.disabled = true;
+				submitBtn.classList.add("disabled");
+			}
 			// Get selected option's label for program+lectors
 			let programLabel = "";
 			if (programSelect && programSelect.selectedIndex > 0) {
@@ -164,6 +172,11 @@ document.addEventListener("DOMContentLoaded", function () {
 					window.showFeedbackPopup("Chyba při odesílání: " + err.message, true);
 				}
 			}
+			// Add a short delay before allowing another submission
+			setTimeout(() => {
+				isSubmitting = false;
+				validateForm(); // Re-enable button if form is valid
+			}, 1200); // 1.2s delay
 		});
 
 		if (feedbackBtn && bsModal) {
