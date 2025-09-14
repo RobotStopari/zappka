@@ -1,1467 +1,1536 @@
 [
-	{
-		"date": "2025-01-01",
-		"blocks": [
-			{
-				"title": "Testovací blok jež bude smazán",
-				"start": "01:00",
-				"type": "program",
-				"description": "Blok určen k testování.",
-				"lectors": [
-					{
-						"name": "Robot",
-						"color": "#f9da00",
-						"realName": "Jakub Procházka"
-					}
-				],
-				"files": [
-					{
-						"name": "download.webp",
-						"url": "files/download.webp"
-					}
-				],
-				"links": [
-					{
-						"url": "https://kurzzapalovac.cz",
-						"desc": "Web kurzu"
-					}
-				],
-				"end": "03:00",
-				"tema": "Testovací blok"
-			}
-		]
-	},
-	{
-		"date": "2026-02-12",
-		"blocks": [
-			{
-				"title": "Příjezd + Zdravofiltr",
-				"start": "18:00",
-				"type": "ostatní",
-				"description": "Ten jeden program, co je prostě potřeba.",
-				"lectors": [
-					{
-						"name": "Anka",
-						"color": "#b100ec"
-					},
-					{
-						"name": "Viki",
-						"color": "#f000c6",
-						"realName": "Viktorie Renčová"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "19:00"
-			},
-			{
-				"title": "Otvírák",
-				"start": "19:00",
-				"type": "program",
-				"description": "Zahájíme to tu nějakým zajímavým způsobem.",
-				"lectors": [
-					{
-						"name": "Vítek",
-						"color": "#22aa00"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "19:30"
-			},
-			{
-				"title": "Informace",
-				"start": "19:30",
-				"type": "program",
-				"description": "Aby se nám tu dobře ty čtyři dny společně fungovalo, pojďme si povědět, jak se tu k sobě chovat a jak tu co bude fungovat.",
-				"lectors": [
-					{
-						"name": "Opičák",
-						"color": "#0099ec",
-						"realName": "Ondřej Turek"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "20:30"
-			},
-			{
-				"title": "Pojďme se poznat",
-				"start": "20:30",
-				"type": "program",
-				"description": "Prostor pro vzájemné seznámení se.",
-				"lectors": [
-					{
-						"name": "Anka",
-						"color": "#b100ec"
-					},
-					{
-						"name": "Vítek",
-						"color": "#22aa00"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "21:30"
-			},
-			{
-				"title": "Dopis sobě",
-				"start": "21:30",
-				"type": "program",
-				"description": "Urovnejme si myšlenky a svá očekávání formou dopisu.",
-				"lectors": [
-					{
-						"name": "Mája",
-						"color": "#ec9f00"
-					},
-					{
-						"name": "Foxy",
-						"color": "#ca0000"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "21:50"
-			},
-			{
-				"title": "Rituál",
-				"start": "22:00",
-				"type": "program",
-				"description": "Pojďme zakončit večer společným příjemným a zamýšlecím okamžikem.",
-				"lectors": [
-					{
-						"name": "Opičák",
-						"color": "#0099ec",
-						"realName": "Ondřej Turek"
-					},
-					{
-						"name": "Vítek",
-						"color": "#22aa00"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "22:40"
-			},
-			{
-				"title": "Kavárna",
-				"start": "22:40",
-				"type": "program",
-				"description": "Příjemný nevedený večerní prostor pro sdílení, povídání a kytarohraní.",
-				"lectors": [
-					{
-						"name": "Viki",
-						"color": "#f000c6",
-						"realName": "Viktorie Renčová"
-					},
-					{
-						"name": "Opičák",
-						"color": "#0099ec",
-						"realName": "Ondřej Turek"
-					},
-					{
-						"name": "Mája",
-						"color": "#ec9f00"
-					},
-					{
-						"name": "Anka",
-						"color": "#b100ec"
-					},
-					{
-						"name": "Vítek",
-						"color": "#22aa00"
-					},
-					{
-						"name": "Foxy",
-						"color": "#ca0000"
-					},
-					{
-						"name": "Robot",
-						"color": "#f9da00",
-						"realName": "Jakub Procházka"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "23:55"
-			}
-		]
-	},
-	{
-		"date": "2026-02-13",
-		"blocks": [
-			{
-				"title": "Společné probuzení",
-				"start": "07:30",
-				"type": "program",
-				"description": "Rozhýbat a probudit se můžeme i zábavnou formou.",
-				"lectors": [
-					{
-						"name": "Vítek",
-						"color": "#22aa00"
-					},
-					{
-						"name": "Mája",
-						"color": "#ec9f00"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "07:55"
-			},
-			{
-				"title": "Snídaně",
-				"start": "07:55",
-				"type": "jídlo",
-				"description": "",
-				"lectors": [],
-				"files": [],
-				"links": [],
-				"end": "08:40"
-			},
-			{
-				"title": "Portfolio",
-				"start": "08:40",
-				"type": "program",
-				"description": "Portfolia nás provedou kurzem, budou do nich přibývat materiály a můžeme si do nich ukládat poznámky.",
-				"lectors": [
-					{
-						"name": "Robot",
-						"color": "#f9da00",
-						"realName": "Jakub Procházka"
-					},
-					{
-						"name": "Vítek",
-						"color": "#22aa00"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "08:50"
-			},
-			{
-				"title": "Teploměr",
-				"start": "08:40",
-				"type": "teploměr",
-				"description": "",
-				"lectors": [],
-				"files": [],
-				"links": []
-			},
-			{
-				"title": "Proč si hrajeme?",
-				"start": "08:50",
-				"type": "program",
-				"description": "Hrajeme si často. Za hrou ale často může být i víc, než jen čistá zábava.",
-				"lectors": [
-					{
-						"name": "Robot",
-						"color": "#f9da00",
-						"realName": "Jakub Procházka"
-					},
-					{
-						"name": "Foxy",
-						"color": "#ca0000"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "09:20",
-				"tema": "Hra –⁠⁠⁠⁠⁠⁠ teorie"
-			},
-			{
-				"title": "Kam směřuju (kudy běží liška)?",
-				"start": "09:30",
-				"type": "program",
-				"description": "Svou činností můžeme někam vědomě mířit, tento cíl si pojmenovat a měřit jeho dosažení.",
-				"lectors": [
-					{
-						"name": "Opičák",
-						"color": "#0099ec",
-						"realName": "Ondřej Turek"
-					},
-					{
-						"name": "Anka",
-						"color": "#b100ec"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "10:15",
-				"tema": "Práce s cíly"
-			},
-			{
-				"title": "Hrajeme si",
-				"start": "10:15",
-				"type": "program",
-				"description": "Vyzkoušejme si nějakou tu hru uvézt a uskutečnit prakticky.",
-				"lectors": [
-					{
-						"name": "Mája",
-						"color": "#ec9f00"
-					},
-					{
-						"name": "Foxy",
-						"color": "#ca0000"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "11:00",
-				"tema": "Hra –⁠⁠⁠⁠⁠⁠ praxe"
-			},
-			{
-				"title": "Oddíl jako lifestyle",
-				"start": "11:10",
-				"type": "program",
-				"description": "Mezi navštěvováním kroužku a oddílovou činností je velký rozdíl. Pojďme si o tom popovídat.",
-				"lectors": [
-					{
-						"name": "Opičák",
-						"color": "#0099ec",
-						"realName": "Ondřej Turek"
-					},
-					{
-						"name": "Viki",
-						"color": "#f000c6",
-						"realName": "Viktorie Renčová"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "11:40",
-				"tema": "Oddílová činnost"
-			},
-			{
-				"title": "Volitelné bloky",
-				"start": "11:50",
-				"type": "program",
-				"description": "",
-				"lectors": [
-					{
-						"name": "Viki",
-						"color": "#f000c6",
-						"realName": "Viktorie Renčová"
-					},
-					{
-						"name": "Opičák",
-						"color": "#0099ec",
-						"realName": "Ondřej Turek"
-					},
-					{
-						"name": "Mája",
-						"color": "#ec9f00"
-					},
-					{
-						"name": "Anka",
-						"color": "#b100ec"
-					},
-					{
-						"name": "Vítek",
-						"color": "#22aa00"
-					},
-					{
-						"name": "Foxy",
-						"color": "#ca0000"
-					},
-					{
-						"name": "Robot",
-						"color": "#f9da00",
-						"realName": "Jakub Procházka"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "12:20"
-			},
-			{
-				"title": "Zpětná vazba",
-				"start": "12:20",
-				"type": "zpětná vazba",
-				"description": "",
-				"lectors": [],
-				"files": [],
-				"links": [],
-				"end": "12:30"
-			},
-			{
-				"title": "Oběd",
-				"start": "12:30",
-				"type": "jídlo",
-				"description": "",
-				"lectors": [],
-				"files": [],
-				"links": [],
-				"end": "13:35"
-			},
-			{
-				"title": "Teploměr",
-				"start": "13:25",
-				"type": "teploměr",
-				"description": "",
-				"lectors": [],
-				"files": [],
-				"links": []
-			},
-			{
-				"title": "Kde tankovat? Nejlepší bezínky v okolí.",
-				"start": "13:35",
-				"type": "program",
-				"description": "Všichni tady máme co předat. Pojďme vám i my lektoři ukázat, co zajímavého děláme.",
-				"lectors": [
-					{
-						"name": "Viki",
-						"color": "#f000c6",
-						"realName": "Viktorie Renčová"
-					},
-					{
-						"name": "Robot",
-						"color": "#f9da00",
-						"realName": "Jakub Procházka"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "15:05",
-				"tema": "Inspirace"
-			},
-			{
-				"title": "Ten dělá to a ten zas tohle",
-				"start": "15:15",
-				"type": "program",
-				"description": "Každý jsme jiný a pracujeme v týmech a s lidmi, pro které to platí taktéž. Jací vlastně můžeme být?",
-				"lectors": [
-					{
-						"name": "Robot",
-						"color": "#f9da00",
-						"realName": "Jakub Procházka"
-					},
-					{
-						"name": "Anka",
-						"color": "#b100ec"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "16:05",
-				"tema": "Týmové role"
-			},
-			{
-				"title": "S kým pracuješ?",
-				"start": "15:15",
-				"type": "program",
-				"description": "Pracujeme s dětmi a dospělými různých věků a z různých prostředí. Jak tomu můžeme uzpůsobovat naši činnost?",
-				"lectors": [
-					{
-						"name": "Mája",
-						"color": "#ec9f00"
-					},
-					{
-						"name": "Opičák",
-						"color": "#0099ec",
-						"realName": "Ondřej Turek"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "16:05",
-				"tema": "Vývojová psychologie"
-			},
-			{
-				"title": "Ten dělá to a ten zas tohle",
-				"start": "16:10",
-				"type": "program",
-				"description": "Každý jsme jiný a pracujeme v týmech a s lidmi, pro které to platí taktéž. Jací vlastně můžeme být?",
-				"lectors": [
-					{
-						"name": "Robot",
-						"color": "#f9da00",
-						"realName": "Jakub Procházka"
-					},
-					{
-						"name": "Anka",
-						"color": "#b100ec"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "17:00",
-				"tema": "Týmové role"
-			},
-			{
-				"title": "S kým pracuješ?",
-				"start": "16:10",
-				"type": "program",
-				"description": "Pracujeme s dětmi a dospělými různých věků a z různých prostředí. Jak tomu můžeme uzpůsobovat naši činnost?",
-				"lectors": [
-					{
-						"name": "Mája",
-						"color": "#ec9f00"
-					},
-					{
-						"name": "Opičák",
-						"color": "#0099ec",
-						"realName": "Ondřej Turek"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "17:00",
-				"tema": "Vývojová psychologie"
-			},
-			{
-				"title": "Oddíl a společnost",
-				"start": "17:10",
-				"type": "program",
-				"description": "Oddíl může sloužit nejen svým členům, ale i společnosti kolem sebe.",
-				"lectors": [
-					{
-						"name": "Viki",
-						"color": "#f000c6",
-						"realName": "Viktorie Renčová"
-					},
-					{
-						"name": "Foxy",
-						"color": "#ca0000"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "17:45",
-				"tema": "Služba okolí"
-			},
-			{
-				"title": "Uklidni se",
-				"start": "17:45",
-				"type": "program",
-				"description": "Nechceme vyhořet. Ačkoli máme plno možností co dělat, prvně mysleme na svoje duševní zdraví.",
-				"lectors": [
-					{
-						"name": "Mája",
-						"color": "#ec9f00"
-					},
-					{
-						"name": "Robot",
-						"color": "#f9da00",
-						"realName": "Jakub Procházka"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "18:25",
-				"tema": "Psychohygiena"
-			},
-			{
-				"title": "Degustace",
-				"start": "18:25",
-				"type": "program",
-				"description": "Dopřejme si prostor pro degustaci výběrů z hroznů. Nechme se inspirovat, doptejme se, pobavme se. Prostě jak na pravé degustaci.",
-				"lectors": [
-					{
-						"name": "Viki",
-						"color": "#f000c6",
-						"realName": "Viktorie Renčová"
-					},
-					{
-						"name": "Opičák",
-						"color": "#0099ec",
-						"realName": "Ondřej Turek"
-					},
-					{
-						"name": "Mája",
-						"color": "#ec9f00"
-					},
-					{
-						"name": "Anka",
-						"color": "#b100ec"
-					},
-					{
-						"name": "Vítek",
-						"color": "#22aa00"
-					},
-					{
-						"name": "Foxy",
-						"color": "#ca0000"
-					},
-					{
-						"name": "Robot",
-						"color": "#f9da00",
-						"realName": "Jakub Procházka"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "18:45",
-				"tema": "Tržiště"
-			},
-			{
-				"title": "Zpětná vazba",
-				"start": "18:45",
-				"type": "zpětná vazba",
-				"description": "",
-				"lectors": [],
-				"files": [],
-				"links": [],
-				"end": "18:55"
-			},
-			{
-				"title": "Večeře",
-				"start": "18:55",
-				"type": "jídlo",
-				"description": "",
-				"lectors": [],
-				"files": [],
-				"links": [],
-				"end": "19:35"
-			},
-			{
-				"title": "Teploměr",
-				"start": "19:25",
-				"type": "teploměr",
-				"description": "",
-				"lectors": [],
-				"files": [],
-				"links": []
-			},
-			{
-				"title": "Sharing is caring",
-				"start": "19:35",
-				"type": "program",
-				"description": "Na závěr dne si dopřejme prostor pro vzájemné sdílení.",
-				"lectors": [
-					{
-						"name": "Viki",
-						"color": "#f000c6",
-						"realName": "Viktorie Renčová"
-					},
-					{
-						"name": "Vítek",
-						"color": "#22aa00"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "20:55",
-				"tema": "Sdílení"
-			},
-			{
-				"title": "Okořeň to",
-				"start": "20:55",
-				"type": "program",
-				"description": "Přidanou hodnotu našim výtvorům dodáme nejen dobrou skladbou programů, ale i kreativitou a zapojováním smyslů.",
-				"lectors": [
-					{
-						"name": "Viki",
-						"color": "#f000c6",
-						"realName": "Viktorie Renčová"
-					},
-					{
-						"name": "Opičák",
-						"color": "#0099ec",
-						"realName": "Ondřej Turek"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "21:30",
-				"tema": "Design"
-			},
-			{
-				"title": "Proč to sakra dělám?",
-				"start": "21:30",
-				"type": "program",
-				"description": "Občas je dobré zamyslet se nad tím, proč které věci v životě vůbec děláme. U oddílové činnosti, které často věnujeme velké množství času, to může být nanejvýš přínosné.",
-				"lectors": [
-					{
-						"name": "Anka",
-						"color": "#b100ec"
-					},
-					{
-						"name": "Robot",
-						"color": "#f9da00",
-						"realName": "Jakub Procházka"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "21:50",
-				"tema": "Motivace vedoucího"
-			},
-			{
-				"title": "Rituál",
-				"start": "21:50",
-				"type": "program",
-				"description": "Pojďme zakončit večer společným příjemným a zamýšlecím okamžikem.",
-				"lectors": [
-					{
-						"name": "Opičák",
-						"color": "#0099ec",
-						"realName": "Ondřej Turek"
-					},
-					{
-						"name": "Vítek",
-						"color": "#22aa00"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "22:10"
-			}
-		]
-	},
-	{
-		"date": "2026-02-14",
-		"blocks": [
-			{
-				"title": "Společné probuzení",
-				"start": "07:30",
-				"type": "program",
-				"description": "Rozhýbat a probudit se můžeme i zábavnou formou.",
-				"lectors": [
-					{
-						"name": "Viki",
-						"color": "#f000c6",
-						"realName": "Viktorie Renčová"
-					},
-					{
-						"name": "Foxy",
-						"color": "#ca0000"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "07:55"
-			},
-			{
-				"title": "Snídaně",
-				"start": "07:55",
-				"type": "jídlo",
-				"description": "",
-				"lectors": [],
-				"files": [],
-				"links": [],
-				"end": "08:40"
-			},
-			{
-				"title": "To zní jako plán",
-				"start": "08:40",
-				"type": "program",
-				"description": "Pojďme se podívat na to, co všechno a jak vlastně musíme plánovat, jak to dělat efektivně a jak na nic nezapomenout.",
-				"lectors": [
-					{
-						"name": "Anka",
-						"color": "#b100ec"
-					},
-					{
-						"name": "Foxy",
-						"color": "#ca0000"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "09:40",
-				"tema": "Plánování schůzky a výpravy"
-			},
-			{
-				"title": "Respekt, vole",
-				"start": "08:40",
-				"type": "program",
-				"description": "Všichni chceme pohodu v našem týmu i mezi našimi svěřenci. Podíváme se na to, jak spolu vhodně komunikovat, co je to vlastně respekt a co nám může pomoci.",
-				"lectors": [
-					{
-						"name": "Mája",
-						"color": "#ec9f00"
-					},
-					{
-						"name": "Robot",
-						"color": "#f9da00",
-						"realName": "Jakub Procházka"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "09:40",
-				"tema": "Komunikace, respekt"
-			},
-			{
-				"title": "Teploměr",
-				"start": "08:40",
-				"type": "teploměr",
-				"description": "",
-				"lectors": [],
-				"files": [],
-				"links": []
-			},
-			{
-				"title": "To zní jako plán",
-				"start": "09:50",
-				"type": "program",
-				"description": "Pojďme se podívat na to, co všechno a jak vlastně musíme plánovat, jak to dělat efektivně a jak na nic nezapomenout.",
-				"lectors": [
-					{
-						"name": "Anka",
-						"color": "#b100ec"
-					},
-					{
-						"name": "Foxy",
-						"color": "#ca0000"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "10:50",
-				"tema": "Plánování schůzky a výpravy"
-			},
-			{
-				"title": "Respekt, vole",
-				"start": "09:50",
-				"type": "program",
-				"description": "Všichni chceme pohodu v našem týmu i mezi našimi svěřenci. Podíváme se na to, jak spolu vhodně komunikovat, co je to vlastně respekt a co nám může pomoci.",
-				"lectors": [
-					{
-						"name": "Mája",
-						"color": "#ec9f00"
-					},
-					{
-						"name": "Robot",
-						"color": "#f9da00",
-						"realName": "Jakub Procházka"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "10:50",
-				"tema": "Komunikace, respekt"
-			},
-			{
-				"title": "Každý jsme jin*",
-				"start": "11:00",
-				"type": "program",
-				"description": "Každý jsme jiný a ke každému z nás je fajn přistupovat individuálně.",
-				"lectors": [
-					{
-						"name": "Mája",
-						"color": "#ec9f00"
-					},
-					{
-						"name": "Anka",
-						"color": "#b100ec"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "11:50",
-				"tema": "Individuální zvláštnosti"
-			},
-			{
-				"title": "Vzestup a pád",
-				"start": "11:00",
-				"type": "program",
-				"description": "Naše týmy a skupiny se neustále vyvíjí a situace v nich se mění. Tyto změny jsou přirozené a žádané. Pojmenujeme si je a ukážeme, jak na ně reagovat.",
-				"lectors": [
-					{
-						"name": "Opičák",
-						"color": "#0099ec",
-						"realName": "Ondřej Turek"
-					},
-					{
-						"name": "Robot",
-						"color": "#f9da00",
-						"realName": "Jakub Procházka"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "11:50",
-				"tema": "Vývoj skupiny a dramaturgie"
-			},
-			{
-				"title": "Každý jsme jin*",
-				"start": "12:00",
-				"type": "program",
-				"description": "Každý jsme jiný a ke každému z nás je fajn přistupovat individuálně.",
-				"lectors": [
-					{
-						"name": "Mája",
-						"color": "#ec9f00"
-					},
-					{
-						"name": "Anka",
-						"color": "#b100ec"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "12:50",
-				"tema": "Individuální zvláštnosti"
-			},
-			{
-				"title": "Vzestup a pád",
-				"start": "12:00",
-				"type": "program",
-				"description": "Naše týmy a skupiny se neustále vyvíjí a situace v nich se mění. Tyto změny jsou přirozené a žádané. Pojmenujeme si je a ukážeme, jak na ně reagovat.",
-				"lectors": [
-					{
-						"name": "Opičák",
-						"color": "#0099ec",
-						"realName": "Ondřej Turek"
-					},
-					{
-						"name": "Robot",
-						"color": "#f9da00",
-						"realName": "Jakub Procházka"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "12:50",
-				"tema": "Vývoj skupiny a dramaturgie"
-			},
-			{
-				"title": "Zpětná vazba",
-				"start": "12:50",
-				"type": "zpětná vazba",
-				"description": "",
-				"lectors": [],
-				"files": [],
-				"links": [],
-				"end": "12:55"
-			},
-			{
-				"title": "Oběd",
-				"start": "12:55",
-				"type": "jídlo",
-				"description": "",
-				"lectors": [],
-				"files": [],
-				"links": [],
-				"end": "13:50"
-			},
-			{
-				"title": "Jak proměnit váš program v nezapomenutelný zážitek?",
-				"start": "13:50",
-				"type": "program",
-				"description": "I zdánlivě nudné aktivity můžeme účastníkům spestřit, když si uvědomíme, co vše je může motivovat.",
-				"lectors": [
-					{
-						"name": "Opičák",
-						"color": "#0099ec",
-						"realName": "Ondřej Turek"
-					},
-					{
-						"name": "Anka",
-						"color": "#b100ec"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "14:20",
-				"tema": "Motivace k aktivitám"
-			},
-			{
-				"title": "Teploměr",
-				"start": "13:50",
-				"type": "teploměr",
-				"description": "",
-				"lectors": [],
-				"files": [],
-				"links": []
-			},
-			{
-				"title": "Jak proměnit váš program v nezapomenutelný zážitek?",
-				"start": "14:20",
-				"type": "program",
-				"description": "Pojďme si vyzkoušet, co vše může účastníky v našich aktivitách motivovat k jejich aktivní účasti v nich.",
-				"lectors": [
-					{
-						"name": "Opičák",
-						"color": "#0099ec",
-						"realName": "Ondřej Turek"
-					},
-					{
-						"name": "Anka",
-						"color": "#b100ec"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "14:40",
-				"tema": "Motivace k aktivitám"
-			},
-			{
-				"title": "Hra po okolí",
-				"start": "14:50",
-				"type": "program",
-				"description": "Dlouho už jsme seděli uvnitř. Skočme si na chvilku vyvětrat se ven na čerství vzduch a u toho si zopakujme, co jsme se doposud naučili.",
-				"lectors": [
-					{
-						"name": "Anka",
-						"color": "#b100ec"
-					},
-					{
-						"name": "Opičák",
-						"color": "#0099ec",
-						"realName": "Ondřej Turek"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "16:50"
-			},
-			{
-				"title": "(ne)béééézpečí",
-				"start": "16:50",
-				"type": "program",
-				"description": "V životě i v oddílové činnosti se nevyhneme mnohým situacím, které nemusí být komfortní, ba dokonce mohou být nebezpečné. I takové však jdou dopředu naplánovat s minimálním rizikem a můžeme na ně být dobře připraveni.",
-				"lectors": [
-					{
-						"name": "Mája",
-						"color": "#ec9f00"
-					},
-					{
-						"name": "Vítek",
-						"color": "#22aa00"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "17:50",
-				"tema": "Minimalizace rizika a krizové situace"
-			},
-			{
-				"title": "Zpětná vazba",
-				"start": "17:50",
-				"type": "zpětná vazba",
-				"description": "",
-				"lectors": [],
-				"files": [],
-				"links": [],
-				"end": "17:55"
-			},
-			{
-				"title": "Večeře",
-				"start": "17:55",
-				"type": "jídlo",
-				"description": "",
-				"lectors": [],
-				"files": [],
-				"links": [],
-				"end": "18:35"
-			},
-			{
-				"title": "Degustace",
-				"start": "18:35",
-				"type": "program",
-				"description": "Dopřejme si prostor pro degustaci výběrů z hroznů. Nechme se inspirovat, doptejme se, pobavme se. Prostě jak na pravé degustaci.",
-				"lectors": [
-					{
-						"name": "Anka",
-						"color": "#b100ec"
-					},
-					{
-						"name": "Viki",
-						"color": "#f000c6",
-						"realName": "Viktorie Renčová"
-					},
-					{
-						"name": "Vítek",
-						"color": "#22aa00"
-					},
-					{
-						"name": "Opičák",
-						"color": "#0099ec",
-						"realName": "Ondřej Turek"
-					},
-					{
-						"name": "Mája",
-						"color": "#ec9f00"
-					},
-					{
-						"name": "Foxy",
-						"color": "#ca0000"
-					},
-					{
-						"name": "Robot",
-						"color": "#f9da00",
-						"realName": "Jakub Procházka"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "19:05",
-				"tema": "Tržiště"
-			},
-			{
-				"title": "Teploměr",
-				"start": "18:35",
-				"type": "teploměr",
-				"description": "",
-				"lectors": [],
-				"files": [],
-				"links": []
-			},
-			{
-				"title": "Co dělá tvůj oddíl oddílem?",
-				"start": "19:05",
-				"type": "program",
-				"description": "Pocházíme z mnoha různých oddílů a organizací. Každý z nás má jiné tradice, jiné rituály. Toto je prostor pro jejich vzájemné sdílení, inspirování se a příjemné povídání.",
-				"lectors": [
-					{
-						"name": "Viki",
-						"color": "#f000c6",
-						"realName": "Viktorie Renčová"
-					},
-					{
-						"name": "Robot",
-						"color": "#f9da00",
-						"realName": "Jakub Procházka"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "20:35",
-				"tema": "Tradice"
-			},
-			{
-				"title": "Setkání s hrdinou",
-				"start": "20:35",
-				"type": "program",
-				"description": "Ať už jsi ve své činnosti udělal více, či méně, tvé činy mají velkou hodnotu.",
-				"lectors": [
-					{
-						"name": "Opičák",
-						"color": "#0099ec",
-						"realName": "Ondřej Turek"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "20:55"
-			},
-			{
-				"title": "Rituál",
-				"start": "20:55",
-				"type": "program",
-				"description": "Pojďme zakončit večer společným příjemným a zamýšlecím okamžikem.",
-				"lectors": [
-					{
-						"name": "Opičák",
-						"color": "#0099ec",
-						"realName": "Ondřej Turek"
-					},
-					{
-						"name": "Vítek",
-						"color": "#22aa00"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "21:15"
-			},
-			{
-				"title": "Páááááárty",
-				"start": "21:15",
-				"type": "program",
-				"description": "Uvolněný zábavný večer plný fakapů, komedie a z nepochopitelných důvodů také kápéerky...",
-				"lectors": [
-					{
-						"name": "Anka",
-						"color": "#b100ec"
-					},
-					{
-						"name": "Mája",
-						"color": "#ec9f00"
-					},
-					{
-						"name": "Viki",
-						"color": "#f000c6",
-						"realName": "Viktorie Renčová"
-					},
-					{
-						"name": "Vítek",
-						"color": "#22aa00"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "23:15"
-			}
-		]
-	},
-	{
-		"date": "2026-02-15",
-		"blocks": [
-			{
-				"title": "Společné probuzení",
-				"start": "07:30",
-				"type": "program",
-				"description": "Rozhýbat a probudit se můžeme i zábavnou formou.",
-				"lectors": [
-					{
-						"name": "Opičák",
-						"color": "#0099ec",
-						"realName": "Ondřej Turek"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "07:50"
-			},
-			{
-				"title": "Snídaně",
-				"start": "07:50",
-				"type": "jídlo",
-				"description": "",
-				"lectors": [],
-				"files": [],
-				"links": [],
-				"end": "08:35"
-			},
-			{
-				"title": "Jak je (ne)nutit?",
-				"start": "08:35",
-				"type": "program",
-				"description": "Jaký je vlastně rozdíl mezi motivací a manipulací? Kdy své svěřence už jen tahám za nos a jak pracovat s úzkou hranicí mezi těmito pojmy? Nezneužívám nevědomky svou autoritu?",
-				"lectors": [
-					{
-						"name": "Mája",
-						"color": "#ec9f00"
-					},
-					{
-						"name": "Vítek",
-						"color": "#22aa00"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "09:25",
-				"tema": "Motivace, manipulace a autorita"
-			},
-			{
-				"title": "Teploměr",
-				"start": "08:35",
-				"type": "teploměr",
-				"description": "",
-				"lectors": [],
-				"files": [],
-				"links": []
-			},
-			{
-				"title": "Volitelné bloky",
-				"start": "09:35",
-				"type": "program",
-				"description": "",
-				"lectors": [
-					{
-						"name": "Anka",
-						"color": "#b100ec"
-					},
-					{
-						"name": "Viki",
-						"color": "#f000c6",
-						"realName": "Viktorie Renčová"
-					},
-					{
-						"name": "Vítek",
-						"color": "#22aa00"
-					},
-					{
-						"name": "Opičák",
-						"color": "#0099ec",
-						"realName": "Ondřej Turek"
-					},
-					{
-						"name": "Mája",
-						"color": "#ec9f00"
-					},
-					{
-						"name": "Foxy",
-						"color": "#ca0000"
-					},
-					{
-						"name": "Robot",
-						"color": "#f9da00",
-						"realName": "Jakub Procházka"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "10:20"
-			},
-			{
-				"title": "Cukr a bič",
-				"start": "10:20",
-				"type": "program",
-				"description": "Když můžeš něco oceňovat, oceňuj. Namísto trestu pracuj s důsledkem jednání.",
-				"lectors": [
-					{
-						"name": "Opičák",
-						"color": "#0099ec",
-						"realName": "Ondřej Turek"
-					},
-					{
-						"name": "Mája",
-						"color": "#ec9f00"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "10:55",
-				"tema": "Odměny a tresty"
-			},
-			{
-				"title": "Popcorn z rychlíku",
-				"start": "10:55",
-				"type": "program",
-				"description": "Zapalovačem to nemusí končit. Buď součástí komunity zajímavých lidí a dělej s nimi zajímavé věci.",
-				"lectors": [],
-				"files": [],
-				"links": [],
-				"end": "11:05"
-			},
-			{
-				"title": "A jak o tom mluvit?",
-				"start": "11:05",
-				"type": "program",
-				"description": "Mezi zpětnou vazbou a reflexí je velký rozdíl. Co to vlastně zpětná vazba je, jak ji přijímat, jak ji dávat a hlavně co s ní potom?",
-				"lectors": [
-					{
-						"name": "Robot",
-						"color": "#f9da00",
-						"realName": "Jakub Procházka"
-					},
-					{
-						"name": "Anka",
-						"color": "#b100ec"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "11:55",
-				"tema": "Zpětná vazba"
-			},
-			{
-				"title": "Příprava na facku",
-				"start": "11:55",
-				"type": "program",
-				"description": "Plesk! Právě ses vrátil domů do svého oddílu a ten ti vlepil facku reality. Jak se na takovou situaci připravit?",
-				"lectors": [
-					{
-						"name": "Viki",
-						"color": "#f000c6",
-						"realName": "Viktorie Renčová"
-					},
-					{
-						"name": "Robot",
-						"color": "#f9da00",
-						"realName": "Jakub Procházka"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "12:15"
-			},
-			{
-				"title": "Zpětná vazba",
-				"start": "12:15",
-				"type": "zpětná vazba",
-				"description": "",
-				"lectors": [],
-				"files": [],
-				"links": [],
-				"end": "12:20"
-			},
-			{
-				"title": "Oběd",
-				"start": "12:20",
-				"type": "jídlo",
-				"description": "",
-				"lectors": [],
-				"files": [],
-				"links": [],
-				"end": "13:00"
-			},
-			{
-				"title": "Moje vize",
-				"start": "13:00",
-				"type": "program",
-				"description": "Čtyři dny jsme čerpali inspiraci a dozvídali se nové věci. Teď si je můžeme převézt do konkrétního plánu.",
-				"lectors": [
-					{
-						"name": "Opičák",
-						"color": "#0099ec",
-						"realName": "Ondřej Turek"
-					},
-					{
-						"name": "Vítek",
-						"color": "#22aa00"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "14:45"
-			},
-			{
-				"title": "Teploměr",
-				"start": "13:00",
-				"type": "teploměr",
-				"description": "",
-				"lectors": [],
-				"files": [],
-				"links": []
-			},
-			{
-				"title": "Zavírák",
-				"start": "14:45",
-				"type": "program",
-				"description": "Pojďme to uzavřít. Najděme celistvost.",
-				"lectors": [
-					{
-						"name": "Opičák",
-						"color": "#0099ec",
-						"realName": "Ondřej Turek"
-					},
-					{
-						"name": "Vítek",
-						"color": "#22aa00"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "15:30"
-			},
-			{
-				"title": "Společná fotografie",
-				"start": "15:30",
-				"type": "ostatní",
-				"description": "Vytvořme si hmatatelnou památku na tento společný zážitek ve formě nečitelné směsi jedniček a nul na náhodném uložišti kdesi v cizině.",
-				"lectors": [
-					{
-						"name": "Robot",
-						"color": "#f9da00",
-						"realName": "Jakub Procházka"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "15:40"
-			},
-			{
-				"title": "Úklid",
-				"start": "15:40",
-				"type": "ostatní",
-				"description": "Zanechme po sobě prostor stejný, nebo ideálně hezčí, než jaký byl, když jsme do něj přijeli.",
-				"lectors": [
-					{
-						"name": "Viki",
-						"color": "#f000c6",
-						"realName": "Viktorie Renčová"
-					}
-				],
-				"files": [],
-				"links": [],
-				"end": "16:25"
-			}
-		]
-	}
+  {
+    "date": "2025-01-01",
+    "blocks": [
+      {
+        "title": "Testovací blok jež bude smazán",
+        "start": "01:00",
+        "type": "program",
+        "description": "Blok určen k testování.",
+        "lectors": [
+          {
+            "name": "Robot",
+            "color": "#FFD100",
+            "realName": "Jakub Procházka"
+          }
+        ],
+        "files": [
+          {
+            "name": "download.webp",
+            "url": "files/download.webp"
+          }
+        ],
+        "links": [
+          {
+            "url": "https://kurzzapalovac.cz",
+            "desc": "Web kurzu"
+          }
+        ],
+        "end": "03:00",
+        "tema": "Testovací blok"
+      }
+    ]
+  },
+  {
+    "date": "2026-02-12",
+    "blocks": [
+      {
+        "title": "Příjezd + Zdravofiltr",
+        "start": "18:00",
+        "type": "ostatní",
+        "description": "Ten jeden program, co je prostě potřeba.",
+        "lectors": [
+          {
+            "name": "Anka",
+            "color": "#b100ec",
+            "realName": "Anička Fišerová"
+          },
+          {
+            "name": "Viki",
+            "color": "#f000c6",
+            "realName": "Viktorie Renčová"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "19:00"
+      },
+      {
+        "title": "Otvírák",
+        "start": "19:00",
+        "type": "program",
+        "description": "Zahájíme to tu nějakým zajímavým způsobem.",
+        "lectors": [
+          {
+            "name": "Vítek",
+            "color": "#22aa00",
+            "realName": "Vítek Marek"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "19:30"
+      },
+      {
+        "title": "Informace",
+        "start": "19:30",
+        "type": "program",
+        "description": "Aby se nám tu dobře ty čtyři dny společně fungovalo, pojďme si povědět, jak se tu k sobě chovat a jak tu co bude fungovat.",
+        "lectors": [
+          {
+            "name": "Opičák",
+            "color": "#0099ec",
+            "realName": "Ondřej Turek"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "20:30"
+      },
+      {
+        "title": "Pojďme se poznat",
+        "start": "20:30",
+        "type": "program",
+        "description": "Prostor pro vzájemné seznámení se.",
+        "lectors": [
+          {
+            "name": "Anka",
+            "color": "#b100ec",
+            "realName": "Anička Fišerová"
+          },
+          {
+            "name": "Vítek",
+            "color": "#22aa00",
+            "realName": "Vítek Marek"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "21:30"
+      },
+      {
+        "title": "Dopis sobě",
+        "start": "21:30",
+        "type": "program",
+        "description": "Urovnejme si myšlenky a svá očekávání formou dopisu.",
+        "lectors": [
+          {
+            "name": "Mája",
+            "color": "#ec9f00",
+            "realName": "Mája Šafaříková"
+          },
+          {
+            "name": "Foxy",
+            "color": "#ca0000",
+            "realName": "Tereza Křivská"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "21:50"
+      },
+      {
+        "title": "Rituál",
+        "start": "22:00",
+        "type": "program",
+        "description": "Pojďme zakončit večer společným příjemným a zamýšlecím okamžikem.",
+        "lectors": [
+          {
+            "name": "Opičák",
+            "color": "#0099ec",
+            "realName": "Ondřej Turek"
+          },
+          {
+            "name": "Vítek",
+            "color": "#22aa00",
+            "realName": "Vítek Marek"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "22:40"
+      },
+      {
+        "title": "Kavárna",
+        "start": "22:40",
+        "type": "program",
+        "description": "Příjemný nevedený večerní prostor pro sdílení, povídání a kytarohraní.",
+        "lectors": [
+          {
+            "name": "Viki",
+            "color": "#f000c6",
+            "realName": "Viktorie Renčová"
+          },
+          {
+            "name": "Opičák",
+            "color": "#0099ec",
+            "realName": "Ondřej Turek"
+          },
+          {
+            "name": "Mája",
+            "color": "#ec9f00",
+            "realName": "Mája Šafaříková"
+          },
+          {
+            "name": "Anka",
+            "color": "#b100ec",
+            "realName": "Anička Fišerová"
+          },
+          {
+            "name": "Vítek",
+            "color": "#22aa00",
+            "realName": "Vítek Marek"
+          },
+          {
+            "name": "Foxy",
+            "color": "#ca0000",
+            "realName": "Tereza Křivská"
+          },
+          {
+            "name": "Robot",
+            "color": "#FFD100",
+            "realName": "Jakub Procházka"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "23:55"
+      }
+    ]
+  },
+  {
+    "date": "2026-02-13",
+    "blocks": [
+      {
+        "title": "Společné probuzení",
+        "start": "07:30",
+        "type": "program",
+        "description": "Rozhýbat a probudit se můžeme i zábavnou formou.",
+        "lectors": [
+          {
+            "name": "Vítek",
+            "color": "#22aa00",
+            "realName": "Vítek Marek"
+          },
+          {
+            "name": "Mája",
+            "color": "#ec9f00",
+            "realName": "Mája Šafaříková"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "07:55"
+      },
+      {
+        "title": "Snídaně",
+        "start": "07:55",
+        "type": "jídlo",
+        "description": "",
+        "lectors": [],
+        "files": [],
+        "links": [],
+        "end": "08:40"
+      },
+      {
+        "title": "Portfolio",
+        "start": "08:40",
+        "type": "program",
+        "description": "Portfolia nás provedou kurzem, budou do nich přibývat materiály a můžeme si do nich ukládat poznámky.",
+        "lectors": [
+          {
+            "name": "Robot",
+            "color": "#FFD100",
+            "realName": "Jakub Procházka"
+          },
+          {
+            "name": "Vítek",
+            "color": "#22aa00",
+            "realName": "Vítek Marek"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "08:50"
+      },
+      {
+        "title": "Teploměr",
+        "start": "08:40",
+        "type": "teploměr",
+        "description": "",
+        "lectors": [],
+        "files": [],
+        "links": []
+      },
+      {
+        "title": "Proč si hrajeme?",
+        "start": "08:50",
+        "type": "program",
+        "description": "Hrajeme si často. Za hrou ale často může být i víc, než jen čistá zábava.",
+        "lectors": [
+          {
+            "name": "Robot",
+            "color": "#FFD100",
+            "realName": "Jakub Procházka"
+          },
+          {
+            "name": "Foxy",
+            "color": "#ca0000",
+            "realName": "Tereza Křivská"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "09:20",
+        "tema": "Hra –⁠⁠⁠⁠⁠⁠ teorie"
+      },
+      {
+        "title": "Kam směřuju (kudy běží liška)?",
+        "start": "09:30",
+        "type": "program",
+        "description": "Svou činností můžeme někam vědomě mířit, tento cíl si pojmenovat a měřit jeho dosažení.",
+        "lectors": [
+          {
+            "name": "Opičák",
+            "color": "#0099ec",
+            "realName": "Ondřej Turek"
+          },
+          {
+            "name": "Anka",
+            "color": "#b100ec",
+            "realName": "Anička Fišerová"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "10:15",
+        "tema": "Práce s cíly"
+      },
+      {
+        "title": "Hrajeme si",
+        "start": "10:15",
+        "type": "program",
+        "description": "Vyzkoušejme si nějakou tu hru uvézt a uskutečnit prakticky.",
+        "lectors": [
+          {
+            "name": "Mája",
+            "color": "#ec9f00",
+            "realName": "Mája Šafaříková"
+          },
+          {
+            "name": "Foxy",
+            "color": "#ca0000",
+            "realName": "Tereza Křivská"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "11:00",
+        "tema": "Hra –⁠⁠⁠⁠⁠⁠ praxe"
+      },
+      {
+        "title": "Oddíl jako lifestyle",
+        "start": "11:10",
+        "type": "program",
+        "description": "Mezi navštěvováním kroužku a oddílovou činností je velký rozdíl. Pojďme si o tom popovídat.",
+        "lectors": [
+          {
+            "name": "Opičák",
+            "color": "#0099ec",
+            "realName": "Ondřej Turek"
+          },
+          {
+            "name": "Viki",
+            "color": "#f000c6",
+            "realName": "Viktorie Renčová"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "11:40",
+        "tema": "Oddílová činnost"
+      },
+      {
+        "title": "Volitelné bloky",
+        "start": "11:50",
+        "type": "program",
+        "description": "",
+        "lectors": [
+          {
+            "name": "Viki",
+            "color": "#f000c6",
+            "realName": "Viktorie Renčová"
+          },
+          {
+            "name": "Opičák",
+            "color": "#0099ec",
+            "realName": "Ondřej Turek"
+          },
+          {
+            "name": "Mája",
+            "color": "#ec9f00",
+            "realName": "Mája Šafaříková"
+          },
+          {
+            "name": "Anka",
+            "color": "#b100ec",
+            "realName": "Anička Fišerová"
+          },
+          {
+            "name": "Vítek",
+            "color": "#22aa00",
+            "realName": "Vítek Marek"
+          },
+          {
+            "name": "Foxy",
+            "color": "#ca0000",
+            "realName": "Tereza Křivská"
+          },
+          {
+            "name": "Robot",
+            "color": "#FFD100",
+            "realName": "Jakub Procházka"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "12:20"
+      },
+      {
+        "title": "Zpětná vazba",
+        "start": "12:20",
+        "type": "zpětná vazba",
+        "description": "",
+        "lectors": [],
+        "files": [],
+        "links": [],
+        "end": "12:30"
+      },
+      {
+        "title": "Oběd",
+        "start": "12:30",
+        "type": "jídlo",
+        "description": "",
+        "lectors": [],
+        "files": [],
+        "links": [],
+        "end": "13:35"
+      },
+      {
+        "title": "Teploměr",
+        "start": "13:25",
+        "type": "teploměr",
+        "description": "",
+        "lectors": [],
+        "files": [],
+        "links": []
+      },
+      {
+        "title": "Kde tankovat? Nejlepší bezínky v okolí.",
+        "start": "13:35",
+        "type": "program",
+        "description": "Všichni tady máme co předat. Pojďme vám i my lektoři ukázat, co zajímavého děláme.",
+        "lectors": [
+          {
+            "name": "Viki",
+            "color": "#f000c6",
+            "realName": "Viktorie Renčová"
+          },
+          {
+            "name": "Robot",
+            "color": "#FFD100",
+            "realName": "Jakub Procházka"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "15:05",
+        "tema": "Inspirace"
+      },
+      {
+        "title": "Ten dělá to a ten zas tohle",
+        "start": "15:15",
+        "type": "program",
+        "description": "Každý jsme jiný a pracujeme v týmech a s lidmi, pro které to platí taktéž. Jací vlastně můžeme být?",
+        "lectors": [
+          {
+            "name": "Robot",
+            "color": "#FFD100",
+            "realName": "Jakub Procházka"
+          },
+          {
+            "name": "Anka",
+            "color": "#b100ec",
+            "realName": "Anička Fišerová"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "16:05",
+        "tema": "Týmové role"
+      },
+      {
+        "title": "S kým pracuješ?",
+        "start": "15:15",
+        "type": "program",
+        "description": "Pracujeme s dětmi a dospělými různých věků a z různých prostředí. Jak tomu můžeme uzpůsobovat naši činnost?",
+        "lectors": [
+          {
+            "name": "Mája",
+            "color": "#ec9f00",
+            "realName": "Mája Šafaříková"
+          },
+          {
+            "name": "Opičák",
+            "color": "#0099ec",
+            "realName": "Ondřej Turek"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "16:05",
+        "tema": "Vývojová psychologie"
+      },
+      {
+        "title": "Ten dělá to a ten zas tohle",
+        "start": "16:10",
+        "type": "program",
+        "description": "Každý jsme jiný a pracujeme v týmech a s lidmi, pro které to platí taktéž. Jací vlastně můžeme být?",
+        "lectors": [
+          {
+            "name": "Robot",
+            "color": "#FFD100",
+            "realName": "Jakub Procházka"
+          },
+          {
+            "name": "Anka",
+            "color": "#b100ec",
+            "realName": "Anička Fišerová"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "17:00",
+        "tema": "Týmové role"
+      },
+      {
+        "title": "S kým pracuješ?",
+        "start": "16:10",
+        "type": "program",
+        "description": "Pracujeme s dětmi a dospělými různých věků a z různých prostředí. Jak tomu můžeme uzpůsobovat naši činnost?",
+        "lectors": [
+          {
+            "name": "Mája",
+            "color": "#ec9f00",
+            "realName": "Mája Šafaříková"
+          },
+          {
+            "name": "Opičák",
+            "color": "#0099ec",
+            "realName": "Ondřej Turek"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "17:00",
+        "tema": "Vývojová psychologie"
+      },
+      {
+        "title": "Oddíl a společnost",
+        "start": "17:10",
+        "type": "program",
+        "description": "Oddíl může sloužit nejen svým členům, ale i společnosti kolem sebe.",
+        "lectors": [
+          {
+            "name": "Viki",
+            "color": "#f000c6",
+            "realName": "Viktorie Renčová"
+          },
+          {
+            "name": "Foxy",
+            "color": "#ca0000",
+            "realName": "Tereza Křivská"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "17:45",
+        "tema": "Služba okolí"
+      },
+      {
+        "title": "Uklidni se",
+        "start": "17:45",
+        "type": "program",
+        "description": "Nechceme vyhořet. Ačkoli máme plno možností co dělat, prvně mysleme na svoje duševní zdraví.",
+        "lectors": [
+          {
+            "name": "Mája",
+            "color": "#ec9f00",
+            "realName": "Mája Šafaříková"
+          },
+          {
+            "name": "Robot",
+            "color": "#FFD100",
+            "realName": "Jakub Procházka"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "18:25",
+        "tema": "Psychohygiena"
+      },
+      {
+        "title": "Degustace",
+        "start": "18:25",
+        "type": "program",
+        "description": "Dopřejme si prostor pro degustaci výběrů z hroznů. Nechme se inspirovat, doptejme se, pobavme se. Prostě jak na pravé degustaci.",
+        "lectors": [
+          {
+            "name": "Viki",
+            "color": "#f000c6",
+            "realName": "Viktorie Renčová"
+          },
+          {
+            "name": "Opičák",
+            "color": "#0099ec",
+            "realName": "Ondřej Turek"
+          },
+          {
+            "name": "Mája",
+            "color": "#ec9f00",
+            "realName": "Mája Šafaříková"
+          },
+          {
+            "name": "Anka",
+            "color": "#b100ec",
+            "realName": "Anička Fišerová"
+          },
+          {
+            "name": "Vítek",
+            "color": "#22aa00",
+            "realName": "Vítek Marek"
+          },
+          {
+            "name": "Foxy",
+            "color": "#ca0000",
+            "realName": "Tereza Křivská"
+          },
+          {
+            "name": "Robot",
+            "color": "#FFD100",
+            "realName": "Jakub Procházka"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "18:45",
+        "tema": "Tržiště"
+      },
+      {
+        "title": "Zpětná vazba",
+        "start": "18:45",
+        "type": "zpětná vazba",
+        "description": "",
+        "lectors": [],
+        "files": [],
+        "links": [],
+        "end": "18:55"
+      },
+      {
+        "title": "Večeře",
+        "start": "18:55",
+        "type": "jídlo",
+        "description": "",
+        "lectors": [],
+        "files": [],
+        "links": [],
+        "end": "19:35"
+      },
+      {
+        "title": "Teploměr",
+        "start": "19:25",
+        "type": "teploměr",
+        "description": "",
+        "lectors": [],
+        "files": [],
+        "links": []
+      },
+      {
+        "title": "Sharing is caring",
+        "start": "19:35",
+        "type": "program",
+        "description": "Na závěr dne si dopřejme prostor pro vzájemné sdílení.",
+        "lectors": [
+          {
+            "name": "Viki",
+            "color": "#f000c6",
+            "realName": "Viktorie Renčová"
+          },
+          {
+            "name": "Vítek",
+            "color": "#22aa00",
+            "realName": "Vítek Marek"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "20:55",
+        "tema": "Sdílení"
+      },
+      {
+        "title": "Okořeň to",
+        "start": "20:55",
+        "type": "program",
+        "description": "Přidanou hodnotu našim výtvorům dodáme nejen dobrou skladbou programů, ale i kreativitou a zapojováním smyslů.",
+        "lectors": [
+          {
+            "name": "Viki",
+            "color": "#f000c6",
+            "realName": "Viktorie Renčová"
+          },
+          {
+            "name": "Opičák",
+            "color": "#0099ec",
+            "realName": "Ondřej Turek"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "21:30",
+        "tema": "Design"
+      },
+      {
+        "title": "Proč to sakra dělám?",
+        "start": "21:30",
+        "type": "program",
+        "description": "Občas je dobré zamyslet se nad tím, proč které věci v životě vůbec děláme. U oddílové činnosti, které často věnujeme velké množství času, to může být nanejvýš přínosné.",
+        "lectors": [
+          {
+            "name": "Anka",
+            "color": "#b100ec",
+            "realName": "Anička Fišerová"
+          },
+          {
+            "name": "Robot",
+            "color": "#FFD100",
+            "realName": "Jakub Procházka"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "21:50",
+        "tema": "Motivace vedoucího"
+      },
+      {
+        "title": "Rituál",
+        "start": "21:50",
+        "type": "program",
+        "description": "Pojďme zakončit večer společným příjemným a zamýšlecím okamžikem.",
+        "lectors": [
+          {
+            "name": "Opičák",
+            "color": "#0099ec",
+            "realName": "Ondřej Turek"
+          },
+          {
+            "name": "Vítek",
+            "color": "#22aa00",
+            "realName": "Vítek Marek"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "22:10"
+      }
+    ]
+  },
+  {
+    "date": "2026-02-14",
+    "blocks": [
+      {
+        "title": "Společné probuzení",
+        "start": "07:30",
+        "type": "program",
+        "description": "Rozhýbat a probudit se můžeme i zábavnou formou.",
+        "lectors": [
+          {
+            "name": "Viki",
+            "color": "#f000c6",
+            "realName": "Viktorie Renčová"
+          },
+          {
+            "name": "Foxy",
+            "color": "#ca0000",
+            "realName": "Tereza Křivská"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "07:55"
+      },
+      {
+        "title": "Snídaně",
+        "start": "07:55",
+        "type": "jídlo",
+        "description": "",
+        "lectors": [],
+        "files": [],
+        "links": [],
+        "end": "08:40"
+      },
+      {
+        "title": "To zní jako plán",
+        "start": "08:40",
+        "type": "program",
+        "description": "Pojďme se podívat na to, co všechno a jak vlastně musíme plánovat, jak to dělat efektivně a jak na nic nezapomenout.",
+        "lectors": [
+          {
+            "name": "Anka",
+            "color": "#b100ec",
+            "realName": "Anička Fišerová"
+          },
+          {
+            "name": "Foxy",
+            "color": "#ca0000",
+            "realName": "Tereza Křivská"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "09:40",
+        "tema": "Plánování schůzky a výpravy"
+      },
+      {
+        "title": "Respekt, vole",
+        "start": "08:40",
+        "type": "program",
+        "description": "Všichni chceme pohodu v našem týmu i mezi našimi svěřenci. Podíváme se na to, jak spolu vhodně komunikovat, co je to vlastně respekt a co nám může pomoci.",
+        "lectors": [
+          {
+            "name": "Mája",
+            "color": "#ec9f00",
+            "realName": "Mája Šafaříková"
+          },
+          {
+            "name": "Robot",
+            "color": "#FFD100",
+            "realName": "Jakub Procházka"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "09:40",
+        "tema": "Komunikace, respekt"
+      },
+      {
+        "title": "Teploměr",
+        "start": "08:40",
+        "type": "teploměr",
+        "description": "",
+        "lectors": [],
+        "files": [],
+        "links": []
+      },
+      {
+        "title": "To zní jako plán",
+        "start": "09:50",
+        "type": "program",
+        "description": "Pojďme se podívat na to, co všechno a jak vlastně musíme plánovat, jak to dělat efektivně a jak na nic nezapomenout.",
+        "lectors": [
+          {
+            "name": "Anka",
+            "color": "#b100ec",
+            "realName": "Anička Fišerová"
+          },
+          {
+            "name": "Foxy",
+            "color": "#ca0000",
+            "realName": "Tereza Křivská"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "10:50",
+        "tema": "Plánování schůzky a výpravy"
+      },
+      {
+        "title": "Respekt, vole",
+        "start": "09:50",
+        "type": "program",
+        "description": "Všichni chceme pohodu v našem týmu i mezi našimi svěřenci. Podíváme se na to, jak spolu vhodně komunikovat, co je to vlastně respekt a co nám může pomoci.",
+        "lectors": [
+          {
+            "name": "Mája",
+            "color": "#ec9f00",
+            "realName": "Mája Šafaříková"
+          },
+          {
+            "name": "Robot",
+            "color": "#FFD100",
+            "realName": "Jakub Procházka"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "10:50",
+        "tema": "Komunikace, respekt"
+      },
+      {
+        "title": "Každý jsme jin*",
+        "start": "11:00",
+        "type": "program",
+        "description": "Každý jsme jiný a ke každému z nás je fajn přistupovat individuálně.",
+        "lectors": [
+          {
+            "name": "Mája",
+            "color": "#ec9f00",
+            "realName": "Mája Šafaříková"
+          },
+          {
+            "name": "Anka",
+            "color": "#b100ec",
+            "realName": "Anička Fišerová"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "11:50",
+        "tema": "Individuální zvláštnosti"
+      },
+      {
+        "title": "Vzestup a pád",
+        "start": "11:00",
+        "type": "program",
+        "description": "Naše týmy a skupiny se neustále vyvíjí a situace v nich se mění. Tyto změny jsou přirozené a žádané. Pojmenujeme si je a ukážeme, jak na ně reagovat.",
+        "lectors": [
+          {
+            "name": "Opičák",
+            "color": "#0099ec",
+            "realName": "Ondřej Turek"
+          },
+          {
+            "name": "Robot",
+            "color": "#FFD100",
+            "realName": "Jakub Procházka"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "11:50",
+        "tema": "Vývoj skupiny a dramaturgie"
+      },
+      {
+        "title": "Každý jsme jin*",
+        "start": "12:00",
+        "type": "program",
+        "description": "Každý jsme jiný a ke každému z nás je fajn přistupovat individuálně.",
+        "lectors": [
+          {
+            "name": "Mája",
+            "color": "#ec9f00",
+            "realName": "Mája Šafaříková"
+          },
+          {
+            "name": "Anka",
+            "color": "#b100ec",
+            "realName": "Anička Fišerová"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "12:50",
+        "tema": "Individuální zvláštnosti"
+      },
+      {
+        "title": "Vzestup a pád",
+        "start": "12:00",
+        "type": "program",
+        "description": "Naše týmy a skupiny se neustále vyvíjí a situace v nich se mění. Tyto změny jsou přirozené a žádané. Pojmenujeme si je a ukážeme, jak na ně reagovat.",
+        "lectors": [
+          {
+            "name": "Opičák",
+            "color": "#0099ec",
+            "realName": "Ondřej Turek"
+          },
+          {
+            "name": "Robot",
+            "color": "#FFD100",
+            "realName": "Jakub Procházka"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "12:50",
+        "tema": "Vývoj skupiny a dramaturgie"
+      },
+      {
+        "title": "Zpětná vazba",
+        "start": "12:50",
+        "type": "zpětná vazba",
+        "description": "",
+        "lectors": [],
+        "files": [],
+        "links": [],
+        "end": "12:55"
+      },
+      {
+        "title": "Oběd",
+        "start": "12:55",
+        "type": "jídlo",
+        "description": "",
+        "lectors": [],
+        "files": [],
+        "links": [],
+        "end": "13:50"
+      },
+      {
+        "title": "Jak proměnit váš program v nezapomenutelný zážitek?",
+        "start": "13:50",
+        "type": "program",
+        "description": "I zdánlivě nudné aktivity můžeme účastníkům spestřit, když si uvědomíme, co vše je může motivovat.",
+        "lectors": [
+          {
+            "name": "Opičák",
+            "color": "#0099ec",
+            "realName": "Ondřej Turek"
+          },
+          {
+            "name": "Anka",
+            "color": "#b100ec",
+            "realName": "Anička Fišerová"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "14:20",
+        "tema": "Motivace k aktivitám"
+      },
+      {
+        "title": "Teploměr",
+        "start": "13:50",
+        "type": "teploměr",
+        "description": "",
+        "lectors": [],
+        "files": [],
+        "links": []
+      },
+      {
+        "title": "Jak proměnit váš program v nezapomenutelný zážitek?",
+        "start": "14:20",
+        "type": "program",
+        "description": "Pojďme si vyzkoušet, co vše může účastníky v našich aktivitách motivovat k jejich aktivní účasti v nich.",
+        "lectors": [
+          {
+            "name": "Opičák",
+            "color": "#0099ec",
+            "realName": "Ondřej Turek"
+          },
+          {
+            "name": "Anka",
+            "color": "#b100ec",
+            "realName": "Anička Fišerová"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "14:40",
+        "tema": "Motivace k aktivitám"
+      },
+      {
+        "title": "Hra po okolí",
+        "start": "14:50",
+        "type": "program",
+        "description": "Dlouho už jsme seděli uvnitř. Skočme si na chvilku vyvětrat se ven na čerství vzduch a u toho si zopakujme, co jsme se doposud naučili.",
+        "lectors": [
+          {
+            "name": "Anka",
+            "color": "#b100ec",
+            "realName": "Anička Fišerová"
+          },
+          {
+            "name": "Opičák",
+            "color": "#0099ec",
+            "realName": "Ondřej Turek"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "16:50"
+      },
+      {
+        "title": "(ne)béééézpečí",
+        "start": "16:50",
+        "type": "program",
+        "description": "V životě i v oddílové činnosti se nevyhneme mnohým situacím, které nemusí být komfortní, ba dokonce mohou být nebezpečné. I takové však jdou dopředu naplánovat s minimálním rizikem a můžeme na ně být dobře připraveni.",
+        "lectors": [
+          {
+            "name": "Mája",
+            "color": "#ec9f00",
+            "realName": "Mája Šafaříková"
+          },
+          {
+            "name": "Vítek",
+            "color": "#22aa00",
+            "realName": "Vítek Marek"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "17:50",
+        "tema": "Minimalizace rizika a krizové situace"
+      },
+      {
+        "title": "Zpětná vazba",
+        "start": "17:50",
+        "type": "zpětná vazba",
+        "description": "",
+        "lectors": [],
+        "files": [],
+        "links": [],
+        "end": "17:55"
+      },
+      {
+        "title": "Večeře",
+        "start": "17:55",
+        "type": "jídlo",
+        "description": "",
+        "lectors": [],
+        "files": [],
+        "links": [],
+        "end": "18:35"
+      },
+      {
+        "title": "Degustace",
+        "start": "18:35",
+        "type": "program",
+        "description": "Dopřejme si prostor pro degustaci výběrů z hroznů. Nechme se inspirovat, doptejme se, pobavme se. Prostě jak na pravé degustaci.",
+        "lectors": [
+          {
+            "name": "Anka",
+            "color": "#b100ec",
+            "realName": "Anička Fišerová"
+          },
+          {
+            "name": "Viki",
+            "color": "#f000c6",
+            "realName": "Viktorie Renčová"
+          },
+          {
+            "name": "Vítek",
+            "color": "#22aa00",
+            "realName": "Vítek Marek"
+          },
+          {
+            "name": "Opičák",
+            "color": "#0099ec",
+            "realName": "Ondřej Turek"
+          },
+          {
+            "name": "Mája",
+            "color": "#ec9f00",
+            "realName": "Mája Šafaříková"
+          },
+          {
+            "name": "Foxy",
+            "color": "#ca0000",
+            "realName": "Tereza Křivská"
+          },
+          {
+            "name": "Robot",
+            "color": "#FFD100",
+            "realName": "Jakub Procházka"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "19:05",
+        "tema": "Tržiště"
+      },
+      {
+        "title": "Teploměr",
+        "start": "18:35",
+        "type": "teploměr",
+        "description": "",
+        "lectors": [],
+        "files": [],
+        "links": []
+      },
+      {
+        "title": "Co dělá tvůj oddíl oddílem?",
+        "start": "19:05",
+        "type": "program",
+        "description": "Pocházíme z mnoha různých oddílů a organizací. Každý z nás má jiné tradice, jiné rituály. Toto je prostor pro jejich vzájemné sdílení, inspirování se a příjemné povídání.",
+        "lectors": [
+          {
+            "name": "Viki",
+            "color": "#f000c6",
+            "realName": "Viktorie Renčová"
+          },
+          {
+            "name": "Robot",
+            "color": "#FFD100",
+            "realName": "Jakub Procházka"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "20:35",
+        "tema": "Tradice"
+      },
+      {
+        "title": "Setkání s hrdinou",
+        "start": "20:35",
+        "type": "program",
+        "description": "Ať už jsi ve své činnosti udělal více, či méně, tvé činy mají velkou hodnotu.",
+        "lectors": [
+          {
+            "name": "Opičák",
+            "color": "#0099ec",
+            "realName": "Ondřej Turek"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "20:55"
+      },
+      {
+        "title": "Rituál",
+        "start": "20:55",
+        "type": "program",
+        "description": "Pojďme zakončit večer společným příjemným a zamýšlecím okamžikem.",
+        "lectors": [
+          {
+            "name": "Opičák",
+            "color": "#0099ec",
+            "realName": "Ondřej Turek"
+          },
+          {
+            "name": "Vítek",
+            "color": "#22aa00",
+            "realName": "Vítek Marek"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "21:15"
+      },
+      {
+        "title": "Páááááárty",
+        "start": "21:15",
+        "type": "program",
+        "description": "Uvolněný zábavný večer plný fakapů, komedie a z nepochopitelných důvodů také kápéerky...",
+        "lectors": [
+          {
+            "name": "Anka",
+            "color": "#b100ec",
+            "realName": "Anička Fišerová"
+          },
+          {
+            "name": "Mája",
+            "color": "#ec9f00",
+            "realName": "Mája Šafaříková"
+          },
+          {
+            "name": "Viki",
+            "color": "#f000c6",
+            "realName": "Viktorie Renčová"
+          },
+          {
+            "name": "Vítek",
+            "color": "#22aa00",
+            "realName": "Vítek Marek"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "23:15"
+      }
+    ]
+  },
+  {
+    "date": "2026-02-15",
+    "blocks": [
+      {
+        "title": "Společné probuzení",
+        "start": "07:30",
+        "type": "program",
+        "description": "Rozhýbat a probudit se můžeme i zábavnou formou.",
+        "lectors": [
+          {
+            "name": "Opičák",
+            "color": "#0099ec",
+            "realName": "Ondřej Turek"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "07:50"
+      },
+      {
+        "title": "Snídaně",
+        "start": "07:50",
+        "type": "jídlo",
+        "description": "",
+        "lectors": [],
+        "files": [],
+        "links": [],
+        "end": "08:35"
+      },
+      {
+        "title": "Jak je (ne)nutit?",
+        "start": "08:35",
+        "type": "program",
+        "description": "Jaký je vlastně rozdíl mezi motivací a manipulací? Kdy své svěřence už jen tahám za nos a jak pracovat s úzkou hranicí mezi těmito pojmy? Nezneužívám nevědomky svou autoritu?",
+        "lectors": [
+          {
+            "name": "Mája",
+            "color": "#ec9f00",
+            "realName": "Mája Šafaříková"
+          },
+          {
+            "name": "Vítek",
+            "color": "#22aa00",
+            "realName": "Vítek Marek"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "09:25",
+        "tema": "Motivace, manipulace a autorita"
+      },
+      {
+        "title": "Teploměr",
+        "start": "08:35",
+        "type": "teploměr",
+        "description": "",
+        "lectors": [],
+        "files": [],
+        "links": []
+      },
+      {
+        "title": "Volitelné bloky",
+        "start": "09:35",
+        "type": "program",
+        "description": "",
+        "lectors": [
+          {
+            "name": "Anka",
+            "color": "#b100ec",
+            "realName": "Anička Fišerová"
+          },
+          {
+            "name": "Viki",
+            "color": "#f000c6",
+            "realName": "Viktorie Renčová"
+          },
+          {
+            "name": "Vítek",
+            "color": "#22aa00",
+            "realName": "Vítek Marek"
+          },
+          {
+            "name": "Opičák",
+            "color": "#0099ec",
+            "realName": "Ondřej Turek"
+          },
+          {
+            "name": "Mája",
+            "color": "#ec9f00",
+            "realName": "Mája Šafaříková"
+          },
+          {
+            "name": "Foxy",
+            "color": "#ca0000",
+            "realName": "Tereza Křivská"
+          },
+          {
+            "name": "Robot",
+            "color": "#FFD100",
+            "realName": "Jakub Procházka"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "10:20"
+      },
+      {
+        "title": "Cukr a bič",
+        "start": "10:20",
+        "type": "program",
+        "description": "Když můžeš něco oceňovat, oceňuj. Namísto trestu pracuj s důsledkem jednání.",
+        "lectors": [
+          {
+            "name": "Opičák",
+            "color": "#0099ec",
+            "realName": "Ondřej Turek"
+          },
+          {
+            "name": "Mája",
+            "color": "#ec9f00",
+            "realName": "Mája Šafaříková"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "10:55",
+        "tema": "Odměny a tresty"
+      },
+      {
+        "title": "Popcorn z rychlíku",
+        "start": "10:55",
+        "type": "program",
+        "description": "Zapalovačem to nemusí končit. Buď součástí komunity zajímavých lidí a dělej s nimi zajímavé věci.",
+        "lectors": [],
+        "files": [],
+        "links": [],
+        "end": "11:05"
+      },
+      {
+        "title": "A jak o tom mluvit?",
+        "start": "11:05",
+        "type": "program",
+        "description": "Mezi zpětnou vazbou a reflexí je velký rozdíl. Co to vlastně zpětná vazba je, jak ji přijímat, jak ji dávat a hlavně co s ní potom?",
+        "lectors": [
+          {
+            "name": "Robot",
+            "color": "#FFD100",
+            "realName": "Jakub Procházka"
+          },
+          {
+            "name": "Anka",
+            "color": "#b100ec",
+            "realName": "Anička Fišerová"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "11:55",
+        "tema": "Zpětná vazba"
+      },
+      {
+        "title": "Příprava na facku",
+        "start": "11:55",
+        "type": "program",
+        "description": "Plesk! Právě ses vrátil domů do svého oddílu a ten ti vlepil facku reality. Jak se na takovou situaci připravit?",
+        "lectors": [
+          {
+            "name": "Viki",
+            "color": "#f000c6",
+            "realName": "Viktorie Renčová"
+          },
+          {
+            "name": "Robot",
+            "color": "#FFD100",
+            "realName": "Jakub Procházka"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "12:15"
+      },
+      {
+        "title": "Zpětná vazba",
+        "start": "12:15",
+        "type": "zpětná vazba",
+        "description": "",
+        "lectors": [],
+        "files": [],
+        "links": [],
+        "end": "12:20"
+      },
+      {
+        "title": "Oběd",
+        "start": "12:20",
+        "type": "jídlo",
+        "description": "",
+        "lectors": [],
+        "files": [],
+        "links": [],
+        "end": "13:00"
+      },
+      {
+        "title": "Moje vize",
+        "start": "13:00",
+        "type": "program",
+        "description": "Čtyři dny jsme čerpali inspiraci a dozvídali se nové věci. Teď si je můžeme převézt do konkrétního plánu.",
+        "lectors": [
+          {
+            "name": "Opičák",
+            "color": "#0099ec",
+            "realName": "Ondřej Turek"
+          },
+          {
+            "name": "Vítek",
+            "color": "#22aa00",
+            "realName": "Vítek Marek"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "14:45"
+      },
+      {
+        "title": "Teploměr",
+        "start": "13:00",
+        "type": "teploměr",
+        "description": "",
+        "lectors": [],
+        "files": [],
+        "links": []
+      },
+      {
+        "title": "Zavírák",
+        "start": "14:45",
+        "type": "program",
+        "description": "Pojďme to uzavřít. Najděme celistvost.",
+        "lectors": [
+          {
+            "name": "Opičák",
+            "color": "#0099ec",
+            "realName": "Ondřej Turek"
+          },
+          {
+            "name": "Vítek",
+            "color": "#22aa00",
+            "realName": "Vítek Marek"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "15:30"
+      },
+      {
+        "title": "Společná fotografie",
+        "start": "15:30",
+        "type": "ostatní",
+        "description": "Vytvořme si hmatatelnou památku na tento společný zážitek ve formě nečitelné směsi jedniček a nul na náhodném uložišti kdesi v cizině.",
+        "lectors": [
+          {
+            "name": "Robot",
+            "color": "#FFD100",
+            "realName": "Jakub Procházka"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "15:40"
+      },
+      {
+        "title": "Úklid",
+        "start": "15:40",
+        "type": "ostatní",
+        "description": "Zanechme po sobě prostor stejný, nebo ideálně hezčí, než jaký byl, když jsme do něj přijeli.",
+        "lectors": [
+          {
+            "name": "Viki",
+            "color": "#f000c6",
+            "realName": "Viktorie Renčová"
+          }
+        ],
+        "files": [],
+        "links": [],
+        "end": "16:25"
+      }
+    ]
+  }
 ]
