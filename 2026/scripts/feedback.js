@@ -309,4 +309,20 @@ document.addEventListener("DOMContentLoaded", function () {
 				'<option value="" disabled selected>Chyba načítání</option>';
 		}
 	}
+	// Feedback modal backdrop fix
+	const tryAttachFeedbackModalCleanup = () => {
+		const feedbackModalEl = document.getElementById("feedbackModal");
+		if (feedbackModalEl) {
+			feedbackModalEl.addEventListener("hidden.bs.modal", () => {
+				// Remove any stuck modal-backdrop and modal-open class
+				const backdrops = document.querySelectorAll(".modal-backdrop");
+				backdrops.forEach((bd) => bd.remove());
+				document.body.classList.remove("modal-open");
+				document.body.style.overflow = "";
+			});
+		} else {
+			setTimeout(tryAttachFeedbackModalCleanup, 200);
+		}
+	};
+	tryAttachFeedbackModalCleanup();
 });
