@@ -1,3 +1,29 @@
+// Emoji arrays for feedback fields (attached to window for global access)
+window.FEEDBACK_EMOJIS_PROGRAM = [
+	"❤️",
+	"😍",
+	"😄",
+	"😊",
+	"😐",
+	"😕",
+	"😢",
+	"😡",
+	"🥱",
+	"🤯",
+	"⁉️",
+];
+window.FEEDBACK_EMOJIS_LECTORS = [
+	"❤️",
+	"😄",
+	"🥰",
+	"🤗",
+	"😐",
+	"😕",
+	"😢",
+	"😡",
+	"🥱",
+	"❓",
+];
 // Feedback icon and tooltip config
 export const FEEDBACK_ICON = {
 	icon: "📝",

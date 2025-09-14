@@ -1,3 +1,37 @@
+/* Emoji row: 5 per row, wraps naturally */
+#feedbackModal .emoji-selector .emoji-row {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.5rem;
+}
+#feedbackModal .emoji-selector label.btn {
+	flex: 0 1 20%; /* 5 per row by default */
+	text-align: center;
+	max-width: 20%;
+	min-width: 60px;
+	border-radius: 1.5rem;
+	border: 1.5px solid #e0e7ef;
+	background: #fff;
+	color: #0d6efd;
+	font-size: 1.7rem;
+	transition: background 0.18s, border-color 0.18s, transform 0.13s;
+	margin: 0 0.1rem;
+	box-shadow: 0 1px 4px rgba(13, 110, 253, 0.03);
+}
+#feedbackModal .emoji-selector label.btn:hover,
+#feedbackModal .emoji-selector label.btn:focus {
+	background: #e7f1ff;
+	border-color: #0d6efd;
+	transform: scale(1.08);
+}
+#feedbackModal .emoji-selector .btn-check:checked + label.btn {
+	background: #0d6efd;
+	color: #fff;
+	border-color: #0d6efd;
+	box-shadow: 0 2px 8px rgba(13, 110, 253, 0.1);
+	transform: scale(1.13);
+}
 #feedbackModal .modal-header {
 	background: none !important;
 }
@@ -129,18 +163,6 @@
 	font-size: 1.15rem;
 	font-weight: 700;
 	padding: 0.7em 0;
-	#feedbackModal .emoji-selector {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	}
-
-	#feedbackModal .emoji-selector .emoji-row {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-		gap: 0.5rem;
-	}
 	box-shadow: 0 2px 12px rgba(13, 110, 253, 0.1);
 	letter-spacing: 0.01em;
 	transition: background 0.18s, box-shadow 0.18s, transform 0.13s;
@@ -152,19 +174,8 @@
 	transform: translateY(-2px) scale(1.03);
 }
 
-#feedbackModal .emoji-selector .emoji-row {
-	flex-wrap: wrap;
-}
-#feedbackModal .emoji-selector label.btn {
-	flex: 0 1 20%; /* 5 per row by default */
-	text-align: center;
-	max-width: 20%;
-	min-width: 60px;
-}
-
 @media (max-width: 600px) {
 	#feedbackModal .emoji-selector .emoji-row {
-		flex-wrap: wrap;
 		gap: 0.4rem;
 	}
 	#feedbackModal .emoji-selector label.btn {

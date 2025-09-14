@@ -35,9 +35,26 @@ window.openFeedbackModalForBlock = function (block) {
 			.then((response) => response.text())
 			.then((html) => {
 				document.body.insertAdjacentHTML("beforeend", html);
-				setTimeout(show, 200);
+				// Dynamically load feedback-emojis.js after feedback.html is inserted
+				var emojiScript = document.createElement("script");
+				emojiScript.src = "scripts/feedback-emojis.js";
+				emojiScript.onload = function () {
+					setTimeout(() => {
+						if (typeof renderEmojiRadios === "function") {
+							renderEmojiRadios("programFeelingGroup", "programFeeling");
+							renderEmojiRadios("lectorsFeelingGroup", "lectorsFeeling");
+						}
+						show();
+					}, 0);
+				};
+				document.body.appendChild(emojiScript);
 			});
 	} else {
+		// Always re-render emoji radios before showing modal
+		if (typeof renderEmojiRadios === "function") {
+			renderEmojiRadios("programFeelingGroup", "programFeeling");
+			renderEmojiRadios("lectorsFeelingGroup", "lectorsFeeling");
+		}
 		show();
 	}
 };
@@ -54,24 +71,36 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 document.addEventListener("DOMContentLoaded", function () {
-	// Load feedback modal HTML and popup script/CSS only once
-	fetch("components/feedback.html")
-		.then((response) => response.text())
-		.then((html) => {
-			document.body.insertAdjacentHTML("beforeend", html);
-			// Load feedback popup CSS
-			var popupCss = document.createElement("link");
-			popupCss.rel = "stylesheet";
-			popupCss.href = "css/feedback-popup.css";
-			document.head.appendChild(popupCss);
-			// Load feedback popup script, then setup modal
-			var popupScript = document.createElement("script");
-			popupScript.src = "scripts/feedback-popup.js";
-			popupScript.onload = function () {
-				setupFeedbackModal();
-			};
-			document.body.appendChild(popupScript);
-		});
+	// Only insert feedback modal if not present
+	if (!document.getElementById("feedbackModal")) {
+		fetch("components/feedback.html")
+			.then((response) => response.text())
+			.then((html) => {
+				document.body.insertAdjacentHTML("beforeend", html);
+				// Dynamically load feedback-emojis.js after feedback.html is inserted
+				var emojiScript = document.createElement("script");
+				emojiScript.src = "scripts/feedback-emojis.js";
+				emojiScript.onload = function () {
+					if (typeof renderEmojiRadios === "function") {
+						renderEmojiRadios("programFeelingGroup", "programFeeling");
+						renderEmojiRadios("lectorsFeelingGroup", "lectorsFeeling");
+					}
+				};
+				document.body.appendChild(emojiScript);
+				// Load feedback popup CSS
+				var popupCss = document.createElement("link");
+				popupCss.rel = "stylesheet";
+				popupCss.href = "css/feedback-popup.css";
+				document.head.appendChild(popupCss);
+				// Load feedback popup script, then setup modal
+				var popupScript = document.createElement("script");
+				popupScript.src = "scripts/feedback-popup.js";
+				popupScript.onload = function () {
+					setupFeedbackModal();
+				};
+				document.body.appendChild(popupScript);
+			});
+	}
 
 	async function setupFeedbackModal() {
 		const feedbackBtn = document.getElementById("feedbackBtn");
