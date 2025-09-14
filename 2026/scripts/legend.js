@@ -126,3 +126,26 @@ document.addEventListener("DOMContentLoaded", () => {
 	};
 	tryAttach();
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+	const tryAttach = () => {
+		const btn = document.getElementById("legendBtn");
+		const legendModalEl = document.getElementById("legendModal");
+		if (btn) {
+			btn.addEventListener("click", window.showLegend);
+		}
+		if (legendModalEl) {
+			legendModalEl.addEventListener("hidden.bs.modal", () => {
+				// Remove any stuck modal-backdrop and modal-open class
+				const backdrops = document.querySelectorAll(".modal-backdrop");
+				backdrops.forEach((bd) => bd.remove());
+				document.body.classList.remove("modal-open");
+				document.body.style.overflow = "";
+			});
+		}
+		if (!btn || !legendModalEl) {
+			setTimeout(tryAttach, 200);
+		}
+	};
+	tryAttach();
+});
