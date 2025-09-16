@@ -37,7 +37,7 @@ window.openFeedbackModalForBlock = function (block) {
 				document.body.insertAdjacentHTML("beforeend", html);
 				// Dynamically load feedback-emojis.js after feedback.html is inserted
 				var emojiScript = document.createElement("script");
-				emojiScript.src = "scripts/feedback-emojis.js?v=20250917";
+				emojiScript.src = "scripts/feedback-emojis.js?v=4.3.1";
 				emojiScript.onload = function () {
 					setTimeout(() => {
 						if (typeof renderEmojiRadios === "function") {
@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				document.body.insertAdjacentHTML("beforeend", html);
 				// Dynamically load feedback-emojis.js after feedback.html is inserted
 				var emojiScript = document.createElement("script");
-				emojiScript.src = "scripts/feedback-emojis.js?v=20250917";
+				emojiScript.src = "scripts/feedback-emojis.js?v=4.3.1";
 				emojiScript.onload = function () {
 					if (typeof renderEmojiRadios === "function") {
 						renderEmojiRadios("programFeelingGroup", "programFeeling");
@@ -90,11 +90,11 @@ document.addEventListener("DOMContentLoaded", function () {
 				// Load feedback popup CSS
 				var popupCss = document.createElement("link");
 				popupCss.rel = "stylesheet";
-				popupCss.href = "css/feedback-popup.css?v=20250917";
+				popupCss.href = "css/feedback-popup.css?v=4.3.1";
 				document.head.appendChild(popupCss);
 				// Load feedback popup script, then setup modal
 				var popupScript = document.createElement("script");
-				popupScript.src = "scripts/feedback-popup.js?v=20250917";
+				popupScript.src = "scripts/feedback-popup.js?v=4.3.1";
 				popupScript.onload = function () {
 					setupFeedbackModal();
 				};
