@@ -82,6 +82,13 @@ export function showModal(scheduleData, block) {
 	$("modalDesc").textContent = block.description || "Bez popisu";
 
 	// --- Feedback and sources icon logic for modal ---
+	// Always remove any feedback icon from modal header first
+	const modalHeader = document.querySelector("#blockModal .modal-header");
+	if (modalHeader) {
+		modalHeader
+			.querySelectorAll(".modal-header-feedback-icon")
+			.forEach((el) => el.remove());
+	}
 	const filesEl = $("modalFiles");
 	filesEl.innerHTML = "";
 	let blockDate = null;
@@ -93,20 +100,16 @@ export function showModal(scheduleData, block) {
 			}
 		}
 	}
+	// Fallback: use block.date if not found
+	if (!blockDate && block.date) {
+		blockDate = block.date;
+	}
 	// Feedback icon for non-future blocks (move to modal-header)
 	const feedbackIcon = createFeedbackIconForModal(block, blockDate);
-	if (feedbackIcon) {
+	if (feedbackIcon && modalHeader) {
 		feedbackIcon.classList.add("modal-header-feedback-icon");
-		// Insert into modal-header, before close button
-		const modalHeader = document.querySelector("#blockModal .modal-header");
-		const closeBtn = modalHeader?.querySelector(".btn-close");
-		// Remove all existing feedback icons first
-		if (modalHeader) {
-			modalHeader
-				.querySelectorAll(".modal-header-feedback-icon")
-				.forEach((el) => el.remove());
-		}
-		if (modalHeader && closeBtn) {
+		const closeBtn = modalHeader.querySelector(".btn-close");
+		if (closeBtn) {
 			modalHeader.insertBefore(feedbackIcon, closeBtn);
 		}
 	}
