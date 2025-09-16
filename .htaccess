@@ -1,0 +1,18 @@
+<IfModule mod_headers.c>
+  # Completely disable caching for HTML, CSS, JS
+  <FilesMatch "\.(html|htm|php|css|js)$">
+    Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+  </FilesMatch>
+
+  # Images and fonts: still allow some caching (optional)
+  <FilesMatch "\.(png|jpe?g|gif|svg|woff2?)$">
+    Header set Cache-Control "max-age=0, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+  </FilesMatch>
+</IfModule>
+
+# Disable ETag headers (can cause cache sticking)
+FileETag None
